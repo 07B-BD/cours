@@ -2,97 +2,89 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  base:"/cours/",
+  base: '/cours/',
   lang: 'fr-CA',
   cleanUrls: true,
-  title: "420-08C-FX",
-  description: "Énoncés, grilles, calendrier et ressources du cours",
+  title: '420-07B-FX',
+  description: 'Introduction aux bases de données — Énoncés, grilles, calendrier et ressources',
   themeConfig: {
     logo: './logos/logo.png',
+
     nav: [
-      { text: 'Calendrier', link: '/calendrier' },
-      { text: 'Horaires', link: '/horaires' },
-      { 
-        text: 'Énoncés',
-        items: [
-          { text: 'Planification du projet', link: '/enonces/planif-projet' },
-          { text: 'Planification de sprint', link: '/enonces/planif-sprint' },
-          { text: 'Rapport de fin de sprint', link: '/enonces/fin-sprint' },
-          { text: 'Finalisation du projet', link: '/enonces/finalisation' },
-          { text: 'Présentation finale', link: '/enonces/presentation-finale' }
-        ]
-       },
-      { 
-        text: 'Grilles', 
-        items: [
-          { text: 'Planification du projet', link: '/grilles/grille-planif-projet' },
-          { text: 'Sprint (complet)', link: '/grilles/grille-sprint' },
-          { text: 'Finalisation du projet', link: '/grilles/grille-finalisation' }
-        ]
-       },
+      { text: 'Plan de cours', link: '/plan-cours/plan-de-cours' },
+      { text: 'Calendrier', link: '/plan-cours/calendrier' },
       {
-        text: 'Ressources',
+        text: 'Modules',
         items: [
-          { text: 'Agile & Scrum', link: '/ressources/agile-scrum' },
-          { text: 'Récits utilisateur', link: '/ressources/userstory' },
-          { text: 'GitHub Project', link: '/ressources/github-project' },
-          { text: 'GitHub Project - Guide', link: '/ressources/github-project-guide' },
-          { text: 'Normes de commentaires', link: '/ressources/normes_commentaires' },
-          { text: 'Normes de nomenclature', link: '/ressources/normes_nomenclature_code' },
-          { text: 'Diagrammes de classes', link: '/ressources/diagrammes-de-classes' },
-          { text: 'Liens utiles', link: '/ressources/liens-utiles' }
+          { text: '01 — Introduction', link: '/modules/01-introduction/' },
+          { text: '02 — DDL de base', link: '/modules/02-ddl-base/' },
+          { text: '03 — SQL de base', link: '/modules/03-sql-base/' },
+          { text: '04 — Relations & jointures', link: '/modules/04-relations-jointures/' },
+          { text: '05 — Agrégation', link: '/modules/05-aggregation/' },
+          { text: '06 — DDL avancé', link: '/modules/06-ddl-avance/' },
+          { text: '07 — Révision examens', link: '/modules/07-revision-examens/' }
+        ]
+      },
+      {
+        text: 'Travaux',
+        items: [
+          { text: 'TP1 — Création BD', link: '/travaux/tp1-creation-bd' },
+          { text: 'TP2 — Requêtes SQL', link: '/travaux/tp2-sql' },
+          { text: 'TP3 — DDL avancé', link: '/travaux/tp3-ddl-avance' }
+        ]
+      },
+      {
+        text: 'Grilles',
+        items: [
+          { text: 'Grille — TP1', link: '/grilles/grille-tp1' },
+          { text: 'Grille — TP2', link: '/grilles/grille-tp2' },
+          { text: 'Grille — TP3', link: '/grilles/grille-tp3' },
+          { text: 'Grille — Examen 1', link: '/grilles/grille-examen1' },
+          { text: 'Grille — Examen 2', link: '/grilles/grille-examen2' }
         ]
       }
     ],
+
     sidebar: [
       {
         text: 'Documents généraux',
         items: [
-          { text: 'Plan de cours', link: '/plan-de-cours' },
-          { text: 'Calendrier', link: '/calendrier' },
-          { text: 'Horaires', link: '/horaires' }
+          { text: 'Plan de cours', link: '/plan-cours/plan-de-cours' },
+          { text: 'Calendrier', link: '/plan-cours/calendrier' }
         ]
       },
       {
-        text: 'Énoncés',
+        text: 'Modules d’apprentissage',
         items: [
-          { text: 'Planification du projet', link: '/enonces/planif-projet' },
-          { text: 'Planification de sprint', link: '/enonces/planif-sprint' },
-          { text: 'Rapport de fin de sprint', link: '/enonces/fin-sprint' },
-          { text: 'Finalisation du projet', link: '/enonces/finalisation' },
-          { text: 'Présentation finale', link: '/enonces/presentation-finale' }
+          { text: '01 — Introduction', link: '/modules/01-introduction/' },
+          { text: '02 — DDL de base', link: '/modules/02-ddl-base/' },
+          { text: '03 — SQL de base', link: '/modules/03-sql-base/' },
+          { text: '04 — Relations & jointures', link: '/modules/04-relations-jointures/' },
+          { text: '05 — Agrégation', link: '/modules/05-aggregation/' },
+          { text: '06 — DDL avancé', link: '/modules/06-ddl-avance/' },
+          { text: '07 — Révision examens', link: '/modules/07-revision-examens/' }
+        ]
+      },
+      {
+        text: 'Travaux pratiques',
+        items: [
+          { text: 'TP1 — Création BD', link: '/travaux/tp1-creation-bd' },
+          { text: 'TP2 — Requêtes SQL', link: '/travaux/tp2-sql' },
+          { text: 'TP3 — DDL avancé', link: '/travaux/tp3-ddl-avance' }
         ]
       },
       {
         text: 'Grilles d’évaluation',
         items: [
-          { text: 'Planification du projet', link: '/grilles/grille-planif-projet' },
-          { text: 'Sprint (complet)', link: '/grilles/grille-sprint' },
-          { text: 'Finalisation du projet', link: '/grilles/grille-finalisation' }
-        ]
-      },
-      {
-        text: 'Modèles de départ',
-        items: [
-          { text: 'Planification du projet', link: '/templates/planif-projet-modele' },
-          { text: 'Planification de sprint', link: '/templates/planif-sprint-modele' },
-          { text: 'Rapport fin de sprint', link: '/templates/fin-sprint-modele' }
-        ]
-      },
-      {
-        text: 'Ressources',
-        items: [
-          { text: 'Agile & Scrum', link: '/ressources/agile-scrum' },
-          { text: 'Récits utilisateur', link: '/ressources/userstory' },
-          { text: 'GitHub Project', link: '/ressources/github-project' },
-          { text: 'GitHub Project - Guide', link: '/ressources/github-project-guide' },
-          { text: 'Normes de commentaires', link: '/ressources/normes_commentaires' },
-          { text: 'Normes de nomenclature', link: '/ressources/normes_nomenclature_code' },
-          { text: 'Diagrammes de classes', link: '/ressources/diagrammes-de-classes' },
-          { text: 'Liens utiles', link: '/ressources/liens-utiles' }
+          { text: 'Grille — TP1', link: '/grilles/grille-tp1' },
+          { text: 'Grille — TP2', link: '/grilles/grille-tp2' },
+          { text: 'Grille — TP3', link: '/grilles/grille-tp3' },
+          { text: 'Grille — Examen 1', link: '/grilles/grille-examen1' },
+          { text: 'Grille — Examen 2', link: '/grilles/grille-examen2' }
         ]
       }
     ],
+
     search: {
       provider: 'local'
     }

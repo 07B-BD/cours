@@ -1,66 +1,53 @@
 ---
 layout: home
-title: 420-08C-FX — Projet prog
+title: 420-07B-FX — Introduction aux Bases de Données
 hero:
-  name: 420-08C-FX
-  text: Projet d’approfondissement en programmation — Automne 2025
-  tagline: Énoncés, grilles, calendrier et ressources
+  name: 420-07B-FX — Introduction aux Bases de Données
+  text: Hiver 2026
+  tagline: Nouveautés publiées ici chaque semaine
   image:
     src: /logos/logo.png
     alt: Logo du cours
-actions:
+  actions:
     - theme: brand
-      text: 📅 Calendrier
-      link: /calendrier
-    - theme: brand
-      text: 📑 Énoncés
-      link: /enonces
+      text: Plan de cours
+      link: /plan-cours/plan-de-cours.md
     - theme: alt
-      text: 📝 Grilles
-      link: /grilles
+      text: Rejoindre le prof
+      link: https://teams.microsoft.com/l/chat/48:notes/conversations?context=%7B%22contextType%22%3A%22chat%22%7D
     - theme: alt
-      text: ⏰ Horaires
-      link: /horaires
+      text: Bureau et disponibilités
+      link: https://techinfo.cegepgarneau.ca/Professeurs/Horaire?id=20
 
+# NOUVEAUTÉS CETTE SEMAINE
 features:
-  - icon: 📖
+  - icon: 📄
     title: Plan de cours
-    details: Objectifs, compétences et politiques du cours.
-    link: /plan-de-cours
-    linkText: Ouvrir
-  - icon: 🧭
-    title: Planification du projet
-    details: Énoncé et modèle à copier pour démarrer.
-    link: /enonces/planif-projet
-    linkText: Énoncé
-  - icon: 🛠️
-    title: Planification de sprint
-    details: Objectifs, backlog et critères de complétion.
-    link: /enonces/planif-sprint
-    linkText: Énoncé
-  - icon: 📊
-    title: Rapport de fin de sprint
-    details: Livrables, rétroaction et diagramme de classes.
-    link: /enonces/fin-sprint
-    linkText: Énoncé
-  - icon: ✅
-    title: Finalisation du projet
-    details: Stabilisation, documentation et release .exe.
-    link: /enonces/finalisation
-    linkText: Énoncé
-  - icon: 🎤
-    title: Présentation finale
-    details: Déroulement et conseils pour une démo efficace.
-    link: /enonces/presentation-finale
+    details: Lire le plan de cours au complet.
+    link: /plan-cours/plan-de-cours.md
+    linkText: Voir
+
+  - icon: 🚀
+    title: Installations obligatoires
+    details: PostgreSQL & DBeaver doivent être installés.
+    link: /modules/01-introduction/installation
+    linkText: Procédure
+
+  - icon: 📘
+    title: Module 01
+    details: Lecture du premier module — modèles de données.
+    link: /modules/01-introduction
     linkText: Lire
-  - icon: 🧩
-    title: Modèles à copier
-    details: Fichiers de départ pour les livrables.
-    link: /templates/planif-projet-modele
-    linkText: Voir les modèles
-  - icon: 🔗
-    title: Ressources
-    details: Git, UML, Agile/Scrum et liens utiles.
-    link: /ressources/agile-scrum
-    linkText: Ouvrir
+
+  - icon: 🧪
+    title: Laboratoire 1
+    details: Création d'une base de données.
+    link: /travaux/tp1-creation-bd
+    linkText: Commencer
 ---
+
+::: info Utilisation de l’IA dans la création du site de cours
+L’intelligence artificielle est utilisée pour accélérer la production et améliorer la clarté des documents pédagogiques.  
+Elle contribue notamment à l’organisation des contenus, la reformulation de textes, et la génération d’icônes (emojis) pour rendre l’information plus lisible.  
+Cependant, **les choix pédagogiques, la validation technique et le contenu final demeurent sous la responsabilité exclusive de l’enseignant**.
+:::
