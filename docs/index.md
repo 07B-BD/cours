@@ -51,3 +51,7 @@ L’intelligence artificielle est utilisée pour accélérer la production et am
 Elle contribue notamment à l’organisation des contenus, la reformulation de textes, et la génération d’icônes (emojis) pour rendre l’information plus lisible.  
 Cependant, **les choix pédagogiques, la validation technique et le contenu final demeurent sous la responsabilité exclusive de l’enseignant**.
 :::
+
+<div class="bg-blue-500 text-white p-4 rounded">
+  Hello Tailwind!
+</div>

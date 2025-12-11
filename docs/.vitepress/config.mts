@@ -241,6 +241,26 @@ export default defineConfig({
 				],
 			},
 			{
+				text: "Laboratoires",
+				collapsed: true,
+				items: [
+					{ text: "Lab 01 — Création BD", link: "/labs/lab01-create-db" },
+					{ text: "Lab 02 — Création tables", link: "/labs/lab02-create-tables" },
+					{ text: "Lab 03 — Contraintes simples", link: "/labs/lab03-contraintes-simples" },
+					{ text: "Lab 04 — Clés primaires", link: "/labs/lab04-cles-primaires" },
+					{ text: "Lab 05 — Clés étrangères", link: "/labs/lab05-cles-etrangeres" },
+					{ text: "Lab 06 — SQL", link: "/labs/lab06-sql" },
+					{ text: "Lab 07 — Clauses", link: "/labs/lab07-clauses" },
+					{ text: "Lab 08 — Sous-requêtes non corrélées", link: "/labs/lab08-sous-requetes-non-correlees" },
+					{ text: "Lab 09 — Jointures", link: "/labs/lab09-jointures" },
+					{ text: "Lab 10 — GROUP BY / HAVING", link: "/labs/lab10-groupby-having" },
+					{ text: "Lab 11 — ALTER TABLE", link: "/labs/lab11-alter-table" },
+					{ text: "Lab 12 — Cascade", link: "/labs/lab12-cascade" },
+					{ text: "Lab 13 — Hachage / Sécurité", link: "/labs/lab13-securite" },
+					{ text: "Lab 14 — Révision", link: "/labs/lab14-revision" },
+				],
+			},
+			{
 				text: "Travaux pratiques",
 				collapsed: true,
 				items: [
