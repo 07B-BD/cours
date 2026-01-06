@@ -1,3 +1,0 @@
-# 🧪 Laboratoires
-
-Liste des laboratoires.
