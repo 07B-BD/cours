@@ -1,0 +1,1 @@
+import{_ as e,c as t,o as r}from"./chunks/framework.CmkU-fWO.js";const d=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"grilles/grille-tp2.md","filePath":"grilles/grille-tp2.md"}'),l={name:"grilles/grille-tp2.md"};function a(s,i,o,c,n,p){return r(),t("div")}const m=e(l,[["render",a]]);export{d as __pageData,m as default};

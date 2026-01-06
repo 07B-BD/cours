@@ -1,1 +1,0 @@
-import{_ as e,c as r,o as t}from"./chunks/framework.CVwhUMks.js";const _=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"grilles/grille-examen2.md","filePath":"grilles/grille-examen2.md"}'),a={name:"grilles/grille-examen2.md"};function l(n,s,i,o,c,m){return t(),r("div")}const d=e(a,[["render",l]]);export{_ as __pageData,d as default};
