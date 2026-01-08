@@ -13,7 +13,14 @@ export default defineConfig({
 
 		nav: [
 			{ text: "Plan de cours", link: "/plan-cours/plan-de-cours" },
-			{ text: "Calendrier", link: "/plan-cours/calendrier" },
+			{ 
+				text: "Calendrier",
+				items: [
+					{ text: "Groupe 1", link: "/plan-cours/calendrier-gr1" },
+					{ text: "Groupe 2", link: "/plan-cours/calendrier-gr2" },
+					{ text: "Groupe 3", link: "/plan-cours/calendrier-gr3" },
+				], 
+			},
 			{
 				text: "Modules",
 				items: [
@@ -28,30 +35,14 @@ export default defineConfig({
 					{
 						text: "06 — DDL avancé et sécurité",
 						link: "/modules/06-ddl-avance/",
-					},
-					{
-						text: "07 — Révision examens",
-						link: "/modules/07-revision-examens/",
-					},
+					}
 				],
 			},
 			{
 				text: "Laboratoires",
 				items: [
-					{ text: "Lab 01 — Création BD", link: "/labs/lab01-create-db" },
-					{ text: "Lab 02 — Création tables", link: "/labs/lab02-create-tables" },
-					{ text: "Lab 03 — Contraintes simples", link: "/labs/lab03-contraintes-simples" },
-					{ text: "Lab 04 — Clés primaires", link: "/labs/lab04-cles-primaires" },
-					{ text: "Lab 05 — Clés étrangères", link: "/labs/lab05-cles-etrangeres" },
-					{ text: "Lab 06 — SQL", link: "/labs/lab06-sql" },
-					{ text: "Lab 07 — Clauses", link: "/labs/lab07-clauses" },
-					{ text: "Lab 08 — Sous-requêtes non corrélées", link: "/labs/lab08-sous-requetes-non-correlees" },
-					{ text: "Lab 09 — Jointures", link: "/labs/lab09-jointures" },
-					{ text: "Lab 10 — GROUP BY / HAVING", link: "/labs/lab10-groupby-having" },
-					{ text: "Lab 11 — ALTER TABLE", link: "/labs/lab11-alter-table" },
-					{ text: "Lab 12 — Cascade", link: "/labs/lab12-cascade" },
-					{ text: "Lab 13 — Hachage / Sécurité", link: "/labs/lab13-securite" },
-					{ text: "Lab 14 — Révision", link: "/labs/lab14-revision" },
+					{ text: "Lab 01 — Installations", link: "/labs/lab01-installations" },
+					{ text: "Lab 02 — Modélisation", link: "/labs/lab02-modelisation" },
 				],
 			},
 			{
@@ -79,7 +70,14 @@ export default defineConfig({
 				text: "Documents généraux",
 				items: [
 					{ text: "Plan de cours", link: "/plan-cours/plan-de-cours" },
-					{ text: "Calendrier", link: "/plan-cours/calendrier" },
+					{
+						text: "Calendriers",
+						items: [
+							{ text: "Groupe 1", link: "/plan-cours/calendrier-gr1" },
+							{ text: "Groupe 2", link: "/plan-cours/calendrier-gr2" },
+							{ text: "Groupe 2", link: "/plan-cours/calendrier-gr3" },
+						],
+					},
 				],
 			},
 			{
@@ -91,20 +89,20 @@ export default defineConfig({
 						collapsed: false,
 						items: [
 							{
+								text: "Présentation",
+								link: "/modules/01-introduction/00-presentation",
+							},
+							{
 								text: "Formats de données",
 								link: "/modules/01-introduction/01-formats-donnees",
 							},
 							{
-								text: "Types SGBD",
-								link: "/modules/01-introduction/02-sgbd-types",
-							},
-							{
 								text: "Structure relationnelle",
-								link: "/modules/01-introduction/03-structure-relationnelle",
+								link: "/modules/01-introduction/02-structure-relationnelle",
 							},
 							{
 								text: "Modèle de données",
-								link: "/modules/01-introduction/04-modele-donnees",
+								link: "/modules/01-introduction/03-modelisation",
 							},
 						],
 					},
@@ -263,20 +261,8 @@ export default defineConfig({
 				text: "Laboratoires",
 				collapsed: true,
 				items: [
-					{ text: "Lab 01 — Création BD", link: "/labs/lab01-create-db" },
-					{ text: "Lab 02 — Création tables", link: "/labs/lab02-create-tables" },
-					{ text: "Lab 03 — Contraintes simples", link: "/labs/lab03-contraintes-simples" },
-					{ text: "Lab 04 — Clés primaires", link: "/labs/lab04-cles-primaires" },
-					{ text: "Lab 05 — Clés étrangères", link: "/labs/lab05-cles-etrangeres" },
-					{ text: "Lab 06 — SQL", link: "/labs/lab06-sql" },
-					{ text: "Lab 07 — Clauses", link: "/labs/lab07-clauses" },
-					{ text: "Lab 08 — Sous-requêtes non corrélées", link: "/labs/lab08-sous-requetes-non-correlees" },
-					{ text: "Lab 09 — Jointures", link: "/labs/lab09-jointures" },
-					{ text: "Lab 10 — GROUP BY / HAVING", link: "/labs/lab10-groupby-having" },
-					{ text: "Lab 11 — ALTER TABLE", link: "/labs/lab11-alter-table" },
-					{ text: "Lab 12 — Cascade", link: "/labs/lab12-cascade" },
-					{ text: "Lab 13 — Hachage / Sécurité", link: "/labs/lab13-securite" },
-					{ text: "Lab 14 — Révision", link: "/labs/lab14-revision" },
+					{ text: "Lab 01 — Installations", link: "/labs/lab01-installations" },
+					{ text: "Lab 02 — Modélisation", link: "/labs/lab02-modelisation" }
 				],
 			},
 			{

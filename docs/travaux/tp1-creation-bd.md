@@ -2,7 +2,7 @@
 title: TP1 — Conception d'une base de données
 ---
 
-# 🛠️ Travail Pratique #1 — Conception d’une Base de Données Relationnelle
+# Travail Pratique #1 — Conception d’une Base de Données Relationnelle
 
 **Cours :** 420-07B-FX — Introduction aux bases de données  
 **Session :** Hiver 2026  
@@ -12,7 +12,7 @@ title: TP1 — Conception d'une base de données
 
 ---
 
-## 🎯 Objectif
+## Objectif
 
 À partir d’un modèle textuel, vous devez :
 
@@ -26,7 +26,7 @@ title: TP1 — Conception d'une base de données
 
 ---
 
-## 📅 Remise
+## Remise
 - un dossier .zip contenant:
     - un fichier .sql contenant l'export de la base de données
     - un court rapport .pdf avec page de présentation, captures d'écran, et section usage de l'IA
@@ -35,14 +35,14 @@ title: TP1 — Conception d'une base de données
 
 ---
 
-## 🧭 Modèle de données à transposer
+## Modèle de données à transposer
 
 Chaque bloc représente une table.  
 Chaque propriété représente un champ.
 
 *(Les éléments entre parenthèses indiquent des valeurs possibles.)*
 
-### 📍 Adresses
+### Adresses
 - numero_civique
 - rue
 - ville
@@ -50,14 +50,14 @@ Chaque propriété représente un champ.
 - code_postal
 - pays
 
-### 🏥 Cliniques vétérinaires
+### Cliniques vétérinaires
 - nom
 - telephone
 - adresse
 - date_ouverture
 - nb_salles_consultation
 
-### 🧑‍⚕️ Vétérinaires
+### Vétérinaires
 - nom
 - prenom
 - specialite *(generaliste, chirurgie, dentisterie, dermatologie)*
@@ -66,21 +66,21 @@ Chaque propriété représente un champ.
 - adresse
 - superviseur *(nullable)*
 
-### 👣 Affectations vétérinaires
+### Affectations vétérinaires
 *(permet qu’un vétérinaire travaille dans plusieurs cliniques)*
 - clinique
 - veterinaire
 - date_debut
 - date_fin *(nullable)*
 
-### 👤 Propriétaires d’animaux
+### Propriétaires d’animaux
 - nom
 - prenom
 - telephone
 - courriel
 - adresse
 
-### 🐶 Animaux
+### Animaux
 - nom
 - espece *(chien, chat, lapin, oiseau, autre)*
 - race *(nullable)*
@@ -90,7 +90,7 @@ Chaque propriété représente un champ.
 - proprietaire
 - clinique
 
-### 📅 Rendez-vous
+### Rendez-vous
 - animal
 - veterinaire
 - clinique
@@ -102,7 +102,7 @@ Chaque propriété représente un champ.
 
 ---
 
-## 📋 Directives techniques
+## Directives techniques
 
 Vous devez :
 
@@ -115,7 +115,7 @@ Vous devez :
 
 ---
 
-## 📸 Captures demandées
+## Captures demandées
 
 Votre remise doit inclure **4 captures d’écran** :
 
@@ -126,13 +126,13 @@ Votre remise doit inclure **4 captures d’écran** :
     - Clés étrangère
 ---
 
-## 📦 Contenu de la remise
+## Contenu de la remise
 
 Votre archive doit s'appeler : **PrenomNom_TP1.zip**
 
 Elle contient **exactement deux éléments :**
 
-### 📄 1) Rapport (PDF)
+### 1) Rapport (PDF)
 
 Le rapport doit inclure :
 
@@ -142,13 +142,13 @@ Le rapport doit inclure :
 
 ---
 
-### 📁 2) Export SQL
+### 2) Export SQL
 
 Fichier : **tp1_prenom_nom.sql**
 
 ---
 
-## 🧠 Section de réflexion (5%)
+## Section obligatoire de réflexion (5%)
 
 Vous devez présenter **au moins 4 items**, selon **une seule** ou une **combinaison** des deux **formules** suivantes :
 
@@ -201,7 +201,7 @@ Si aucune IA n’a été utilisée, vous devez documenter des **erreurs réelles
 
 ---
 
-## 🧮 Correction (résumé)
+## Correction (résumé)
 
 Les critères évaluent :
 

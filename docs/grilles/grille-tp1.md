@@ -2,14 +2,14 @@
 title: Grille d’évaluation — TP1
 ---
 
-# 🧮 Grille d’évaluation — Travail Pratique #1
+# Grille d’évaluation — Travail Pratique #1
 
 Chaque critère est évalué selon des niveaux de performance.  
 Les pondérations indiquent le poids de chaque critère dans la note finale.
 
 ---
 
-## 🧱 1) Structure des tables — 20 %
+## 1) Structure des tables — 20 %
 
 | Niveau | Description | Note |
 |---|---|---|
@@ -21,7 +21,7 @@ Les pondérations indiquent le poids de chaque critère dans la note finale.
 
 ---
 
-## 🎯 2) Types de données — 30 %
+## 2) Types de données — 25 %
 
 | Niveau | Description | Note |
 |---|---|---|
@@ -34,7 +34,7 @@ Les pondérations indiquent le poids de chaque critère dans la note finale.
 
 ---
 
-## 🔐 3) Contraintes — 20 %
+## 3) Contraintes — 20 %
 
 | Niveau | Description | Note |
 |---|---|---|
@@ -46,7 +46,7 @@ Les pondérations indiquent le poids de chaque critère dans la note finale.
 
 ---
 
-## 🔗 4) Relations — 20 %
+## 4) Relations — 20 %
 
 | Niveau | Description | Note |
 |---|---|---|
@@ -59,7 +59,7 @@ Les pondérations indiquent le poids de chaque critère dans la note finale.
 
 ---
 
-## 📤 5) Export SQL — 10 %
+## 5) Export SQL — 10 %
 
 | Niveau | Description | Note |
 |---|---|---|
@@ -69,17 +69,17 @@ Les pondérations indiquent le poids de chaque critère dans la note finale.
 
 ---
 
-## 🧠 6) Réflexion (IA et/ou problèmes rencontrés) — Bonus
+## 6) Réflexion (IA et/ou problèmes rencontrés) — 5%
 
 | Niveau | Description | Bonus |
 |---|---|---|
-**Complet** | 4 items bien documentés. | +5%  
-**Partiel** | 1–3 items bien documentés. | +2.5%  
+**Complet** | 4 items bien documentés. | 100%  
+**Partiel** | 1–3 items bien documentés. | 60%
 **Absent** | Aucun item documenté. | 0%  
 
 ---
 
-## ⚠️ Pénalité — Respect des consignes
+## Pénalité — Respect des consignes
 
 | Cas | Impact |
 |---|---|
@@ -88,7 +88,7 @@ Une ou plusieurs consignes non respectées | **−5%**
 
 ---
 
-## 📝 Remarques
+## Remarques
 Cette grille est alignée sur l’élément de compétence :  
 **Créer la base de données.**
 
