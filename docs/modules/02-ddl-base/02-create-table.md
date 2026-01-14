@@ -63,20 +63,20 @@ Une colonne est définie par :
 ## Types de données courants (PostgreSQL)
 
 ### Types numériques
-- `INTEGER`
-- `SERIAL` *(aperçu, utilisé plus tard pour les clés primaires)*
+- `INTEGER` (ex. : âge, quantité, nombre de places)
+- `SERIAL` *(aperçu, utilisé plus tard pour les clés primaires)* (ex. : identifiant automatique)
 
 ### Types textuels
-- `VARCHAR(n)`
-- `TEXT`
+- `VARCHAR(n)` (ex. : `VARCHAR(100)` pour un nom ou un courriel)
+- `TEXT` (ex. : description, commentaire long)
 
 ### Dates et temps
-- `DATE`
-- `TIMESTAMP`
+- `DATE` (ex. : date de naissance, date d’événement)
+- `TIMESTAMP` (ex. : date et heure d’inscription)
 
 ### Autres types utiles
-- `BOOLEAN`
-- `NUMERIC(p, s)`
+- `BOOLEAN` (ex. : actif / inactif)
+- `NUMERIC(p, s)` (ex. : `NUMERIC(8,2)` pour un montant en dollars)
 
 **Choisir un type approprié est essentiel** pour la cohérence et la qualité des données.
 

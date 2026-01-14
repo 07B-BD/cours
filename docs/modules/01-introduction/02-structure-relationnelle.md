@@ -8,7 +8,7 @@ title: "03 — Structure relationnelle"
 - Décrire la structure d’une base relationnelle.
 - Expliquer tables, champs, enregistrements, clés, index, relations.
 
-## Base relationnelle : composants
+## Base de données relationnelle : composants
 
 Nous allons modéliser une base de données qui contient plusieurs entités, reliées entre elles par des relations.
 

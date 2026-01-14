@@ -43,6 +43,7 @@ export default defineConfig({
 				items: [
 					{ text: "Lab 01 — Installations", link: "/labs/lab01-installations" },
 					{ text: "Lab 02 — Modélisation", link: "/labs/lab02-modelisation" },
+					{ text: "Lab 03 — DDL", link: "/labs/lab03-ddl" }
 				],
 			},
 			{
@@ -262,7 +263,8 @@ export default defineConfig({
 				collapsed: true,
 				items: [
 					{ text: "Lab 01 — Installations", link: "/labs/lab01-installations" },
-					{ text: "Lab 02 — Modélisation", link: "/labs/lab02-modelisation" }
+					{ text: "Lab 02 — Modélisation", link: "/labs/lab02-modelisation" },
+					{ text: "Lab 03 — DDL", link: "/labs/lab03-ddl" }
 				],
 			},
 			{

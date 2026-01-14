@@ -58,8 +58,8 @@ L’objectif est de **savoir les lire et les interpréter**, pas de les concevoi
 
 > Remarquer également les conventions de nomenclature :
 > - Les **tables** sont nommées au **singulier** (`client`, `vendeur`, `voiture`, `achat`).
-> - Les **clés primaires** portent le nom `id_<table>` (ex. : `id_client`).
-> - Les **clés étrangères** reprennent le nom de la PK qu’elles référencent  
+> - Les **clés primaires** portent le nom `id`.
+> - Les **clés étrangères** contiennent le nom de la table qu’elles référencent 
 >   (ex. : `achat.id_client` → `client.id_client`).
 > - Les noms sont en **minuscules**, sans accents ni espaces.
 > - Les mots sont séparés par un **underscore** (`snake_case`).

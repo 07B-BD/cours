@@ -3,7 +3,7 @@ title: "Démo — Créer une BD, des tables, des contraintes, des clés (PK/FK)"
 aside: false
 ---
 
-# 05 — Démo — Créer une BD, des tables, des contraintes, des clés (PK/FK)
+# 05 — Démonstration guidée — Créer une BD, des tables, des contraintes, des clés (PK/FK)
 
 ## Objectif de la démo
 - Créer une base de données PostgreSQL.
@@ -133,6 +133,11 @@ CREATE TABLE inscription (
 
 ---
 
+<details class="mt-6">
+<summary class="cursor-pointer font-semibold text-blue-700">
+Script complet pour validation
+</summary>
+
 ## Script complet (exécuter dans l’ordre)
 
 ```sql
@@ -162,6 +167,7 @@ CREATE TABLE inscription (
     UNIQUE (evenement_id, participant_id)
 );
 ```
+</details>
 
 ---
 
@@ -170,3 +176,10 @@ CREATE TABLE inscription (
 - Identifier la contrainte qui empêche deux participants avec le même courriel.
 - Expliquer pourquoi une clé étrangère empêche des incohérences.
 - Expliquer l’effet de <code>UNIQUE (evenement_id, participant_id)</code>.
+
+<div class="bg-blue-50 border border-blue-200 text-blue-900 rounded-lg p-4">
+<strong>À faire prochainement</strong><br><br>
+Faire le <strong>Lab 03 — Modélisation DDL : Concessionnaire automobile</strong>.
+
+[Aller au laboratoire 03](../../labs/lab03-ddl.md)
+</div>
