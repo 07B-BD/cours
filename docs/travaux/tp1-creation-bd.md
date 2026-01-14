@@ -30,8 +30,9 @@ title: TP1 — Conception d'une base de données
 - un dossier .zip contenant:
     - un fichier .sql contenant l'export de la base de données
     - un court rapport .pdf avec page de présentation, captures d'écran, et section usage de l'IA
-- **Date limite :** Mercredi 14 février à 23h59  
-- **Plateforme :** Léa — Travail Pratique #1  
+- **Date limite :** Indiquée dans Léa 
+- **Plateforme :** Léa — TP1  
+- -10% par jour de retard, max trois jours
 
 ---
 

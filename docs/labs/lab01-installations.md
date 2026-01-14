@@ -46,6 +46,48 @@ title: "Lab — Installation et création de la base de données"
         - Normalement, le service devrait être lancé et avoir un type de démarrage automatique.
         - Dans le cas contraire, vous pouvez le corriger via clic-droit et propriétés.
 
+4. Vérifier que `psql` est accessible dans le PATH
+
+Dans certaines situations, vous utiliserez <strong>psql</strong> en ligne de commande.  
+Il doit donc être accessible via le <strong>PATH de Windows</strong>.
+
+1) Ouvrez <strong>Invite de commandes</strong> ou <strong>PowerShell</strong>  
+2) Entrez la commande suivante :
+
+```bash
+psql --version
+```
+
+- Si une version de PostgreSQL s’affiche, tout est correct.
+- Si la commande est introuvable, psql n’est pas dans le PATH.
+
+<details id="ajouter-au-path" class="border border-gray-300 rounded-md p-4 my-4 bg-yellow-50">
+  <summary class="cursor-pointer font-semibold text-gray-800">
+    Ajouter psql au PATH (si nécessaire)
+  </summary>
+
+  <div class="mt-4 space-y-3">
+
+- Appuyer sur WIN / START  
+- Taper envi et cliquer sur <code>Modifier les variables d’environnement système</code>  
+- Cliquer sur <strong>Variables d’environnement</strong>  
+- Dans <strong>Variables système</strong>, sélectionner <code>Path</code>  
+- Cliquer sur <strong>Nouveau</strong>  
+- Ajouter le dossier où est installé psql  
+
+Emplacement habituel :
+
+```bash
+C:\Program Files\PostgreSQL\18\bin
+```
+
+<img class="img-bordered mt-2" src="./../img/lab01/path.png" alt="PATH"/>
+
+>L'image est petite? Faites un clic-droit et `Ouvrir l'image dans un nouvel onglet`
+
+  </div>
+</details>
+
 ## 2. Installer DBeaver
 
 DBeaver est un logiciel de gestion de base de données. Il servira à créer et à gérer votre base de données PostgreSQL.

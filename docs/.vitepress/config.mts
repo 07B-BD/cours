@@ -75,7 +75,7 @@ export default defineConfig({
 						items: [
 							{ text: "Groupe 1", link: "/plan-cours/calendrier-gr1" },
 							{ text: "Groupe 2", link: "/plan-cours/calendrier-gr2" },
-							{ text: "Groupe 2", link: "/plan-cours/calendrier-gr3" },
+							{ text: "Groupe 3", link: "/plan-cours/calendrier-gr3" },
 						],
 					},
 				],
@@ -127,16 +127,16 @@ export default defineConfig({
 								link: "/modules/02-ddl-base/04-cles-primaires-etrangeres",
 							},
 							{
+								text: "Démonstration de création de BD",
+								link: "/modules/02-ddl-base/05-demo-ddl",
+							},
+							{
 								text: "DROP simple",
-								link: "/modules/02-ddl-base/05-drop-simple",
+								link: "/modules/02-ddl-base/06-drop-simple",
 							},
 							{
 								text: "Import & export",
-								link: "/modules/02-ddl-base/06-import-export",
-							},
-							{
-								text: "Comptes et droits",
-								link: "/modules/02-ddl-base/07-comptes-et-droits",
+								link: "/modules/02-ddl-base/07-import-export",
 							},
 						],
 					},

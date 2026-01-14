@@ -1,0 +1,172 @@
+---
+title: "Démo — Créer une BD, des tables, des contraintes, des clés (PK/FK)"
+aside: false
+---
+
+# 05 — Démo — Créer une BD, des tables, des contraintes, des clés (PK/FK)
+
+## Objectif de la démo
+- Créer une base de données PostgreSQL.
+- Créer des tables liées à un contexte simple (événements).
+- Définir des contraintes simples (NOT NULL, UNIQUE, DEFAULT, CHECK).
+- Définir des clés primaires (PRIMARY KEY).
+- Définir des clés étrangères (FOREIGN KEY).
+
+<div class="bg-red-50 border border-red-300 text-red-900 rounded-lg p-4">
+<strong>Important — apprentissage</strong><br>
+Pour cette démo, il est essentiel de <strong>taper manuellement</strong> les instructions SQL plutôt que de les copier-coller.<br>
+Cela permet de mieux comprendre la syntaxe, d’éviter les erreurs courantes et d’être capable de <strong>reproduire correctement les instructions lors d’un examen</strong>.
+</div>
+
+## Aide-mémoire — Création d’une table (DDL)
+
+### Structure générale
+
+```sql
+CREATE TABLE nom_table (
+    colonne1 TYPE CONSTRAINT CONSTRAINT,
+    colonne2 TYPE CONSTRAINT,
+    colonne3 TYPE,
+
+    PRIMARY KEY (colonne_pk),
+    FOREIGN KEY (colonne_fk) REFERENCES table_parent(colonne_pk)
+);
+```
+
+---
+
+## 1) Créer la base de données
+
+```sql
+CREATE DATABASE demo_evenements;
+```
+
+<div class="bg-yellow-50 border border-yellow-200 text-yellow-900 rounded-lg p-4">
+<strong>Action</strong><br>
+Se reconnecter ensuite à la base <code>demo_evenements</code> dans l’outil en ouvrant un nouveau script.
+</div>
+
+---
+
+## 2) Créer la table principale : evenement
+
+```sql
+CREATE TABLE evenement (
+    id SERIAL PRIMARY KEY,
+    nom VARCHAR(100) NOT NULL,
+    date_evenement DATE NOT NULL,
+    lieu VARCHAR(100) NOT NULL,
+    capacite INTEGER NOT NULL CHECK (capacite >= 0),
+    actif BOOLEAN NOT NULL DEFAULT TRUE
+);
+```
+
+<div class="bg-yellow-50 border border-yellow-200 text-yellow-900 rounded-lg p-4">
+<strong>Observer</strong><br>
+Constater que la clé primaire identifie chaque événement et que les contraintes empêchent des valeurs manquantes ou incohérentes.
+</div>
+
+---
+
+## 3) Créer la table : participant
+
+```sql
+CREATE TABLE participant (
+    id SERIAL PRIMARY KEY,
+    nom VARCHAR(100) NOT NULL,
+    courriel VARCHAR(150) NOT NULL UNIQUE,
+    actif BOOLEAN NOT NULL DEFAULT TRUE
+);
+```
+
+<div class="bg-yellow-50 border border-yellow-200 text-yellow-900 rounded-lg p-4">
+<strong>Justifier</strong><br>
+Utiliser <code>UNIQUE</code> sur <code>courriel</code> pour empêcher deux participants d’avoir le même courriel.
+</div>
+
+---
+
+## 4) Créer la table de relation : inscription
+
+### Représenter une relation plusieurs-à-plusieurs
+- Permettre à un participant de s’inscrire à plusieurs événements.
+- Permettre à un événement d’avoir plusieurs participants.
+
+```sql
+CREATE TABLE inscription (
+    id SERIAL PRIMARY KEY,
+    evenement_id INTEGER NOT NULL,
+    participant_id INTEGER NOT NULL,
+    date_inscription DATE NOT NULL DEFAULT CURRENT_DATE,
+
+    FOREIGN KEY (evenement_id) REFERENCES evenement(id),
+    FOREIGN KEY (participant_id) REFERENCES participant(id),
+
+    UNIQUE (evenement_id, participant_id)
+);
+```
+
+<div class="bg-blue-50 border border-blue-200 text-blue-900 rounded-lg p-4 mb-5">
+<strong>Astuce</strong><br>
+<code>CURRENT_DATE</code> permet d'enregistrer la date d'aujourd'hui par défaut.
+</div>
+
+<div class="bg-yellow-50 border border-yellow-200 text-yellow-900 rounded-lg p-4">
+<strong>Expliquer</strong><br>
+
+- Utiliser des clés étrangères pour forcer l’existence de l’événement et du participant.<br>
+- Utiliser <code>UNIQUE (evenement_id, participant_id)</code> pour empêcher une double inscription au même événement.
+
+</div>
+
+---
+
+## 5) Visualiser le schéma dans DBeaver
+
+<img src="./images/voir-schema.png" alt="Voir le schéma" class="img-bordered w-s mb-5" />
+
+<img src="./images/schema.png" alt="Schéma" class="img-bordered" />
+
+>Une fois le schéma ouvert, faites un clic-droit sur une table et sélectionnez la `notation` `crow's foot`.
+
+>Vous pouvez également repositionner les tables pour clarifier l'affichage.
+
+---
+
+## Script complet (exécuter dans l’ordre)
+
+```sql
+CREATE TABLE evenement (
+    id SERIAL PRIMARY KEY,
+    nom VARCHAR(100) NOT NULL,
+    date_evenement DATE NOT NULL,
+    lieu VARCHAR(100) NOT NULL,
+    capacite INTEGER NOT NULL CHECK (capacite >= 0),
+    actif BOOLEAN NOT NULL DEFAULT TRUE
+);
+
+CREATE TABLE participant (
+    id SERIAL PRIMARY KEY,
+    nom VARCHAR(100) NOT NULL,
+    courriel VARCHAR(150) NOT NULL UNIQUE,
+    actif BOOLEAN NOT NULL DEFAULT TRUE
+);
+
+CREATE TABLE inscription (
+    id SERIAL PRIMARY KEY,
+    evenement_id INTEGER NOT NULL,
+    participant_id INTEGER NOT NULL,
+    date_inscription DATE NOT NULL DEFAULT CURRENT_DATE,
+    FOREIGN KEY (evenement_id) REFERENCES evenement(id),
+    FOREIGN KEY (participant_id) REFERENCES participant(id),
+    UNIQUE (evenement_id, participant_id)
+);
+```
+
+---
+
+## Questions
+- Identifier la contrainte qui empêche une capacité négative.
+- Identifier la contrainte qui empêche deux participants avec le même courriel.
+- Expliquer pourquoi une clé étrangère empêche des incohérences.
+- Expliquer l’effet de <code>UNIQUE (evenement_id, participant_id)</code>.
