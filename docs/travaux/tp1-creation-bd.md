@@ -2,49 +2,58 @@
 title: TP1 — Conception d'une base de données
 ---
 
-# Travail Pratique #1 — Conception d’une Base de Données Relationnelle
+# Travail Pratique #1 — Conception d’une Base de Données Relationnelle (12%)
 
-**Cours :** 420-07B-FX — Introduction aux bases de données  
-**Session :** Hiver 2026  
-**Pondération :** 12 %  
-**Modalité :** Individuel  
-**Outil :** PostgreSQL (DBeaver)
-
----
-
-## Objectif
-
-À partir d’un modèle textuel, vous devez :
-
-- Créer une base de données PostgreSQL
-- Définir les tables et leurs types
-- Établir les clés primaires et étrangères
-- Appliquer les contraintes pertinentes
-- Produire l’export SQL de votre base
-
-*Aucune insertion ni requête SELECT n’est exigée dans ce TP.*
+- **Modalité :** Individuel
+- **Remise :** fichier .zip sur LÉA dans le travail concerné
+- **Date :** voir le travail concerné sur LÉA
+- **Retards :** -10% par jour (max 3 jours)
 
 ---
 
-## Remise
-- un dossier .zip contenant:
-    - un fichier .sql contenant l'export de la base de données
-    - un court rapport .pdf avec page de présentation, captures d'écran, et section usage de l'IA
-- **Date limite :** Indiquée dans Léa 
-- **Plateforme :** Léa — TP1  
-- -10% par jour de retard, max trois jours
+## Objectif du travail pratique
+
+À partir d’un **modèle de données textuel**, appliquer les notions de **DDL vues en classe** afin de :
+
+- créer une **base de données PostgreSQL**
+- définir les **tables** et leurs **colonnes**
+- définir des **clés primaires** et **clés étrangères**
+- appliquer des **contraintes simples** (NOT NULL, UNIQUE, CHECK, DEFAULT)
+- utiliser des **types ENUM PostgreSQL** lorsque pertinent
+- produire une **structure de base de données cohérente et fonctionnelle**
+
+<div class="bg-yellow-50 border border-yellow-200 text-yellow-900 rounded-lg p-4">
+<strong>Important</strong><br>
+Ce travail porte uniquement sur la <strong>structure</strong> de la base de données (DDL).  
+Aucune insertion de données ni requête <code>SELECT</code> n’est exigée.
+</div>
+
+---
+
+## Conventions de nommage attendues
+
+Les noms exacts des tables et de certaines colonnes ne sont pas imposés.
+
+Vous devez :
+- choisir des noms **pertinents et explicites**
+- respecter les **conventions vues en classe**
+- nommer clairement :
+  - les clés primaires
+  - les clés étrangères
+  - les types ENUM
 
 ---
 
 ## Modèle de données à transposer
 
-Chaque bloc représente une table.  
-Chaque propriété représente un champ.
+Chaque bloc représente une **table**.  
+Chaque propriété représente une **colonne**.
 
-*(Les éléments entre parenthèses indiquent des valeurs possibles.)*
+Les éléments entre parenthèses indiquent des **listes de valeurs possibles**.<br>
+**Toutes les colonnes sont obligatoires sauf lorsqu'indiquées nullables.**
 
 ### Adresses
-- numero_civique
+- numero_civique (doit être positif)
 - rue
 - ville
 - province
@@ -56,7 +65,7 @@ Chaque propriété représente un champ.
 - telephone
 - adresse
 - date_ouverture
-- nb_salles_consultation
+- nb_salles_consultation (doit être positif)
 
 ### Vétérinaires
 - nom
@@ -72,13 +81,13 @@ Chaque propriété représente un champ.
 - clinique
 - veterinaire
 - date_debut
-- date_fin *(nullable)*
+- date_fin *(nullable & date_fin >= date_debut)*
 
 ### Propriétaires d’animaux
 - nom
 - prenom
 - telephone
-- courriel
+- courriel (doit être unique)
 - adresse
 
 ### Animaux
@@ -86,8 +95,8 @@ Chaque propriété représente un champ.
 - espece *(chien, chat, lapin, oiseau, autre)*
 - race *(nullable)*
 - date_naissance
-- poids_kg
-- date_inscription
+- poids_kg (doit être positif)
+- date_inscription **(par DÉFAUT à la date d'aujourd'hui)**
 - proprietaire
 - clinique
 
@@ -97,9 +106,31 @@ Chaque propriété représente un champ.
 - clinique
 - date_rdv
 - heure_rdv
-- duree_minutes
+- duree_minutes (doit être positif)
 - type_rdv *(consultation, vaccination, chirurgie, suivi)*
-- statut *(prevu, termine, annule)*
+- statut *(prevu, termine, annule)* **Doit être à prevu par DEFAUT**
+
+### Résumé des relations
+
+- Une **clinique** peut avoir plusieurs **vétérinaires** et plusieurs **animaux**.
+- Un **vétérinaire** peut travailler dans plusieurs **cliniques** et peut avoir **0 ou 1 superviseur (vétérinaire)** .
+- Un **propriétaire** peut posséder plusieurs **animaux**, mais chaque animal a un seul propriétaire.
+- Un **animal** est suivi par une seule **clinique**.
+- Un **rendez-vous** associe un **animal**, un **vétérinaire** et une **clinique** à une date donnée.
+
+---
+
+## Travail à réaliser
+
+À partir du modèle fourni, écrire les instructions SQL nécessaires pour :
+
+1. Créer les **types ENUM PostgreSQL** requis.
+2. Créer toutes les **tables** du modèle.
+3. Définir les **clés primaires**.
+4. Définir les **clés étrangères** et respecter les cardinalités.
+5. Appliquer les **contraintes simples pertinentes**.
+
+Le code doit pouvoir être exécuté sur une **base de données vide**.
 
 ---
 
@@ -107,114 +138,65 @@ Chaque propriété représente un champ.
 
 Vous devez :
 
-- Nommer tables et champs **sans accents ni espaces**
-- Choisir des **types appropriés**
-- Définir **PK et FK**
-- Appliquer des **contraintes** (`NOT NULL`, `CHECK`, `UNIQUE`, …)
-- Limiter le `NULL` aux cas justifiés
-- Utiliser des **listes de valeurs** là où pertinent
+- utiliser uniquement les **instructions vues en classe**
+- respecter l’**ordre de création** des types et des tables
+- limiter l’utilisation de `NULL` aux cas justifiés
+- utiliser :
+  - `NOT NULL`
+  - `UNIQUE`
+  - `CHECK`
+  - `DEFAULT`
+- utiliser des **ENUM** pour les listes de valeurs fournies
 
----
+<div class="bg-red-50 border border-red-300 text-red-900 rounded-lg p-4">
+<strong>Important — utilisation des ressources</strong><br>
+Seules les instructions, méthodes et exemples vus dans le cours (modules 1 et 2) sont autorisés.<br>
+L’utilisation de solutions générées ou de notions non couvertes au cours entraînera une <strong>pénalité sévère</strong> allant jusqu'à une déclaration de plagiat.
+</div>
 
-## Captures demandées
-
-Votre remise doit inclure **4 captures d’écran** :
-
-1) Vue globale de la structure du schéma public (voir le diagramme)
-2) Les trois onglets suivants de la table **d'animaux**
-    - Colonnes
-    - Contraintes
-    - Clés étrangère
 ---
 
 ## Contenu de la remise
 
-Votre archive doit s'appeler : **PrenomNom_TP1.zip**
+Nom de l’archive : **PrenomNom_TP1.zip**
 
-Elle contient **exactement deux éléments :**
+Elle doit contenir **exactement deux fichiers SQL** :
 
-### 1) Rapport (PDF)
+### 1) Fichier de création de la structure
+- Contient le code SQL que vous avez écrit tel que vu dans les démos et labos
+- Inclut :
+  - création des types ENUM
+  - création des tables
+  - contraintes
 
-Le rapport doit inclure :
-
-- Page de présentation
-- Captures d'écran
-- Section de réflexion (voir ci-dessous)
-
----
-
-### 2) Export SQL
-
-Fichier : **tp1_prenom_nom.sql**
+**Exemple de nom :**  
+<code>tp1_structure_prenom_nom.sql</code>
 
 ---
 
-## Section obligatoire de réflexion (5%)
+### 2) Export complet de la base de données
+- Fichier <code>.sql</code> généré avec DBeaver
+- Export de la structure complète
+- Inclut (cases à cocher)
+    - la suppression de la base de données (DROP DATABASE)
+    - la création de la base de données (CREATE DATABASE)
 
-Vous devez présenter **au moins 4 items**, selon **une seule** ou une **combinaison** des deux **formules** suivantes :
-
----
-
-### 🔹 Option A — Utilisation encadrée de l’IA
-
-L’IA peut être utilisée pour **mieux comprendre**, mais pas pour **produire** le travail à votre place.
-
-Chaque utilisation doit suivre le format :
-
-| Requête (résumé) | Réponse (résumé) | Décision personnelle |
-|---|---|---|
-| … | … | … |
-
-**La colonne « Décision personnelle » est obligatoire.**
-
-Un travail où l’IA produit le résultat final sans réflexion personnelle sera considéré comme du **plagiat**.
-
-#### ✔️ Exemple acceptable #1
-| Requête | Réponse | Décision personnelle |
-|---|---|---|
-| « C’est quoi une clé étrangère ? » | Liens entre tables | J’ai validé moi-même mes relations selon le modèle |
-
-#### ✔️ Exemple acceptable #2
-| Requête | Réponse | Décision personnelle |
-|---|---|---|
-| « Quel type pour `poids_kg` ? » | Décimal recommandé | J’ai choisi `DECIMAL(5,2)` pour précision et cohérence |
-
-#### ❌ Exemple inacceptable
-> « Génère tout le SQL du TP »
-
-*(Interdit — l’IA fait le travail pour vous)*
+**Exemple de nom :**  
+<code>tp1_export_prenom_nom.sql</code>
 
 ---
 
-### 🔹 Option B — Erreurs rencontrées et solutions
+## Correction
 
-Si aucune IA n’a été utilisée, vous devez documenter des **erreurs réelles**. Elles doivent être liées au différents requis techniques du travail et présentées selon le format suivant :
+L’évaluation porte sur :
 
-| Erreur / Problème | Cause | Solution |
-|---|---|---|
-| … | … | … |
+- la qualité du schéma relationnel
+- la pertinence des types et contraintes
+- l’exactitude des relations (PK / FK)
+- le respect des conventions vues en classe
+- la cohérence entre le code écrit et l’export final
+- la validité technique des fichiers remis
 
-#### ✔️ Exemple acceptable
-
-| Erreur / Problème | Cause | Solution |
-|---|---|---|
-| Impossible de créer une FK sur `animal.proprietaire` | Le type `VARCHAR` ne correspondait pas au type `INT` de la clé primaire | Conversion des champs en `INT` avec contrainte FK |
-
----
-
-## Correction (résumé)
-
-Les critères évaluent :
-
-- Pertinence du schéma relationnel
-- Qualité des types et contraintes
-- Exactitude des relations
-- Cohérence des preuves (captures)
-- Validité de l’export SQL
-- Clarté du rapport
-
-La grille détaillée est publiée dans la section **Grilles** du site.
-
-
+La grille détaillée est disponible dans la section **Grilles** du site.
 
 

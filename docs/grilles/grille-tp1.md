@@ -13,11 +13,11 @@ Les pondérations indiquent le poids de chaque critère dans la note finale.
 
 | Niveau | Description | Note |
 |---|---|---|
-**Excellent** | Toutes les tables requises sont créées correctement. Noms cohérents. **ET** capture du schéma appuie la structure. | 100%  
-**Bien** | Tous les éléments présents mais une table mal nommée. | 80%  
-**Suffisant** | Une table manquante **OU** plusieurs noms incorrects **OU** capture du schéma partiellement incohérente. | 60%  
-**Insuffisant** | Modèle retranscrit incorrectement **OU** capture du schéma manquante ou incohérente. | 40%  
-**Absent** | Modèle non retranscrit, négligé. | 0%  
+**Excellent** | Toutes les tables requises sont créées. Structure fidèle au modèle. Noms clairs et cohérents. | 100% |
+**Bien** | Toutes les tables présentes, légère incohérence de nommage. | 80% |
+**Suffisant** | Une table manquante ou structure partiellement incorrecte. | 60% |
+**Insuffisant** | Modèle mal retranscrit ou plusieurs tables incorrectes. | 40% |
+**Absent** | Structure absente ou inutilisable. | 0% |
 
 ---
 
@@ -25,12 +25,12 @@ Les pondérations indiquent le poids de chaque critère dans la note finale.
 
 | Niveau | Description | Note |
 |---|---|---|
-**Excellent** | Types choisis avec pertinence (taille, format, numérique, dates) **ET** capture d'écran des colonnes à l'appui. | 100%  
-**Très bien** | Un ajustement mineur aurait été préférable. | 90%  
-**Bien** | 2–3 choix erronés avec impact minime. | 80%  
-**Suffisant** | Types incohérents (ex. : date en texte) **OU** capture d'écran des colonnes manquante. | 60%  
-**Insuffisant** | Types illogiques partout. | 40%  
-**Absent** | Aucun typage cohérent. | 0%  
+**Excellent** | Types choisis avec justesse (texte, dates, numériques) **et** ENUM utilisés correctement. | 100% |
+**Très bien** | Un choix de type ou d’ENUM perfectible. | 90% |
+**Bien** | 2–3 choix discutables sans briser la structure. | 80% |
+**Suffisant** | Types parfois incohérents (ex. texte au lieu de date). | 60% |
+**Insuffisant** | Types majoritairement illogiques ou ENUM mal utilisés. | 40% |
+**Absent** | Typage absent ou non fonctionnel. | 0% |
 
 ---
 
@@ -38,44 +38,34 @@ Les pondérations indiquent le poids de chaque critère dans la note finale.
 
 | Niveau | Description | Note |
 |---|---|---|
-**Excellent** | Contraintes (NOT NULL, CHECK, UNIQUE) appliquées avec justesse **ET** capture d'écran des contraintes à l’appui. | 100%  
-**Bien** | Une omission mineure. | 80%  
-**Suffisant** | Plusieurs omissions mais logique acceptable **OU** capture d'écran des contraintes manquante. | 60%  
-**Insuffisant** | Contraintes incohérentes. | 40%  
-**Absent** | Aucune contrainte appliquée. | 0%  
+**Excellent** | Contraintes (NOT NULL, UNIQUE, CHECK, DEFAULT) appliquées avec pertinence. | 100% |
+**Bien** | Une omission mineure ou une contrainte discutable. | 80% |
+**Suffisant** | Plusieurs omissions, mais logique générale respectée. | 60% |
+**Insuffisant** | Contraintes incohérentes ou mal appliquées. | 40% |
+**Absent** | Aucune contrainte pertinente. | 0% |
 
 ---
 
-## 4) Relations — 20 %
+## 4) Relations (PK / FK) — 25 %
 
 | Niveau | Description | Note |
 |---|---|---|
-**Excellent** | Clés étrangères (FK) correctement posées, relations cohérentes **ET** capture d'écran des clées étrangères à l'appui. | 100%  
-**Très bien** | Une incohérence mineure. | 90%  
-**Bien** | Une relation manquante ou inversée. | 80%  
-**Suffisant** | Plusieurs relations incorrectes mais structure utilisable **OU** capture d'écran des clées étrangères manquante. | 60%  
-**Insuffisant** | Relations incohérentes. | 40%  
-**Absent** | Aucune relation. | 0%  
+**Excellent** | Toutes les clés primaires et étrangères sont correctes. Cardinalités respectées. | 100% |
+**Très bien** | Une relation légèrement imparfaite (nullable, sens). | 90% |
+**Bien** | Une relation manquante ou incorrecte. | 80% |
+**Suffisant** | Plusieurs relations incorrectes mais base exploitable. | 60% |
+**Insuffisant** | Relations incohérentes ou inutilisables. | 40% |
+**Absent** | Aucune relation définie. | 0% |
 
 ---
 
-## 5) Export SQL — 10 %
+## 5) Fichiers SQL remis — 10 %
 
 | Niveau | Description | Note |
 |---|---|---|
-**Excellent** | Export valide et exempt d'erreurs d'exécution. | 100%  
-**Suffisant** | Correction mineure manuelle requise avant exécution. | 60%  
-**Absent** | Export non fonctionnel ou absent. | 0%  
-
----
-
-## 6) Réflexion (IA et/ou problèmes rencontrés) — 5%
-
-| Niveau | Description | Bonus |
-|---|---|---|
-**Complet** | 4 items bien documentés. | 100%  
-**Partiel** | 1–3 items bien documentés. | 60%
-**Absent** | Aucun item documenté. | 0%  
+**Excellent** | Les deux fichiers SQL sont présents, cohérents et exécutables sans erreur. | 100% |
+**Suffisant** | Fichiers présents mais corrections mineures requises. | 60% |
+**Absent** | Un ou les deux fichiers absents ou non fonctionnels. | 0% |
 
 ---
 
@@ -83,13 +73,8 @@ Les pondérations indiquent le poids de chaque critère dans la note finale.
 
 | Cas | Impact |
 |---|---|
-Toutes les consignes respectées (formats des fichiers, captures, IA ou erreurs, nommage) | 0%  
-Une ou plusieurs consignes non respectées | **−5%**  
-
----
-
-## Remarques
-Cette grille est alignée sur l’élément de compétence :  
-**Créer la base de données.**
+Toutes les consignes respectées (fichiers, nommage, méthodes vues en cours) | pas de pénalité |
+Utilisation de notions non vues jusqu'à présent (modules 1 et 2) ou consignes non respectées | **−10 % à −30 %** |
+Travail manifestement produit par une source externe (plagiat) | **0 % au travail**  |
 
 ---
