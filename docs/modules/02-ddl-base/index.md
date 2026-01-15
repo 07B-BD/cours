@@ -22,4 +22,4 @@ aside: false
 - [05 — Démo — Créer une BD, des tables, des contraintes, des clés](./05-demo-ddl)
 - [06 — DROP de BD et de table](./06-drop-simple)
 - [07 — Import et export de données](./07-import-export)
-- [Lab — DDL : Création d’une base de données](./../../labs/lab-ddl-base)
+- [Lab — DDL : Création d’une base de données](./../../labs/lab03-ddl)

@@ -237,25 +237,7 @@ export default defineConfig({
 								link: "/modules/06-ddl-avance/05-exercices",
 							},
 						],
-					},
-					{
-						text: "Révision et examens",
-						collapsed: true,
-						items: [
-							{
-								text: "Révision générale",
-								link: "/modules/07-revision-examens/revision",
-							},
-							{
-								text: "Examen #1 (contenu)",
-								link: "/modules/07-revision-examens/examen1",
-							},
-							{
-								text: "Examen #2 (contenu)",
-								link: "/modules/07-revision-examens/examen2",
-							},
-						],
-					},
+					}
 				],
 			},
 			{
