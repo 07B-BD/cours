@@ -23,8 +23,11 @@ const title = props.title ?? "À faire cette semaine";
   <section>
     <div class="flex items-end justify-between gap-4">
       <div>
-        <h2 class="text-2xl font-semibold tracking-tight">{{ title }}</h2>
-        <p v-if="subtitle" class="mt-1 text-sm text-gray-600 dark:text-gray-300">
+        <h2 class="text-2xl font-semibold tracking-tight" style="color: var(--vp-c-text-1)">
+          {{ title }}
+        </h2>
+
+        <p v-if="subtitle" class="mt-1 text-sm" style="color: var(--vp-c-text-2)">
           {{ subtitle }}
         </p>
       </div>
@@ -34,28 +37,40 @@ const title = props.title ?? "À faire cette semaine";
       <div
         v-for="(s, i) in steps"
         :key="i"
-        class="rounded-2xl border border-gray-200 bg-gray-50 p-4 shadow-sm
-               dark:border-gray-800 dark:bg-gray-900"
+        class="group rounded-2xl border p-4 shadow-sm
+               transition-all duration-200 ease-out
+               hover:-translate-y-0.5 hover:shadow-md"
+        style="
+          border-color: var(--vp-c-divider);
+          background: var(--vp-c-bg-soft);
+          color: var(--vp-c-text-1);
+        "
       >
         <div class="flex items-start gap-4">
           <!-- Numéro -->
           <div
             class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl
-                   bg-gray-800 text-white dark:bg-white dark:text-gray-900"
+                   transition-transform duration-200 group-hover:scale-105"
+            style="background: var(--vp-c-brand-1); color: var(--vp-c-bg)"
           >
             <span class="text-sm font-semibold">{{ i + 1 }}</span>
           </div>
 
           <div class="min-w-0 flex-1">
             <div class="flex flex-wrap items-center gap-2">
-              <h3 class="text-base font-semibold leading-6">
+              <h3 class="text-base font-semibold leading-6" style="color: var(--vp-c-text-1)">
                 {{ s.title }}
               </h3>
 
               <span
                 v-if="s.badge"
                 class="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium
-                       bg-blue-50 text-blue-700 dark:bg-blue-950 dark:text-blue-200"
+                       transition group-hover:brightness-105"
+                style="
+                  background: var(--vp-c-bg);
+                  color: var(--vp-c-text-2);
+                  border: 1px solid var(--vp-c-divider);
+                "
               >
                 {{ s.badge }}
               </span>
@@ -63,16 +78,18 @@ const title = props.title ?? "À faire cette semaine";
               <span
                 v-if="s.time"
                 class="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium
-                       bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-200"
+                       transition group-hover:brightness-105"
+                style="
+                  background: var(--vp-c-bg);
+                  color: var(--vp-c-text-2);
+                  border: 1px solid var(--vp-c-divider);
+                "
               >
                 ⏱ {{ s.time }}
               </span>
             </div>
 
-            <p
-              v-if="s.description"
-              class="mt-1 text-sm text-gray-600 dark:text-gray-300"
-            >
+            <p v-if="s.description" class="mt-1 text-sm" style="color: var(--vp-c-text-2)">
               {{ s.description }}
             </p>
 
@@ -81,11 +98,34 @@ const title = props.title ?? "À faire cette semaine";
                 v-for="(l, j) in s.links"
                 :key="j"
                 :href="withBase(l.href)"
-                class="inline-flex items-center justify-center rounded-xl px-3 py-2 text-sm font-medium
-                       transition"
-                :class="l.variant === 'secondary'
-                  ? 'border border-gray-200 bg-white text-gray-900! no-underline! hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-900 dark:text-white dark:hover:bg-gray-800'
-                  : 'bg-green-600 text-white! no-underline! hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600'"
+                class="
+                  inline-flex items-center justify-center gap-1
+                  rounded-xl px-3 py-2 text-sm font-medium
+                  no-underline!
+                  transition-all duration-150 ease-out
+                  focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2
+                  active:scale-[0.97]
+                "
+                :style="
+                  l.variant === 'secondary'
+                    ? {
+                        border: '1px solid var(--vp-c-divider)',
+                        background: 'var(--vp-c-bg)',
+                        color: 'var(--vp-c-text-1)',
+                        boxShadow: 'none'
+                      }
+                    : {
+                        background: 'var(--vp-c-brand-1)',
+                        color: 'var(--vp-c-bg)',
+                        boxShadow: '0 1px 2px rgba(0,0,0,.12)'
+                      }
+                "
+                @mouseover="
+                  ($event.currentTarget as HTMLElement).style.filter = 'brightness(1.05)'
+                "
+                @mouseout="
+                  ($event.currentTarget as HTMLElement).style.filter = 'none'
+                "
               >
                 {{ l.text }}
               </a>
@@ -96,3 +136,4 @@ const title = props.title ?? "À faire cette semaine";
     </div>
   </section>
 </template>
+
