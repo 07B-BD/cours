@@ -19,29 +19,97 @@ hero:
       text: Bureau et disponibilités
       link: https://techinfo.cegepgarneau.ca/Professeurs/Horaire?id=20
 
-# NOUVEAUTÉS CETTE SEMAINE
-features:
-  - icon: 📄
-    title: Plan de cours
-    details: Lire le plan de cours au complet.
-    link: /plan-cours/plan-de-cours.md
-    linkText: Voir
-
-  - icon: 🚀
-    title: Installations obligatoires
-    details: PostgreSQL & DBeaver doivent être installés.
-    link: /modules/01-introduction/installation
-    linkText: Procédure
-
-  - icon: 📘
-    title: Module 01
-    details: Lecture du premier module — modèles de données.
-    link: /modules/01-introduction
-    linkText: Lire
-
-  - icon: 🧪
-    title: Laboratoire 1
-    details: Création d'une base de données.
-    link: /travaux/tp1-creation-bd
-    linkText: Commencer
 ---
+
+<div class="rounded-xl border border-gray-200 bg-gray-50 px-4 py-2
+            text-sm font-medium text-gray-800
+            dark:border-gray-800 dark:bg-gray-900 dark:text-gray-200">
+  Semaine 1 — du 19 janvier au 23 janvier
+</div>
+
+<div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
+  <WeeklyTodo
+    title="À faire cette semaine — En classe"
+    subtitle="Activités réalisées pendant la séance."
+    :steps="[
+      {
+        title: 'Introduction du cours et plan de cours',
+        description: 'Présentation, activité brise glace, plan de cours',
+        time: '20 min',
+        links: [
+          { text: 'Introduction', href: '/modules/01-introduction/00-presentation', variant: 'secondary' },
+          { text: 'Plan de cours', href: '/plan-cours/plan-de-cours', variant: 'secondary' }
+        ]
+      },
+      {
+        title: 'Module 01 — Format de données',
+        time: '15 min',
+        links: [
+          { text: 'Aller au module', href: '/modules/01-introduction/01-formats-donnees', variant: 'secondary' }
+        ]
+      },
+      {
+        title: 'Installations — démonstration',
+        description: 'Vue d’ensemble des installations à faire. À compléter à la maison au besoin.',
+        time: '30 min',
+        links: [
+          { text: 'Voir la procédure', href: '/labs/lab01-installations', variant: 'secondary' }
+        ]
+      },
+      {
+        title: 'Module 01 — Structure relationnelle',
+        time: '30 min',
+        links: [
+          { text: 'Aller au module', href: '/modules/01-introduction/02-structure-relationnelle', variant: 'secondary' }
+        ]
+      },
+      {
+        title: 'Module 01 — Modèle de données',
+        time: '30 min',
+        links: [
+          { text: 'Aller au module', href: '/modules/01-introduction/03-modelisation', variant: 'secondary' }
+        ]
+      },
+      {
+        title: 'Laboratoire 02 — Modélisation : Système d’événements',
+        description: 'Présentation de la démarche et des attentes. À compléter avant le prochain cours.',
+        time: '20 min',
+        links: [
+          { text: 'Aller au labo', href: '/labs/lab02-modelisation', variant: 'secondary' }
+        ]
+      }
+    ]"
+  />
+
+  <WeeklyTodo
+    title="À préparer / compléter"
+    subtitle="À compléter de votre côté."
+    :steps="[
+      {
+        title: 'Terminer installations et configurations obligatoires',
+        badge: 'Obligatoire',
+        time: '30 min',
+        links: [
+          { text: 'Voir la procédure', href: '/labs/lab01-installations', variant: 'secondary' }
+        ]
+      },
+      {
+        title: 'Terminer le laboratoire 02 — Modélisation : Système d’événements',
+        description: 'On y reviendra au début du prochain cours.',
+        time: '30 min',
+        links: [
+          { text: 'Aller au labo', href: '/labs/lab02-modelisation', variant: 'secondary' }
+        ]
+      },
+      {
+        title: 'Lire le module 2 au complet',
+        description: 'Faire une première lecture préparatoire.',
+        badge: 'Optionnel',
+        time: '30 min',
+        links: [
+          { text: 'Aller au module 2', href: '/modules/02-ddl-base', variant: 'secondary' }
+        ]
+      }
+    ]"
+  />
+</div>

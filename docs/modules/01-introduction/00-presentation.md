@@ -39,7 +39,7 @@ title: "Présentation"
     - Difficile de mettre des données en relation dans Excel
 - Négliger le mot **relationnelles** dans base de données relationnelles
 
-## ✅ Conseils pour réussir le cours
+## Conseils pour réussir le cours
 - Réaliser TOUS les labos pendant les cours
 - Arriver à l'heure et laisser les distractions de côté (cellulaire, applications distrayantes sur vos ordis)
 - Utilisateur l'IA **judicieusement**
@@ -47,5 +47,5 @@ title: "Présentation"
     - TOUJOURS retranscrire ou faire par soi-même (aide à intégrer les appentissages)
     - Rappel: c'est un outil, pas votre ami, ni une béquille
 
-## 📄 Plan de cours
+## Plan de cours
 - [Aller au plan de cours](./../../plan-cours/plan-de-cours.md)
