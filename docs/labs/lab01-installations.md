@@ -4,20 +4,19 @@ title: "Lab — Installation et création de la base de données"
 
 # 🧪 Laboratoire 01 — Installation et création de la base de données
 
-<div class="bg-green-50 border-l-4 border-green-500 p-4 mt-4 rounded-md">
 
-**Dans ce laboratoire, vous allez :**
+<div class="bg-blue-50 border border-blue-200 text-blue-900 rounded-lg p-4">
+<strong>Dans ce laboratoire, vous allez :</strong><br>
 
 1) Installer la base de données PostgreSQL
 2) Installer le client DBeaver
 3) Créer une nouvelle connexion PostgreSQL
 4) Créer une nouvelle base de données
-   
 </div>
 
 ## Prérequis
 
-<div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded-md">
+<div class="bg-yellow-50 border border-yellow-200 text-yellow-900 rounded-lg p-4">
 
 - Windows (instructions testées sur Windows 11)
 - Accès administrateur pour installer des programmes
@@ -61,8 +60,8 @@ psql --version
 - Si une version de PostgreSQL s’affiche, tout est correct.
 - Si la commande est introuvable, psql n’est pas dans le PATH.
 
-<details id="ajouter-au-path" class="border border-gray-300 rounded-md p-4 my-4 bg-yellow-50">
-  <summary class="cursor-pointer font-semibold text-gray-800">
+<details id="ajouter-au-path" class="border border-gray-300 rounded-md p-4 my-4 bg-yellow-50 text-gray-800">
+  <summary class="cursor-pointer font-semibold">
     Ajouter psql au PATH (si nécessaire)
   </summary>
 
@@ -137,9 +136,10 @@ DBeaver est un logiciel de gestion de base de données. Il servira à créer et 
     - <img class="img-bordered w-s" src="./../img/lab01/bd-lab01.png" alt="bd lab01"/>
 
 ### 4.1 Création de la base de données par code SQL
-<div class="bg-green-50 border-green-500 p-4 mt-4 rounded-s">
+<div class="bg-green-50 border-green-500 p-4 mt-4 rounded-s text-green-800">
 
 Cette étape vous montre comment créer exactement la même base de données mais **avec une commande SQL**, au lieu d’utiliser l’interface de DBeaver.
+Nous verrons cela plus en détail dans le module 2.
 
 1) Vous devez d'abord ouvrir un **nouveau script SQL** avec comme portée toutes les bases de données (voir l'image ci-dessous):
   <img class="img-bordered w-s" src="./../img/lab01/new-db-code.png" alt="new db code"/>
