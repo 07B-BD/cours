@@ -25,7 +25,7 @@ export default defineConfig({
 				text: "Modules",
 				items: [
 					{ text: "01 — Introduction", link: "/modules/01-introduction/" },
-					//{ text: "02 — DDL de base", link: "/modules/02-ddl-base/" },
+					{ text: "02 — DDL de base", link: "/modules/02-ddl-base/" },
 					//{ text: "03 — SQL de base", link: "/modules/03-sql-base/" },
 					//{ text: "04 — Relations & jointures", link: "/modules/04-relations-jointures/"},
 					//{ text: "05 — Agrégation", link: "/modules/05-aggregation/" },
