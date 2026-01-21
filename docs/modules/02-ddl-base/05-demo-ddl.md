@@ -12,7 +12,9 @@ aside: false
 - Définir des clés primaires (PRIMARY KEY).
 - Définir des clés étrangères (FOREIGN KEY).
 
-<div class="bg-red-50 border border-red-300 text-red-900 rounded-lg p-4">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1FbFcJfxpNs?si=8Agvt-k2uKXZYBAo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<div class="bg-red-50 border border-red-300 text-red-900 rounded-lg p-4 mt-5">
 <strong>Important — apprentissage</strong><br>
 Pour cette démo, il est essentiel de <strong>taper manuellement</strong> les instructions SQL plutôt que de les copier-coller.<br>
 Cela permet de mieux comprendre la syntaxe, d’éviter les erreurs courantes et d’être capable de <strong>reproduire correctement les instructions lors d’un examen</strong>.
