@@ -10,7 +10,7 @@ Comprendre comment définir la **structure d’une table** à l’aide du DDL, e
 
 ---
 
-## Qu’est-ce qu’une table ?
+## Qu’est-ce qu’une table (rappel)
 
 Une table représente un **ensemble structuré d’informations** liées à un même concept (entité).
 
@@ -95,6 +95,11 @@ CREATE TABLE nom_table (
 
 ### Option GUI
 
+<details id="ajouter-au-path" class="border border-gray-300 rounded-md p-4 my-4 bg-yellow-50 text-gray-800">
+  <summary class="cursor-pointer font-semibold">
+    À titre indicatif seulement (ne pas utiliser cette approche pour les travaux à remettre)
+  </summary>
+
 - Pour créer une table avec le GUI, vous devez sélectionner le schéma dans lequel vous voulez la créer. Dans ce cours, sélectionnez toujours le schéma `public` de votre base de données.
 
 <img src="./images/create-table-gui.png" alt="Création table" class="img-bordered w-s" />
@@ -102,3 +107,5 @@ CREATE TABLE nom_table (
 - Vous pouvez ensuite ajouter des colonnes en allant dans les `propriétés`, clic-droit dans l'espace blanc et `Créer Colonne`
 
 <img src="./images/créer-colonne.png" alt="Création colonne" class="img-bordered w-s" />
+
+</details>

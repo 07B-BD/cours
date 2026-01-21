@@ -5,7 +5,7 @@ aside: false
 
 # 03 — Contraintes simples
 
-## Objectif pédagogique
+## Objectif
 Comprendre comment utiliser des **contraintes simples** pour assurer l’**intégrité minimale des données** dès la définition de la structure d’une table.
 
 <div class="my-6 rounded-lg border border-blue-300 bg-blue-50 p-4 text-blue-900">Les contraintes permettent d’empêcher certaines erreurs <span class="font-bold">avant même l’insertion de données</span>.</div>

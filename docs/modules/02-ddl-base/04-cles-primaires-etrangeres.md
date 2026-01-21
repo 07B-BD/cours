@@ -19,6 +19,7 @@ Une **clé primaire (PRIMARY KEY)** est une colonne (ou un groupe de colonnes) q
 - identifie **de manière unique** chaque ligne d’une table
 - ne peut pas contenir de valeur NULL
 - ne peut pas contenir de doublons
+- est utilisée en tant que clé étrangère par d'autres tables pour établir les relations
 
 <div class="bg-yellow-50 border border-yellow-200 text-yellow-900 rounded-lg p-4">
 <strong>À retenir</strong><br>
