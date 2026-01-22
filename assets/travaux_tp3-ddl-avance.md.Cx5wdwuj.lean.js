@@ -1,0 +1,1 @@
+import{_ as a,o as t,c as e}from"./chunks/framework.CpVu2XTb.js";const i=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"travaux/tp3-ddl-avance.md","filePath":"travaux/tp3-ddl-avance.md"}'),r={name:"travaux/tp3-ddl-avance.md"};function c(n,d,o,s,p,l){return t(),e("div")}const m=a(r,[["render",c]]);export{i as __pageData,m as default};

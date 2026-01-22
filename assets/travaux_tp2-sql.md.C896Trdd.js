@@ -1,0 +1,1 @@
+import{_ as t,o as a,c as e}from"./chunks/framework.CpVu2XTb.js";const i=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"travaux/tp2-sql.md","filePath":"travaux/tp2-sql.md"}'),r={name:"travaux/tp2-sql.md"};function s(o,c,n,p,l,_){return a(),e("div")}const m=t(r,[["render",s]]);export{i as __pageData,m as default};
