@@ -116,7 +116,7 @@ Une base de données relationnelle organise les données sous forme de **tables 
 | 2 | Prog1 |
 
 **Table Inscription**
-| id | etudiant_id | cours |
+| id | etudiant_id | cours_id |
 |---|---|---|
 | 1 | 1 | 1 |
 | 2 | 1 | 2 |

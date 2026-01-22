@@ -135,7 +135,7 @@ CREATE TABLE inscription (
 
 ---
 
-<details class="mt-6">
+<details id="demo-ddl-code" class="mt-6">
 <summary class="cursor-pointer font-semibold text-blue-700">
 Script complet pour validation
 </summary>
