@@ -22,17 +22,11 @@ hero:
 ---
 
 <section id="semaine-2">
-<div
-  class="rounded-xl border px-4 py-2 text-sm font-medium mt-5"
-  style="
-    border-color: var(--vp-c-divider);
-    background: var(--vp-c-bg-soft);
-    color: var(--vp-c-text-1);
-  "
->
-  Semaine 2 — du 26 janvier au 30 janvier
+<div class="relative flex py-5 items-center mt-10">
+   <div class="flex-grow border-t border-gray-400"></div>
+   <span class="flex-shrink mx-4 text-gray-400">Semaine 2 — du 26 janvier au 30 janvier</span>
+  <div class="flex-grow border-t border-gray-400"></div>
 </div>
-
 <div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
   <WeeklyTodo
     title="À faire cette semaine — En classe"
@@ -105,24 +99,11 @@ hero:
 </section>
 
 <section id="semaine-1">
-
-<div class="relative flex py-5 items-center">
+<div class="relative flex py-5 items-center mt-10">
    <div class="flex-grow border-t border-gray-400"></div>
-   <span class="flex-shrink mx-4 text-gray-400">Semaine 1</span>
+   <span class="flex-shrink mx-4 text-gray-400">Semaine 1 — du 19 janvier au 23 janvier</span>
   <div class="flex-grow border-t border-gray-400"></div>
 </div>
-
-<div
-  class="rounded-xl border px-4 py-2 text-sm font-medium mt-5"
-  style="
-    border-color: var(--vp-c-divider);
-    background: var(--vp-c-bg-soft);
-    color: var(--vp-c-text-1);
-  "
->
-  Semaine 1 — du 19 janvier au 23 janvier
-</div>
-
 <div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
   <WeeklyTodo
     title="À faire cette semaine — En classe"
