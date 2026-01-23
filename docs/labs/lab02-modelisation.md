@@ -59,3 +59,9 @@ On veut conserver l’information sur :
 Papier-crayon fortement recommandé. Pour la mise au propre : https://app.diagrams.net/
 :::
 ---
+
+## Retour sur le lab
+
+<div id="lab02-retour">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/hN4nC3aXmbY?si=UMwS4509rg9ir2ws" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>

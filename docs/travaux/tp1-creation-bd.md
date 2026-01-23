@@ -11,6 +11,10 @@ title: TP1 — Conception d'une base de données
 
 ---
 
+## Vidéo explicative
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/UxUUIahvHxI?si=is0Yrzs-U2XzNH0q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 ## Objectif du travail pratique
 
 À partir d’un **modèle de données textuel**, appliquer les notions de **DDL vues en classe** afin de :

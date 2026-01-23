@@ -95,7 +95,7 @@ export default defineConfig({
 								link: "/modules/02-ddl-base/02-create-table",
 							},
 							{
-								text: "Contraintes simples",
+								text: "Contraintes et Enums",
 								link: "/modules/02-ddl-base/03-contraintes-simples",
 							},
 							{

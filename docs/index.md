@@ -34,15 +34,15 @@ hero:
     :steps="[
       {
         title: 'Retour sur le laboratoire de modélisation',
-        description: 'Exemple en groupe au tableau',
-        time: '20 min',
+        description: 'Voir la vidéo sur votre temps au besoin',
+        time: '15 min',
         links: [
-          { text: 'Laboratoire 02', href: '/labs/lab02-modelisation', variant: 'secondary' }
+          { text: 'Laboratoire 02 (vidéo)', href: '/labs/lab02-modelisation#lab02-retour', variant: 'secondary' }
         ]
       },
       {
         title: 'Module 02 — Théorie',
-        time: '70 min',
+        time: '60 min',
         links: [
           { text: 'Créer une BD', href: '/modules/02-ddl-base/01-create-database', variant: 'secondary' },
           { text: 'Ajouter des tables', href: '/modules/02-ddl-base/02-create-table', variant: 'secondary' },
@@ -68,8 +68,9 @@ hero:
       },
       {
         title: 'Travail pratique 1',
+        time: '15 min',
         links: [
-          { text: 'Énoncé', href: '/travaux/tp1-creation-bd', variant: 'secondary' }
+          { text: 'Énoncé + vidéo explicative', href: '/travaux/tp1-creation-bd', variant: 'secondary' }
         ]
       }
     ]"
@@ -80,8 +81,15 @@ hero:
     subtitle="À compléter de votre côté."
     :steps="[
       {
+        title: 'Revoir au besoin le retour sur le laboratoire 02',
+        time: '15 min',
+        links: [
+          { text: 'Laboratoire 02 (vidéo)', href: '/labs/lab02-modelisation#lab02-retour', variant: 'secondary' }
+        ]
+      },
+      {
         title: 'Laboratoire 03 — Création de la base de données',
-        time: '60 min',
+        time: '45 min',
         description: 'À compléter pour le prochain cours',
         links: [
           { text: 'Aller au laboratoire', href: '/labs/lab03-ddl', variant: 'secondary' }
