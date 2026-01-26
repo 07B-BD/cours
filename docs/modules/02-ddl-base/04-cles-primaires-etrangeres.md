@@ -6,38 +6,31 @@ aside: false
 # 04 — Clés primaires et clés étrangères
 
 ## Objectif
-Comprendre le rôle des **clés primaires** et des **clés étrangères** afin de :
+Appliquer des **clés primaires** et des **clés étrangères** afin de :
 - identifier de façon unique chaque ligne d’une table
 - représenter des **relations entre les tables**
 - assurer l’**intégrité référentielle** de la base de données
 
 ---
 
-## Qu’est-ce qu’une clé primaire ?
+## Qu’est-ce qu’une clé primaire (rappel)?
 
-Une **clé primaire (PRIMARY KEY)** est une colonne (ou un groupe de colonnes) qui :
+Une **clé primaire (PRIMARY KEY)** est une colonne qui :
 - identifie **de manière unique** chaque ligne d’une table
 - ne peut pas contenir de valeur NULL
 - ne peut pas contenir de doublons
 - est utilisée en tant que clé étrangère par d'autres tables pour établir les relations
 
-<div class="bg-yellow-50 border border-yellow-200 text-yellow-900 rounded-lg p-4">
-<strong>À retenir</strong><br>
-Une table devrait toujours avoir <strong>une seule</strong> clé primaire.
-</div>
-
 ---
 
-## Choisir une clé primaire
+## Définir une clé primaire
 
-### Bonnes pratiques
-- utiliser un identifiant numérique
-- **valeur générée automatiquement**
+- utiliser un identifiant **numérique** et **générée automatiquement** (SERIAL dans PostgreSQL)
 - sans signification métier directe
 
 <div class="bg-yellow-50 border border-yellow-200 text-yellow-900 rounded-lg p-4">
 <strong>Conseil</strong><br>
-Éviter d’utiliser comme clé primaire : un nom, un courriel, ou un numéro qui peut changer.
+Ne jamais d’utiliser comme clé primaire : un nom, un courriel, ou un numéro qui peut changer.
 </div>
 
 ---
@@ -59,7 +52,7 @@ Une table devrait toujours avoir <strong>une seule</strong> clé primaire.
 <code>SERIAL</code> génère automatiquement un identifiant unique (auto-incrémenté).
 </div>
 
-### Exemple d’enregistrements (après insertion)
+### Exemple d’enregistrements
 
 | id | nom              | date_evenement |
 |----|------------------|----------------|
@@ -70,17 +63,16 @@ Une table devrait toujours avoir <strong>une seule</strong> clé primaire.
 <div class="bg-yellow-50 border border-yellow-200 text-yellow-900 rounded-lg p-4 mt-4">
 <strong>À observer</strong><br>
 Les valeurs de la colonne <code>id</code> sont générées automatiquement par PostgreSQL grâce au type <code>SERIAL</code>.  
-Elles ne sont pas fournies manuellement lors de l’insertion.
+Elles ne sont pas fournies manuellement lors de l’insertion (l'insertion de données sera vue plus tard).
 </div>
 
 ---
 
-## Qu’est-ce qu’une clé étrangère ?
+## Qu’est-ce qu’une clé étrangère (rappel)?
 
 Une **clé étrangère (FOREIGN KEY)** est une colonne qui :
 - fait référence à la clé primaire d’une autre table
 - permet de créer une **relation entre deux tables**
-- empêche des références invalides
 
 <div class="bg-yellow-50 border border-yellow-200 text-yellow-900 rounded-lg p-4">
 <strong>À retenir</strong><br>
@@ -92,29 +84,42 @@ Une clé étrangère assure l’<strong>intégrité référentielle</strong> : o
 ## Relation entre deux tables (1–N)
 
 Exemple :
-- un événement peut avoir plusieurs inscriptions
-- une inscription est liée à un seul événement
+
+- une salle peut avoir plusieurs sièges
+- un siège appartient à une seule salle
 
 ---
 
-## Définir une clé étrangère
+### Définir une clé étrangère
 
-### Exemple
+#### Exemple
+
+On crée d'abord la table qui ne contient pas de clée étrangère (la table `parent`).
 
 ```sql
-    CREATE TABLE inscription (
+    CREATE TABLE salle (
         id SERIAL PRIMARY KEY,
-        evenement_id INTEGER NOT NULL,
-        date_inscription DATE NOT NULL,
-        FOREIGN KEY (evenement_id) REFERENCES evenement(id)
+        porte VARCHAR(15),
+        nom INTEGER NULL,
+    );
+```
+On crée ensuite la table `enfant` en s'assurant de référencer la clée primaire de la table `parent`
+
+```sql
+    CREATE TABLE siege (
+        id SERIAL PRIMARY KEY,
+        rangee VARCHAR(2),
+        salle_id INTEGER,
+
+        FOREIGN KEY (salle_id) REFERENCES salle(id)
     );
 ```
 
 <div class="bg-yellow-50 border border-yellow-200 text-yellow-900 rounded-lg p-4">
 <strong>Note</strong><br>
 
-- La valeur de <code>evenement_id</code> doit obligatoirement exister dans la table <code>evenement</code>.
-- La valeur de <code>evenement_id</code> est de type <code>INTEGER</code> et non <code>SERIAL</code>.
+- La valeur de <code>salle_id</code> doit obligatoirement exister dans la table <code>salle</code>.
+- La valeur de <code>salle_id</code> est de type <code>INTEGER</code> et non <code>SERIAL</code>.
 
 </div>
 
@@ -128,8 +133,8 @@ La table référencée (clé primaire) doit être créée <strong>avant</strong>
 </div>
 
 Exemple d’ordre correct :
-1. evenement  
-2. inscription  
+1. salle  
+2. siege  
 
 ---
 
@@ -146,9 +151,9 @@ Il existe des options (ex. suppression en cascade), mais elles sont hors-scope p
 
 ---
 
-## Clés primaires composées (aperçu)
+## Clés primaires composées (c'est possible mais plus rare)
 
-Une clé primaire peut être composée de plusieurs colonnes.
+Une clé primaire peut être composée de plusieurs colonnes (ex.: deux clées étrangères peuvent être sélectionnées comme clée primaire composée).
 
 <div class="bg-yellow-50 border border-yellow-200 text-yellow-900 rounded-lg p-4">
 <strong>Dans ce cours</strong><br>

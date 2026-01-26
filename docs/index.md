@@ -21,17 +21,97 @@ hero:
 
 ---
 
-<div
-  class="rounded-xl border px-4 py-2 text-sm font-medium"
-  style="
-    border-color: var(--vp-c-divider);
-    background: var(--vp-c-bg-soft);
-    color: var(--vp-c-text-1);
-  "
->
-  Semaine 1 — du 19 janvier au 23 janvier
+<section id="semaine-2">
+<div class="relative flex py-5 items-center mt-10">
+   <div class="flex-grow border-t border-gray-400"></div>
+   <span class="flex-shrink mx-4 text-gray-400">Semaine 2 — du 26 janvier au 30 janvier</span>
+  <div class="flex-grow border-t border-gray-400"></div>
 </div>
+<div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
+  <WeeklyTodo
+    title="À faire cette semaine — En classe"
+    subtitle="Activités réalisées pendant la séance."
+    :steps="[
+      {
+        title: 'Retour sur le laboratoire de modélisation',
+        description: 'Voir la vidéo sur votre temps au besoin',
+        time: '15 min',
+        links: [
+          { text: 'Laboratoire 02 (vidéo)', href: '/labs/lab02-modelisation#lab02-retour', variant: 'secondary' }
+        ]
+      },
+      {
+        title: 'Module 02 — Théorie',
+        time: '60 min',
+        links: [
+          { text: 'Créer une BD', href: '/modules/02-ddl-base/01-create-database', variant: 'secondary' },
+          { text: 'Ajouter des tables', href: '/modules/02-ddl-base/02-create-table', variant: 'secondary' },
+          { text: 'Contraintes', href: '/modules/02-ddl-base/03-contraintes-simples', variant: 'secondary' },
+          { text: 'Clées primaires / étrangères', href: '/modules/02-ddl-base/04-cles-primaires-etrangeres', variant: 'secondary' }
+        ]
+      },
+      {
+        title: 'Module 02 — Démonstration',
+        description: 'Création de la BD et ajout des tables',
+        time: '20 min',
+        links: [
+          { text: 'Aller à la démo', href: '/modules/02-ddl-base/05-demo-ddl', variant: 'secondary' }
+        ]
+      },
+      {
+        title: 'Laboratoire 03 — Création de la base de données',
+        time: '60 min',
+        description: 'À compléter pour le prochain cours',
+        links: [
+          { text: 'Aller au laboratoire', href: '/labs/lab03-ddl', variant: 'secondary' }
+        ]
+      },
+      {
+        title: 'Travail pratique 1',
+        time: '15 min',
+        links: [
+          { text: 'Énoncé + vidéo explicative', href: '/travaux/tp1-creation-bd', variant: 'secondary' }
+        ]
+      }
+    ]"
+  />
 
+  <WeeklyTodo
+    title="À préparer / compléter"
+    subtitle="À compléter de votre côté."
+    :steps="[
+      {
+        title: 'Revoir au besoin le retour sur le laboratoire 02',
+        time: '15 min',
+        links: [
+          { text: 'Laboratoire 02 (vidéo)', href: '/labs/lab02-modelisation#lab02-retour', variant: 'secondary' }
+        ]
+      },
+      {
+        title: 'Laboratoire 03 — Création de la base de données',
+        time: '45 min',
+        description: 'À compléter pour le prochain cours',
+        links: [
+          { text: 'Aller au laboratoire', href: '/labs/lab03-ddl', variant: 'secondary' }
+        ]
+      },
+      {
+        title: 'Commencer le travail pratique 1',
+        links: [
+          { text: 'Énoncé', href: '/travaux/tp1-creation-bd', variant: 'secondary' }
+        ]
+      }
+    ]"
+  />
+</div>
+</section>
+
+<section id="semaine-1">
+<div class="relative flex py-5 items-center mt-10">
+   <div class="flex-grow border-t border-gray-400"></div>
+   <span class="flex-shrink mx-4 text-gray-400">Semaine 1 — du 19 janvier au 23 janvier</span>
+  <div class="flex-grow border-t border-gray-400"></div>
+</div>
 <div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
   <WeeklyTodo
     title="À faire cette semaine — En classe"
@@ -118,3 +198,4 @@ hero:
     ]"
   />
 </div>
+</section>

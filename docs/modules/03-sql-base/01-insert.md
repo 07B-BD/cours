@@ -16,8 +16,9 @@ title: "01 — Insert"
 
 Pour suivre les exemples de ce module, vous devez importer une **base de données de test**.
 
-**Fichier SQL à télécharger :**  
-[Télécharger la base de données de test — Événements](#)
+**Télécharger la base de données de test — Événements :** 
+<br>
+<a href="./../../module_03_evenement_empty.sql" target="_blank" rel="noopener">Fichier .sql à télécharger</a>
 
 Le fichier contient la structure des tables de la démonstration :
 - `evenement`
@@ -81,13 +82,14 @@ Pour le moment, pour voir les données, double-cliquez sur la table et allez dan
 Lors qu'on référence avec une clée étrangère, une exception sera levée si la valeur n'existe pas dans la table référencée.
 
 ```sql
-INSERT INTO inscription (evenement_id, participant_id)  
-VALUES (2, 1);
+INSERT INTO inscription (evenement_id, participant_id, date_inscription)  
+VALUES (2, 1, '2026-03-17');
 ```
 
 <div class="my-6 rounded-lg border border-yellow-300 bg-yellow-50 p-4 text-yellow-900">
 <strong>Attention</strong><br>
-Une exception sera levée. Pourquoi? Comment corriger?
+Une exception pourrait levée. Pourquoi? Comment corriger?<br>
+Ajoutons ensemble une nouvelle inscription fonctionnelle.
 
 </div>
 
@@ -132,7 +134,7 @@ La génération des données se fait en **deux étapes** :
 <strong>Important</strong><br>
 Il est impossible de savoir à l’avance quelles valeurs de clés primaires seront générées par PostgreSQL.<br>
 Elles ne sont <strong>pas nécessairement</strong> 1, 2, 3, 4, 5, etc.<br><br>
-Les requêtes qui utilisent des clés étrangères doivent donc être générées <strong>après</strong> l’insertion des premières données.
+Les requêtes INSERT qui utilisent des clés étrangères doivent donc être générées <strong>après</strong> l’insertion des premières données.
 </div>
 
 ---
