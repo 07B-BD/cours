@@ -148,10 +148,10 @@ pas de recopier une solution.
 ### Type ENUM — carburant
 
 ```sql
-CREATE TYPE type_carburant AS ENUM (
-    'essence',
-    'diesel',
-    'electrique'
+create type type_carburant as enum (
+  'essence',
+  'diesel',
+  'electrique'
 );
 ```
 
@@ -160,11 +160,11 @@ CREATE TYPE type_carburant AS ENUM (
 ### Table `client`
 
 ```sql
-CREATE TABLE client (
-    id_client SERIAL PRIMARY KEY,
-    nom VARCHAR(50) NOT NULL,
-    prenom VARCHAR(50) NOT NULL,
-    telephone VARCHAR(20) NOT NULL
+create table client (
+  id_client serial primary key,
+  nom varchar(50) not null,
+  prenom varchar(50) not null,
+  telephone varchar(20) not null
 );
 ```
 
@@ -173,12 +173,12 @@ CREATE TABLE client (
 ### Table `vendeur`
 
 ```sql
-CREATE TABLE vendeur (
-    id_vendeur SERIAL PRIMARY KEY,
-    nom VARCHAR(50) NOT NULL,
-    prenom VARCHAR(50) NOT NULL,
-    id_superviseur INTEGER,
-    FOREIGN KEY (id_superviseur) REFERENCES vendeur(id_vendeur)
+create table vendeur (
+  id_vendeur serial primary key,
+  nom varchar(50) not null,
+  prenom varchar(50) not null,
+  id_superviseur integer,
+  foreign key (id_superviseur) references vendeur(id_vendeur)
 );
 ```
 
@@ -187,14 +187,14 @@ CREATE TABLE vendeur (
 ### Table `voiture`
 
 ```sql
-CREATE TABLE voiture (
-    id_voiture SERIAL PRIMARY KEY,
-    marque VARCHAR(40) NOT NULL,
-    modele VARCHAR(40) NOT NULL,
-    annee INTEGER NOT NULL,
-    prix_affiche NUMERIC(10,2) NOT NULL CHECK (prix_affiche > 0),
-    carburant type_carburant NOT NULL,
-    UNIQUE (marque, modele, annee)
+create table voiture (
+  id_voiture serial primary key,
+  marque varchar(40) not null,
+  modele varchar(40) not null,
+  annee integer not null,
+  prix_affiche numeric(10,2) not null check (prix_affiche > 0),
+  carburant type_carburant not null,
+  unique (marque, modele, annee)
 );
 ```
 ---
@@ -202,16 +202,16 @@ CREATE TABLE voiture (
 ### Table `achat`
 
 ```sql
-CREATE TABLE achat (
-    id_achat SERIAL PRIMARY KEY,
-    date_achat DATE NOT NULL,
-    prix_vente NUMERIC(10,2) NOT NULL CHECK (prix_vente > 0),
-    id_client INTEGER NOT NULL,
-    id_vendeur INTEGER NOT NULL,
-    id_voiture INTEGER NOT NULL,
-    FOREIGN KEY (id_client) REFERENCES client(id_client),
-    FOREIGN KEY (id_vendeur) REFERENCES vendeur(id_vendeur),
-    FOREIGN KEY (id_voiture) REFERENCES voiture(id_voiture)
+create table achat (
+  id_achat serial primary key,
+  date_achat date not null,
+  prix_vente numeric(10,2) not null check (prix_vente > 0),
+  id_client integer not null,
+  id_vendeur integer not null,
+  id_voiture integer not null,
+  foreign key (id_client) references client(id_client),
+  foreign key (id_vendeur) references vendeur(id_vendeur),
+  foreign key (id_voiture) references voiture(id_voiture)
 );
 ```
 

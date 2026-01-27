@@ -47,10 +47,10 @@ Dans cette section, nous verrons :
 ### Exemple
 
 ```sql
-    CREATE TABLE evenement (
-        id SERIAL,
-        nom VARCHAR(100) NOT NULL,
-        date_evenement DATE NOT NULL
+    create table evenement (
+        id serial,
+        nom varchar(100) not null,
+        date_evenement date not null
     );
 ```
 
@@ -66,10 +66,10 @@ Empêche la présence de **doublons** dans une colonne.
 ### Exemple
 
 ```sql
-    CREATE TABLE participant (
-        id SERIAL,
-        courriel VARCHAR(150) UNIQUE,
-        nom VARCHAR(100)
+    create table participant (
+        id serial,
+        courriel varchar(150) unique,
+        nom varchar(100)
     );
 ```
 
@@ -85,10 +85,10 @@ Attribue une **valeur par défaut** lorsqu’aucune valeur n’est fournie.
 ### Exemple
 
 ```sql
-    CREATE TABLE evenement (
-        id SERIAL,
-        nom VARCHAR(100) NOT NULL,
-        actif BOOLEAN DEFAULT TRUE
+    create table evenement (
+        id serial,
+        nom varchar(100) not null,
+        actif boolean default true
     );
 ```
 
@@ -104,9 +104,9 @@ Impose une **condition logique** sur les valeurs possibles d’une colonne.
 ### Exemple
 
 ```sql
-    CREATE TABLE inscription (
-        id SERIAL,
-        nombre_places INTEGER CHECK (nombre_places > 0)
+    create table inscription (
+        id serial,
+        nombre_places integer check (nombre_places > 0)
     );
 ```
 
@@ -121,12 +121,12 @@ Une même colonne peut avoir **plusieurs contraintes**.
 ### Exemple
 
 ```sql
-    CREATE TABLE evenement (
-        id SERIAL,
-        nom VARCHAR(100) NOT NULL,
-        capacite INTEGER NOT NULL CHECK (capacite >= 0),
-        actif BOOLEAN DEFAULT TRUE
-    );
+create table evenement (
+    id serial,
+    nom varchar(100) not null,
+    capacite integer not null check (capacite >= 0),
+    actif boolean default true
+);
 
 ```
 
@@ -168,12 +168,12 @@ Une colonne de type `ENUM` n’accepte **que les valeurs explicitement définies
 2) On peut ensuite utiliser le nouveau type à la création de table.
 
 ```sql
-CREATE TYPE statut_evenement AS ENUM ('planifie', 'annule', 'termine');
+create type statut_evenement as enum ('planifie', 'annule', 'termine');
 
-CREATE TABLE evenement (
-    id SERIAL,
-    nom VARCHAR(100) NOT NULL,
-    statut statut_evenement NOT NULL
+create table evenement (
+    id serial,
+    nom varchar(100) not null,
+    statut statut_evenement not null
 );
 
 ```

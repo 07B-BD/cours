@@ -6,13 +6,13 @@ aside: false
 
 | Semaine | Date | Modules & Laboratoires (en classe) | Énoncés / Remises |
 |---:|:---|:---|:---|
-| 1 | 23 janv. |  | — |
-| 2 | 30 janv. |  | <Badge type="info" text="Énoncé" /> **TP1 — Création BD** |
-| 3 | 6 févr. |  | — |
-| 4 | 13 févr. |  | <Badge type="warning" text="Remise" /> **TP1** |
-| 5 | 20 févr. |  | <Badge type="info" text="Énoncé" /> **TP2 — Requêtes SQL** |
-| 6 | 27 févr. |  | — |
-| 7 | 6 mars |  | <Badge type="danger" text="Examen" /> **Examen #1** (modules 1–3) |
+| 1 | 23 janv. | Intro et modélisation | — |
+| 2 | 30 janv. | DDL | <Badge type="info" text="Énoncé" /> **TP1 — Création BD** |
+| 3 | 6 févr. | DDL (suite) | — |
+| 4 | 13 févr. | SQL début | <Badge type="warning" text="Remise" /> **TP1** |
+| 5 | 20 févr. | SQL (suite) | <Badge type="info" text="Énoncé" /> **TP2 — Requêtes SQL** |
+| 6 | 27 févr. | Révision d'examen | — |
+| 7 | 6 mars | Examen 1 | <Badge type="danger" text="Examen" /> **Examen #1** (modules 1–3) |
 | — | 13 mars |  | <Badge type="info" text="Pause" /> **Semaine de lecture** |
 | 8 | 20 mars |  | <Badge type="warning" text="Remise" /> **TP2** |
 | 9 | 27 mars |  | — |

@@ -86,10 +86,10 @@ Une colonne est définie par :
 
 ### Syntaxe générale
 ```sql
-CREATE TABLE nom_table (
-    colonne1 type_donnees,
-    colonne2 type_donnees,
-    colonne3 type_donnees
+create table nom_table (
+  colonne1 type_donnees,
+  colonne2 type_donnees,
+  colonne3 type_donnees
 );
 ```
 

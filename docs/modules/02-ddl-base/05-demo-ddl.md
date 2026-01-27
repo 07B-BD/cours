@@ -25,13 +25,13 @@ Cela permet de mieux comprendre la syntaxe, d’éviter les erreurs courantes et
 ### Structure générale
 
 ```sql
-CREATE TABLE nom_table (
-    colonne1 TYPE CONSTRAINT CONSTRAINT,
-    colonne2 TYPE CONSTRAINT,
-    colonne3 TYPE,
+create table nom_table (
+    colonne1 type constraint constraint,
+    colonne2 type constraint,
+    colonne3 type,
 
-    PRIMARY KEY (colonne_pk),
-    FOREIGN KEY (colonne_fk) REFERENCES table_parent(colonne_pk)
+    primary key (colonne_pk),
+    foreign key (colonne_fk) references table_parent(colonne_pk)
 );
 ```
 
@@ -40,7 +40,7 @@ CREATE TABLE nom_table (
 ## 1) Créer la base de données
 
 ```sql
-CREATE DATABASE demo_evenements;
+create database demo_evenements;
 ```
 
 <div class="bg-yellow-50 border border-yellow-200 text-yellow-900 rounded-lg p-4">
@@ -53,13 +53,13 @@ Se reconnecter ensuite à la base <code>demo_evenements</code> dans l’outil en
 ## 2) Créer la table principale : evenement
 
 ```sql
-CREATE TABLE evenement (
-    id SERIAL PRIMARY KEY,
-    nom VARCHAR(100) NOT NULL,
-    date_evenement DATE NOT NULL,
-    lieu VARCHAR(100) NOT NULL,
-    capacite INTEGER NOT NULL CHECK (capacite >= 0),
-    actif BOOLEAN NOT NULL DEFAULT TRUE
+create table evenement (
+    id serial primary key,
+    nom varchar(100) not null,
+    date_evenement date not null,
+    lieu varchar(100) not null,
+    capacite integer not null check (capacite >= 0),
+    actif boolean not null default true
 );
 ```
 
@@ -73,11 +73,11 @@ Constater que la clé primaire identifie chaque événement et que les contraint
 ## 3) Créer la table : participant
 
 ```sql
-CREATE TABLE participant (
-    id SERIAL PRIMARY KEY,
-    nom VARCHAR(100) NOT NULL,
-    courriel VARCHAR(150) NOT NULL UNIQUE,
-    actif BOOLEAN NOT NULL DEFAULT TRUE
+create table participant (
+    id serial primary key,
+    nom varchar(100) not null,
+    courriel varchar(150) not null unique,
+    actif boolean not null default true
 );
 ```
 
@@ -95,16 +95,16 @@ Utiliser <code>UNIQUE</code> sur <code>courriel</code> pour empêcher deux parti
 - Permettre à un événement d’avoir plusieurs participants.
 
 ```sql
-CREATE TABLE inscription (
-    id SERIAL PRIMARY KEY,
-    evenement_id INTEGER NOT NULL,
-    participant_id INTEGER NOT NULL,
-    date_inscription DATE NOT NULL DEFAULT CURRENT_DATE,
+create table inscription (
+    id serial primary key,
+    evenement_id integer not null,
+    participant_id integer not null,
+    date_inscription date not null default current_date,
 
-    FOREIGN KEY (evenement_id) REFERENCES evenement(id),
-    FOREIGN KEY (participant_id) REFERENCES participant(id),
+    foreign key (evenement_id) references evenement(id),
+    foreign key (participant_id) references participant(id),
 
-    UNIQUE (evenement_id, participant_id)
+    unique (evenement_id, participant_id)
 );
 ```
 
@@ -143,30 +143,30 @@ Script complet pour validation
 ## Script complet (exécuter dans l’ordre)
 
 ```sql
-CREATE TABLE evenement (
-    id SERIAL PRIMARY KEY,
-    nom VARCHAR(100) NOT NULL,
-    date_evenement DATE NOT NULL,
-    lieu VARCHAR(100) NOT NULL,
-    capacite INTEGER NOT NULL CHECK (capacite >= 0),
-    actif BOOLEAN NOT NULL DEFAULT TRUE
+create table evenement (
+    id serial primary key,
+    nom varchar(100) not null,
+    date_evenement date not null,
+    lieu varchar(100) not null,
+    capacite integer not null check (capacite >= 0),
+    actif boolean not null default true
 );
 
-CREATE TABLE participant (
-    id SERIAL PRIMARY KEY,
-    nom VARCHAR(100) NOT NULL,
-    courriel VARCHAR(150) NOT NULL UNIQUE,
-    actif BOOLEAN NOT NULL DEFAULT TRUE
+create table participant (
+    id serial primary key,
+    nom varchar(100) not null,
+    courriel varchar(150) not null unique,
+    actif boolean not null default true
 );
 
-CREATE TABLE inscription (
-    id SERIAL PRIMARY KEY,
-    evenement_id INTEGER NOT NULL,
-    participant_id INTEGER NOT NULL,
-    date_inscription DATE NOT NULL DEFAULT CURRENT_DATE,
-    FOREIGN KEY (evenement_id) REFERENCES evenement(id),
-    FOREIGN KEY (participant_id) REFERENCES participant(id),
-    UNIQUE (evenement_id, participant_id)
+create table inscription (
+    id serial primary key,
+    evenement_id integer not null,
+    participant_id integer not null,
+    date_inscription date not null default current_date,
+    foreign key (evenement_id) references evenement(id),
+    foreign key (participant_id) references participant(id),
+    unique (evenement_id, participant_id)
 );
 ```
 </details>

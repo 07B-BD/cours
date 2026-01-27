@@ -1,29 +1,144 @@
 ---
 title: "02 — Requête de sélection (select)"
-aside: false
 ---
 
 # 02 — Requête de sélection (select)
 
 ## Objectif
+
 Comprendre la requête de sélection :
-- utilité de la requête de sélection et syntaxe de base
-- sélectionner des colonnes d'une table
-- ordonner les données retournées
-- utilisation d'alias de table
-- filtrer les données (where)
+- utilité de la requête `select` et syntaxe de base
+- sélectionner des colonnes d’une table
+- ordonner les données retournées avec `order by`
+- utiliser des alias de table avec `as`
+- filtrer les données avec `where`
 
 ---
 
-## Base de données de test à importer
+## Utilité de `select`
 
-Le script d'importation suivant peut être exécuté afin de suivre les exemples:
+La requête **`select`** permet de :
+- consulter les données d’une base de données
+- vérifier des insertions ou des mises à jour
+- extraire des informations précises selon des critères
 
-<details id="ajouter-au-path" class="border border-gray-300 rounded-md p-4 my-4 bg-yellow-50 text-gray-800">
-  <summary class="cursor-pointer font-semibold">
-    Script d'importation
-  </summary>
-
-</details>
+C’est la requête **la plus utilisée** en SQL.
 
 ---
+
+## Syntaxe de base
+
+Forme minimale :
+
+```sql
+select *  
+from evenement;
+```
+
+- `select` : indique quelles colonnes retourner
+- `from` : indique la table source
+- `*` : signifie « toutes les colonnes »
+- les retours de ligne peuvent simplifier la lecture
+
+---
+
+## Sélectionner des colonnes précises
+
+Il est recommandé de sélectionner uniquement les colonnes nécessaires.
+
+```sql
+select nom, date_evenement, lieu  
+from evenement;
+```
+
+Avantages :
+- requêtes plus lisibles
+- moins de données inutiles
+- meilleures performances
+
+---
+
+## Ordonner les résultats (`order by`)
+
+Les résultats ne sont **pas garantis** d’être dans un ordre précis sans `order by`.
+
+```sql
+select nom, date_evenement  
+from evenement  
+order by date_evenement;
+```
+>Les résultats seront en ordre de date  du plus petit au plus grand (`asc` par défaut)
+
+Ordre décroissant :
+
+```sql
+select nom, date_evenement  
+from evenement  
+order by date_evenement desc;
+```
+>Les résultats seront en ordre de date  du plus grand au plus petit (`desc`)
+
+---
+
+## Filtrer les données (where)
+
+La clause `where` permet de **restreindre** les lignes retournées.
+
+### Comparaisons simples
+
+```sql
+select nom, lieu  
+from evenement  
+where lieu = 'Paris';
+```
+> Revoie les événements où le lieu est à Paris.
+
+```sql
+select nom, capacite  
+from evenement  
+where capacite > 50;
+```
+> Revoie les événements ayant une capacité supérieure à 50 personnes.
+
+---
+
+## Combiner des conditions
+
+### and
+
+```sql
+select nom, capacite  
+from evenement  
+where capacite >= 50  
+and capacite <= 150;
+```
+
+### or
+
+```sql
+select nom, lieu  
+from evenement  
+where lieu = 'Agora'  
+or lieu = 'Amphi A';
+```
+
+---
+
+## Filtrer avec des booléens
+
+```sql
+select nom  
+from evenement  
+where actif = true;
+```
+
+---
+
+## Bonnes pratiques
+
+- Toujours commencer par un `select` simple
+- Ajouter les filtres progressivement
+- Tester fréquemment avec peu de conditions
+- Vérifier le résultat avant d’ajouter de la complexité
+
+> Le filtrage est la base des requêtes plus avancées à venir (opérateurs, sous-requêtes, jointures).
