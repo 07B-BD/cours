@@ -28,13 +28,13 @@ L’instruction `DROP` permet de :
 ### Instruction DROP TABLE
 
 ```sql
-DROP TABLE nom_table;
+drop table nom_table;
 ```
 
 ### Exemple
 
 ```sql
-DROP TABLE inscription;
+drop table inscription;
 ```
 
 <div class="bg-red-50 border border-red-300 text-red-900 rounded-lg p-4">
@@ -68,13 +68,13 @@ Supprimer d’abord les tables dépendantes (avec clés étrangères), puis les 
 ### Instruction DROP DATABASE
 
 ```sql
-DROP DATABASE nom_base;
+drop database nom_base;
 ```
 
 ### Exemple
 
 ```sql
-DROP DATABASE demo_evenements;
+drop database demo_evenements;
 ```
 
 <div class="bg-red-50 border border-red-300 text-red-900 rounded-lg p-4">

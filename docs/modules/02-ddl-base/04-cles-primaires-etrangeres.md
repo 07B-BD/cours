@@ -40,11 +40,11 @@ Ne jamais d’utiliser comme clé primaire : un nom, un courriel, ou un numéro 
 ### Exemple simple
 
 ```sql
-    CREATE TABLE evenement (
-        id SERIAL PRIMARY KEY,
-        nom VARCHAR(100) NOT NULL,
-        date_evenement DATE NOT NULL
-    );
+create table evenement (
+    id serial primary key,
+    nom varchar(100) not null,
+    date_evenement date not null
+);
 ```
 
 <div class="bg-yellow-50 border border-yellow-200 text-yellow-900 rounded-lg p-4">
@@ -97,22 +97,21 @@ Exemple :
 On crée d'abord la table qui ne contient pas de clée étrangère (la table `parent`).
 
 ```sql
-    CREATE TABLE salle (
-        id SERIAL PRIMARY KEY,
-        porte VARCHAR(15),
-        nom INTEGER NULL,
-    );
+create table salle (
+    id serial primary key,
+    porte varchar(15),
+    nom integer null,
+);
 ```
 On crée ensuite la table `enfant` en s'assurant de référencer la clée primaire de la table `parent`
 
 ```sql
-    CREATE TABLE siege (
-        id SERIAL PRIMARY KEY,
-        rangee VARCHAR(2),
-        salle_id INTEGER,
-
-        FOREIGN KEY (salle_id) REFERENCES salle(id)
-    );
+create table siege (
+    id serial primary key,
+    rangee varchar(2),
+    salle_id integer,
+    foreign key (salle_id) references salle(id)
+);
 ```
 
 <div class="bg-yellow-50 border border-yellow-200 text-yellow-900 rounded-lg p-4">

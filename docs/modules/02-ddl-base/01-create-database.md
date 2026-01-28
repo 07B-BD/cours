@@ -85,9 +85,9 @@ Lors de la création d’une base de données, PostgreSQL lui associe un **encod
 
 #### Syntaxe
 ```sql
-CREATE DATABASE nom_base;
+create database nom_base;
 
-CREATE DATABASE tp_evenements;
+create database tp_evenements;
 ```
 
 #### Option GUI
@@ -116,8 +116,8 @@ Toutes les instructions SQL s’exécutent toujours dans **une seule base de don
 
 ### Lister les bases disponibles
 ```sql
-SELECT datname
-FROM pg_database;
+select datname
+from pg_database;
 ```
 
 Vous pouvez également faire clic-droit et rafraîchir (F5)

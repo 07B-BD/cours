@@ -150,7 +150,7 @@ Nous verrons cela plus en détail dans le module 2.
     <b>Commande SQL :</b>
 
     ```sql
-    CREATE DATABASE lab01;
+    create database lab01;
     ```
     </div>
 

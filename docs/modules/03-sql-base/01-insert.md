@@ -52,11 +52,11 @@ Exemples d’utilisation :
 Insérer une ligne en **nommant les colonnes** :
 
 ```sql
-INSERT INTO participant (nom, courriel, actif)  
-VALUES ('Thomas Jacobs', 'thomas.jacobs@example.com', true);
+insert into participant (nom, courriel, actif)  
+values ('Thomas Jacobs', 'thomas.jacobs@example.com', true);
 
-INSERT INTO participant (nom, courriel)  
-VALUES ('Nina Patel', 'nina.patel@example.com');
+insert into participant (nom, courriel)  
+values ('Nina Patel', 'nina.patel@example.com');
 ```
 
 <div class="my-6 rounded-lg border border-blue-300 bg-blue-50 p-4 text-blue-900">
@@ -82,8 +82,8 @@ Pour le moment, pour voir les données, double-cliquez sur la table et allez dan
 Lors qu'on référence avec une clée étrangère, une exception sera levée si la valeur n'existe pas dans la table référencée.
 
 ```sql
-INSERT INTO inscription (evenement_id, participant_id, date_inscription)  
-VALUES (2, 1, '2026-03-17');
+insert into inscription (evenement_id, participant_id, date_inscription)  
+values (2, 1, '2026-03-17');
 ```
 
 <div class="my-6 rounded-lg border border-yellow-300 bg-yellow-50 p-4 text-yellow-900">
@@ -98,8 +98,8 @@ Ajoutons ensemble une nouvelle inscription fonctionnelle.
 ## Insertion de plusieurs lignes
 
 ```sql
-INSERT INTO evenement (nom, date_evenement, lieu, capacite)
-VALUES
+insert into evenement (nom, date_evenement, lieu, capacite)
+values
   ('Soirée jeux de société', '2026-03-15', 'Cafétéria', 80),
   ('Conférence cybersécurité', '2026-03-22', 'Amphi B', 150),
   ('Atelier introduction au SQL', '2026-03-29', 'Local C-101', 30);
