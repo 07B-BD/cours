@@ -13,6 +13,28 @@ Comprendre la requête de sélection :
 - utiliser des alias de table avec `as`
 - filtrer les données avec `where`
 
+## Base de données de test à importer
+
+<div class="my-6 rounded-lg border border-yellow-300 bg-yellow-50 p-4 text-yellow-900">
+<strong>Attention</strong><br>
+Pour suivre les exemples de ce module, vous devez importer une <strong>base de données de test</strong>.<br>
+Celle-ci contient plus de données.
+
+**Télécharger la base de données de test — Événements :** 
+<br>
+<a href="./../../databases/module_03_evenement_data.sql" target="_blank" rel="noopener">Fichier .sql à télécharger</a>
+
+</div>
+
+### Importation
+
+Téléchargez le fichier SQL, puis exécutez dans un invite de commandes :<br>
+**Changez le chemin d'accès du fichier selon où vous l'avez placé.**
+
+```bash
+psql -U postgres -f "C:\Users\Admin\Desktop\module_03_evenement_data.sql"
+```
+
 ---
 
 ## Utilité de `select`
@@ -118,8 +140,8 @@ and capacite <= 150;
 ```sql
 select nom, lieu  
 from evenement  
-where lieu = 'Agora'  
-or lieu = 'Amphi A';
+where lieu = 'Paris'  
+or lieu = 'Toulouse';
 ```
 
 ---

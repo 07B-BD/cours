@@ -14,11 +14,15 @@ title: "01 — Insert"
 
 ## Base de données de test à importer
 
-Pour suivre les exemples de ce module, vous devez importer une **base de données de test**.
+<div class="my-6 rounded-lg border border-yellow-300 bg-yellow-50 p-4 text-yellow-900">
+<strong>Attention</strong><br>
+Pour suivre les exemples de ce module, vous devez importer une <strong>base de données de test</strong>.
 
 **Télécharger la base de données de test — Événements :** 
 <br>
-<a href="./../../module_03_evenement_empty.sql" target="_blank" rel="noopener">Fichier .sql à télécharger</a>
+<a href="./../../databases/module_03_evenement_empty.sql" target="_blank" rel="noopener">Fichier .sql à télécharger</a>
+
+</div>
 
 Le fichier contient la structure des tables de la démonstration :
 - `evenement`
@@ -157,12 +161,35 @@ Contraintes :
 - retourner uniquement le SQL prêt à être exécuté
 ```
 
+<details>
+<summary>Exemple de réponse</summary>
+
+```sql
+INSERT INTO evenement (nom, date_evenement, lieu, capacite, actif) VALUES
+('Conférence Tech 2026', '2026-03-15', 'Paris', 300, true),
+('Atelier Data Science', '2026-04-02', 'Lyon', 40, true),
+('Salon de l''Entrepreneuriat', '2026-05-20', 'Marseille', 500, true),
+('Meetup Développement Web', '2026-02-10', 'Toulouse', 80, true),
+('Formation Cybersécurité', '2026-06-05', 'Lille', 25, false);
+
+INSERT INTO participant (nom, courriel, actif) VALUES
+('Alice Martin', 'alice.martin@example.com', true),
+('Bruno Lefèvre', 'bruno.lefevre@example.com', true),
+('Camille Dupont', 'camille.dupont@example.com', true),
+('David Moreau', 'david.moreau@example.com', true),
+('Emma Girard', 'emma.girard@example.com', false),
+('François Bernard', 'francois.bernard@example.com', true),
+('Julie Petit', 'julie.petit@example.com', true);
+```
+
+</details>
+
 #### Deuxième requête — tables avec clés étrangères
 
 Une fois les premières données insérées, envoyez une seconde requête :
 
 ```text
-Voici les tables et données déjà présentes dans ma base de données PostgreSQL.
+Voici les clées primaires générées pour les tables événement et participant dans ma base de données PostgreSQL.
 À partir des clés primaires réellement générées, génère des INSERT SQL
 pour les tables contenant des clés étrangères.
 
@@ -172,6 +199,32 @@ Contraintes :
 - ne pas générer de doublons
 - retourner uniquement le SQL prêt à être exécuté
 ```
+
+<details>
+<summary>Exemple de réponse</summary>
+
+```sql
+INSERT INTO inscription (evenement_id, participant_id, date_inscription) VALUES
+(1, 1, '2026-01-10'),
+(1, 2, '2026-01-12'),
+(1, 3, '2026-01-15'),
+
+(2, 2, '2026-02-01'),
+(2, 4, '2026-02-02'),
+
+(3, 1, '2026-03-05'),
+(3, 5, '2026-03-06'),
+(3, 6, '2026-03-07'),
+
+(4, 3, '2026-01-25'),
+(4, 4, '2026-01-26'),
+(4, 7, '2026-01-27'),
+
+(5, 2, '2026-04-01'),
+(5, 6, '2026-04-02');
+```
+
+</details>
 
 #### Bon réflexe
 
@@ -183,5 +236,7 @@ Valider avec des requêtes SELECT
 
 Ajuster les requêtes IA au besoin
 
-<div class="my-6 rounded-lg border border-yellow-300 bg-yellow-50 p-4 text-yellow-900"> <strong>Attention</strong><br> Exécutez uniquement du code que vous comprenez et que nous avons vu en classe. </div> ```
+<div class="my-6 rounded-lg border border-yellow-300 bg-yellow-50 p-4 text-yellow-900"> <strong>Attention</strong><br> 
+Exécutez uniquement du code que vous comprenez et que nous avons vu en classe. 
+</div>
 

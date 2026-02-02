@@ -20,6 +20,58 @@ hero:
       link: https://techinfo.cegepgarneau.ca/Professeurs/Horaire?id=20
 
 ---
+<section id="semaine-3">
+<div class="relative flex py-5 items-center mt-10">
+   <div class="flex-grow border-t border-gray-400"></div>
+   <span class="flex-shrink mx-4 text-gray-400">Semaine 3 — du 2 février au 6 février</span>
+  <div class="flex-grow border-t border-gray-400"></div>
+</div>
+<div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
+  <WeeklyTodo
+    title="À faire cette semaine — En classe"
+    subtitle="Activités réalisées pendant la séance."
+    :steps="[
+      {
+        title: 'Retour sur le laboratoire 03 — Création de la base de données',
+        time: '30 min',
+        links: [
+          { text: 'Aller au laboratoire', href: '/labs/lab03-ddl', variant: 'secondary' }
+        ]
+      },
+      {
+        title: 'Module 02 — Drop et Import / Export',
+        time: '30 min',
+        links: [
+          { text: 'Drop', href: '/modules/02-ddl-base/06-drop-simple', variant: 'secondary' },
+          { text: 'Import / Export', href: '/modules/02-ddl-base/07-import-export', variant: 'secondary' }     
+        ]
+      },
+      {
+        title: 'Continuer le travail pratique 1',
+        description: 'Période de travail prévue en classe.',
+        time: '90 min',
+        links: [
+          { text: 'Énoncé + vidéo explicative', href: '/travaux/tp1-creation-bd', variant: 'secondary' }
+        ]
+      }
+    ]"
+  />
+
+  <WeeklyTodo
+    title="À préparer / compléter"
+    subtitle="À compléter de votre côté."
+    :steps="[
+      {
+        title: 'Terminer le travail pratique 1',
+        links: [
+          { text: 'Énoncé + vidéo explicative', href: '/travaux/tp1-creation-bd', variant: 'secondary' }
+        ]
+      }
+    ]"
+  />
+</div>
+</section>
+
 
 <section id="semaine-2">
 <div class="relative flex py-5 items-center mt-10">
