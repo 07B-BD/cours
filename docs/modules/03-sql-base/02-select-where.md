@@ -164,3 +164,13 @@ where actif = true;
 - Vérifier le résultat avant d’ajouter de la complexité
 
 > Le filtrage est la base des requêtes plus avancées à venir (opérateurs, sous-requêtes, jointures).
+
+<div class="my-6 rounded-lg border border-blue-300 bg-blue-50 p-4 text-blue-900">
+  <strong class="block">ℹ️ À faire maintenant</strong>
+  <p class="m-0">
+    Pour mettre ces notions en pratique, passez au
+    <a href="./../../labs/lab04-select" class="font-semibold underline hover:text-blue-700">
+      Laboratoire 4 — Requêtes select
+    </a>.
+  </p>
+</div>

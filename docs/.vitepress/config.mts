@@ -46,7 +46,7 @@ export default defineConfig({
 				items: [
 					{
 						text: "Module 1 — Introduction",
-						collapsed: false,
+						collapsed: true,
 						items: [
 							{
 								text: "Présentation",
@@ -68,7 +68,7 @@ export default defineConfig({
 					},
 					{
 						text: "Module 2 — DDL de base",
-						collapsed: false,
+						collapsed: true,
 						items: [
 							{
 								text: "Create database",
@@ -99,31 +99,38 @@ export default defineConfig({
 								link: "/modules/02-ddl-base/07-import-export",
 							},
 						],
-					},
-					/*
+					},					
 					{
 						text: "Module 3 — SQL",
 						collapsed: false,
 						items: [
 							{
-								text: "SELECT + WHERE",
-								link: "/modules/03-sql-base/01-select-where",
+								text: "Insert",
+								link: "/modules/03-sql-base/01-insert",
 							},
 							{
-								text: "INSERT / UPDATE / DELETE",
-								link: "/modules/03-sql-base/02-insert-update-delete",
+								text: "Requête de sélection (select)",
+								link: "/modules/03-sql-base/02-select-where",
 							},
 							{
-								text: "Opérateurs logiques",
-								link: "/modules/03-sql-base/03-operateurs",
+								text: "Update, delete",
+								link: "/modules/03-sql-base/03-update-delete",
+							},
+							{
+								text: "Opérateurs et filtres",
+								link: "/modules/03-sql-base/04-operateurs",
 							},
 							{
 								text: "Sous-requêtes non corrélées",
-								link: "/modules/03-sql-base/04-sous-requetes-non-correlees",
+								link: "/modules/03-sql-base/05-sous-requetes-non-correlees",
 							},
-							{ text: "Exercices", link: "/modules/03-sql-base/05-exercices" },
-						],
+							{
+								text: "Révision d'examen 1",
+								link: "/modules/03-sql-base/06-examen-1",
+							}
+						]
 					},
+					/*
 					{
 						text: "Module 4 — Relations et jointures",
 						collapsed: true,
@@ -207,7 +214,9 @@ export default defineConfig({
 				items: [
 					{ text: "Lab 01 — Installations", link: "/labs/lab01-installations" },
 					{ text: "Lab 02 — Modélisation", link: "/labs/lab02-modelisation" },
-					{ text: "Lab 03 — DDL", link: "/labs/lab03-ddl" }
+					{ text: "Lab 03 — DDL", link: "/labs/lab03-ddl" },
+					{ text: "Lab 04 — Requêtes select", link: "/labs/lab04-select" },
+					{ text: "Lab 05 — Modification, opérateurs et sous-requêtes", link: "/labs/lab05-avance" }
 				],
 			},
 			{

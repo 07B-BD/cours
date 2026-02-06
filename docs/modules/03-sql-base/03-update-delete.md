@@ -7,8 +7,8 @@ aside: false
 
 ## Objectif
 - Comprendre **pourquoi** on modifie ou supprime des données (contexte applicatif)
-- Modifier des données avec `UPDATE ... SET ... WHERE`
-- Supprimer des données avec `DELETE ... WHERE`
+- Modifier des données avec `update ... set ... where`
+- Supprimer des données avec `delete ... where`
 - Comprendre les **risques** liés aux opérations destructives
 >Utiliser la même base de données qui a été importée précédemment.
 
@@ -31,15 +31,17 @@ On **supprime** des données pour :
 
 ---
 
-## UPDATE — Modifier des données
+## update — Modifier des données
 
 ### Syntaxe générale
 
-UPDATE table  
-SET colonne = valeur  
-WHERE condition;
+```sql
+update table  
+set colonne = valeur  
+where condition;
+```
 
-> ⚠️ Sans `WHERE`, **toutes les lignes** seront modifiées.
+> ⚠️ Sans `where`, **toutes les lignes** seront modifiées.
 
 ---
 
@@ -48,9 +50,11 @@ WHERE condition;
 Contexte :  
 Le lieu de l’événement avec l’id 4 est incorrect.
 
-UPDATE evenement  
-SET lieu = 'Montréal'  
-WHERE id = 4;
+```sql
+update evenement  
+set lieu = 'Montréal'  
+where id = 4;
+```
 
 ---
 
@@ -59,9 +63,11 @@ WHERE id = 4;
 Contexte :  
 Le Salon Open Source (id 16) attire plus de participants que prévu.
 
-UPDATE evenement  
-SET capacite = capacite + 100  
-WHERE id = 16;
+```sql
+update evenement  
+set capacite = capacite + 100  
+where id = 16;
+```
 
 ---
 
@@ -70,9 +76,11 @@ WHERE id = 16;
 Contexte :  
 Un participant ne souhaite plus utiliser la plateforme.
 
-UPDATE participant  
-SET actif = false  
-WHERE courriel = 'julie.petit2@example.com';
+```sql
+update participant  
+set actif = false  
+where courriel = 'julie.petit2@example.com';
+```
 
 ---
 
@@ -81,10 +89,12 @@ WHERE courriel = 'julie.petit2@example.com';
 Contexte :  
 On met à jour le nom et la capacité d’un événement.
 
-UPDATE evenement  
-SET nom = 'Conférence Tech 2026 (édition spéciale)',  
+```sql
+update evenement  
+set nom = 'Conférence Tech 2026 (édition spéciale)',  
     capacite = 350  
-WHERE id = 1;
+where id = 1;
+```
 
 ---
 
@@ -93,37 +103,43 @@ WHERE id = 1;
 Contexte :  
 Les événements ayant une capacité trop faible sont annulés.
 
-UPDATE evenement  
-SET actif = false  
-WHERE capacite < 50;
+```sql
+update evenement  
+set actif = false  
+where capacite < 50;
+```
 
 ---
 
-## UPDATE avec sous-requête
+## update avec sous-requête (à titre d'exemple, cela sera vu bientôt)
 
 ### Exemple 6 — Désactiver les inscriptions des participants inactifs
 
 Contexte :  
 Lorsqu’un participant devient inactif, ses inscriptions doivent aussi être désactivées.
 
-UPDATE inscription  
-SET actif = false  
-WHERE participant_id IN (  
-  SELECT id  
-  FROM participant  
-  WHERE actif = false  
+```sql
+update inscription  
+set actif = false  
+where participant_id in (  
+  select id  
+  from participant  
+  where actif = false  
 );
+```
 
 ---
 
-## DELETE — Supprimer des données
+## delete — Supprimer des données
 
 ### Syntaxe générale
 
-DELETE FROM table  
-WHERE condition;
+```sql
+delete from table  
+where condition;
+```
 
-> ⚠️ Sans `WHERE`, **toutes les lignes** seront supprimées.
+> ⚠️ Sans `where`, **toutes les lignes** seront supprimées.
 
 ---
 
@@ -132,8 +148,10 @@ WHERE condition;
 Contexte :  
 Une inscription incorrecte doit être retirée.
 
-DELETE FROM inscription  
-WHERE id = 21;
+```sql
+delete from inscription  
+where id = 21;
+```
 
 ---
 
@@ -142,32 +160,36 @@ WHERE id = 21;
 Contexte :  
 Un événement a été annulé et toutes ses inscriptions doivent être supprimées.
 
-DELETE FROM inscription  
-WHERE evenement_id = 5;
+```sql
+delete from inscription  
+where evenement_id = 5;
+```
 
 ---
 
 ## ⚠️ Mise en garde importante
 
-Avant d’exécuter un `UPDATE` ou un `DELETE` :
+Avant d’exécuter un `update` ou un `delete` :
 
-1. Tester la condition avec un `SELECT`
+1. Tester la condition avec un `select`
 2. Vérifier le nombre de lignes affectées
 3. S’assurer que la condition est précise
 
 Exemple de bonne pratique :
 
-SELECT *  
-FROM evenement  
-WHERE capacite < 50;
+```sql
+select *  
+from evenement  
+where capacite < 50;
+```
 
-➡️ Si le résultat est conforme, **alors seulement** appliquer le `UPDATE` ou le `DELETE`.
+➡️ Si le résultat est conforme, **alors seulement** appliquer le `update` ou le `delete`.
 
 ---
 
 ## À retenir
 
-- `UPDATE` modifie des données existantes
-- `DELETE` supprime définitivement des lignes
-- `WHERE` est **essentiel**
+- `update` modifie des données existantes
+- `delete` supprime définitivement des lignes
+- `where` est **essentiel**
 - En contexte applicatif, on préfère souvent la **suppression logique** (`actif = false`)
