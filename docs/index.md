@@ -20,6 +20,71 @@ hero:
       link: https://techinfo.cegepgarneau.ca/Professeurs/Horaire?id=20
 
 ---
+<section id="semaine-4">
+<div class="relative flex py-5 items-center mt-10">
+   <div class="flex-grow border-t border-gray-400"></div>
+   <span class="flex-shrink mx-4 text-gray-400">Semaine 4 — du 9 février au 13 février</span>
+  <div class="flex-grow border-t border-gray-400"></div>
+</div>
+<div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
+  <WeeklyTodo
+    title="À faire cette semaine — En classe"
+    subtitle="Activités réalisées pendant la séance."
+    :steps="[
+      {
+        title: 'Module 03 — insert',
+        description: 'Prenons le temps d\'importer la base de données (vide) correspondante pour la démo.',
+        time: '30 min',
+        links: [
+          { text: 'insert', href: '/modules/03-sql-base/01-insert', variant: 'primary' }
+        ]
+      },
+      {
+        title: 'Module 03 — select where',
+        description: 'Prenons le temps d\'importer la base de données (avec données) correspondante pour la démo.',
+        time: '30 min',
+        links: [
+          { text: 'select where', href: '/modules/03-sql-base/02-select-where', variant: 'primary' }
+        ]
+      },
+      {
+        title: 'Laboratoire 04 — Requêtes de sélection avec filtres',
+        time: '60 min',
+        links: [
+          { text: 'Laboratoire 4', href: '/labs/lab04-select', variant: 'primary' }
+        ]
+      },
+      {
+        title: 'Module 03 — update / delete',
+        time: '30 min',
+        links: [
+          { text: 'update / delete', href: '/modules/03-sql-base/03-update-delete', variant: 'primary' }
+        ]
+      }
+    ]"
+  />
+
+  <WeeklyTodo
+    title="À préparer / compléter"
+    subtitle="À compléter de votre côté."
+    :steps="[
+      {
+        title: 'Laboratoire 04 — Requêtes de sélection avec filtres',
+        links: [
+          { text: 'Laboratoire 4', href: '/labs/lab04-select', variant: 'secondary' }
+        ]
+      },
+      {
+        title: 'Première lecture du reste du module 3',
+        links: [
+          { text: 'Opérateurs', href: '/modules/03-sql-base/04-operateurs', variant: 'secondary' },
+          { text: 'Sous requêtes', href: '/modules/03-sql-base/05-sous-requetes-non-correlees', variant: 'secondary' }
+        ]
+      }
+    ]"
+  />
+</div>
+</section>
 <section id="semaine-3">
 <div class="relative flex py-5 items-center mt-10">
    <div class="flex-grow border-t border-gray-400"></div>

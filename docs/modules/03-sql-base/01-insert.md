@@ -83,7 +83,7 @@ Pour le moment, pour voir les données, double-cliquez sur la table et allez dan
 
 ## Intégrité référentielle
 
-Lors qu'on référence avec une clée étrangère, une exception sera levée si la valeur n'existe pas dans la table référencée.
+Lorsqu'on référence avec une clée étrangère, une exception sera levée si la valeur n'existe pas dans la table référencée.
 
 ```sql
 insert into inscription (evenement_id, participant_id, date_inscription)  
@@ -237,6 +237,6 @@ Valider avec des requêtes SELECT
 Ajuster les requêtes IA au besoin
 
 <div class="my-6 rounded-lg border border-yellow-300 bg-yellow-50 p-4 text-yellow-900"> <strong>Attention</strong><br> 
-Exécutez uniquement du code que vous comprenez et que nous avons vu en classe. 
+Exécutez uniquement du code que vous comprenez et que nous avons vu en classe.<br>
 </div>
 
