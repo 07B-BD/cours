@@ -3,7 +3,7 @@ title: "Lab 03 — Requêtes de sélection avec filtres"
 aside: false
 ---
 
-# 🧪 Laboratoire 03 — Requêtes de sélection avec filtres
+# 🧪 Laboratoire 04 — Requêtes de sélection avec filtres
 
 ## Travail à réaliser
 
@@ -11,12 +11,9 @@ aside: false
 
 <div class="my-6 rounded-lg border border-yellow-300 bg-yellow-50 p-4 text-yellow-900">
 <strong>Attention</strong><br>
-Pour réaliser ce labo, vous devez importer une <strong>base de données de test</strong>.<br>
-C'est la même que dans le module <strong>02 — Requête de sélection (select)</strong>
 
-**Télécharger la base de données de test — Événements :** 
-<br>
-<a href="./../../databases/module_03_evenement_data.sql" target="_blank" rel="noopener">Fichier .sql à télécharger</a>
+Pour réaliser ce labo, vous devez importer une <strong>base de données de test</strong>.<br>
+[La même que le module précédent](../modules/03-sql-base/02-select-where#base-de-donnees-de-test-a-importer)
 
 </div>
 
