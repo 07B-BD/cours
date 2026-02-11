@@ -7,31 +7,24 @@ aside: false
 
 ## Travail à réaliser
 
-### 1. Importer la base de données
+### Base de données de test à importer (si ce n'est pas déjà fait)
 
-1) Téléchargez le fichier `module_03_evenement_data.sql` depuis [le module 3](../modules/03-sql-base/02-select-where#base-de-donnees-de-test-a-importer).
+<div class="my-6 rounded-lg border border-yellow-300 bg-yellow-50 p-4 text-yellow-900">
+<strong>Attention</strong><br>
+Pour réaliser ce labo, vous devez importer une <strong>base de données de test</strong>.<br>
+C'est la même que dans le module **02 — Requête de sélection (select)**
 
-2) Ouvrez un terminal (Invite de commandes ou PowerShell) et exécutez :
+**Télécharger la base de données de test — Événements :** 
+<br>
+<a href="./../../databases/module_03_evenement_data.sql" target="_blank" rel="noopener">Fichier .sql à télécharger</a>
 
-```bash
-psql -U postgres -f "chemin/vers/module_03_evenement_data.sql"
-```
+</div>
 
-Remplacez `chemin/vers/` par l'emplacement réel du fichier.
+### Écrire des requêtes `select`
 
-1) Vérifiez dans DBeaver que la base de données `gestion_evenement_data` apparaît.
+Créez un nouveau script SQL dans DBeaver (portée : base de données `module_03_evenement_data`).
 
-### 2. Explorer la structure
-
-Ouvrez DBeaver et connectez-vous à la base de données `gestion_evenement_data`. Explorez les tables.
-
-Notez les colonnes disponibles pour chaque table.
-
-### 3. Écrire des requêtes `select`
-
-Créez un nouveau script SQL dans DBeaver (portée : base de données `gestion_evenement`).
-
-Écrivez et exécutez les requêtes suivantes, une par une :
+Écrivez et exécutez les requêtes suivantes, une par une (chaque puce représente une requête `select`) :
 
 #### a) Sélection simple
 - Lister tous les événements (toutes colonnes)
