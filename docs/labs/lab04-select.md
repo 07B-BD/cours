@@ -12,7 +12,7 @@ aside: false
 <div class="my-6 rounded-lg border border-yellow-300 bg-yellow-50 p-4 text-yellow-900">
 <strong>Attention</strong><br>
 Pour réaliser ce labo, vous devez importer une <strong>base de données de test</strong>.<br>
-C'est la même que dans le module **02 — Requête de sélection (select)**
+C'est la même que dans le module <strong>02 — Requête de sélection (select)</strong>
 
 **Télécharger la base de données de test — Événements :** 
 <br>
