@@ -23,7 +23,7 @@ hero:
 <section id="semaine-5">
 <div class="relative flex py-5 items-center mt-10">
    <div class="grow border-t border-gray-400"></div>
-   <span class="shrink mx-4 text-gray-400">Semaine 4 — du 16 février au 20 février</span>
+   <span class="shrink mx-4 text-gray-400">Semaine 5 — du 16 février au 20 février</span>
   <div class="grow border-t border-gray-400"></div>
 </div>
 <div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
