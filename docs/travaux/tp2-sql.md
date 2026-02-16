@@ -4,10 +4,21 @@ title: "TP2 — Registre de la Guilde des Aventuriers"
 
 # Travail Pratique #2 — Requêtes SQL (13%)
 
-Modalité : Individuel
-Remise : fichier .sql sur LÉA dans le travail concerné
-Date : voir le travail concerné sur LÉA
-Retards : -10% par jour (max 3 jours)
+- Modalité : Individuel
+- Remise : fichier `.sql` sur LÉA dans le travail concerné
+- Date : voir le travail concerné sur LÉA
+- Retards : -10% par jour (max 3 jours)
+
+<div class="my-6 rounded-lg border border-yellow-300 bg-yellow-50 p-4 text-yellow-900">
+<strong>Attention</strong><br>
+
+Vous devez **obligatoirement** écrire votre code `sql` dans le fichier de départ suivant. Veuillez le renommer `tp2_prenom_nom.sql`.<br>
+<a href="./../databases/tp2_bd1_depart.sql" target="_blank" rel="noopener">Fichier de départ à télécharger</a>
+</div>
+
+## Vidéo explicative
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/dnUCYcv3joU?si=XRPW7B0gy4lHdBy5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## Contexte
 
@@ -28,7 +39,7 @@ Votre mandat consiste donc à préparer la base de données afin qu’elle puiss
 
 ## Objectif
 
-À partir de la base de données existante (voir le code de création au bas de cette page), vous devrez :
+À partir de la base de données existante (**[voir le code de création à exécuter d'abord au bas de cette page](#code-de-creation-des-tables)**), vous devrez :
 
 1. Peupler les tables avec des données fictives cohérentes, variées et plausibles.
 2. Rédiger les requêtes nécessaires au fonctionnement du Registre.
@@ -49,7 +60,7 @@ Nom du fichier sql : `tp2_prenom_nom.sql`
 
 L’utilisation d’un outil d’intelligence artificielle est **permise uniquement pour la génération des données d’insertion**, à condition que :
 
-- le code respecte la structure fournie et les contraintes de la base ;
+- le code respecte la structure fournie et les contraintes ;
 - les principes vus en classe soient respectés ;
 - vous compreniez entièrement le code exécuté.
 
@@ -98,15 +109,17 @@ Dans plusieurs cas, vous devez choisir vous-mêmes les données dans les filtres
 1. Afficher la liste des quêtes en retournant uniquement : **titre**, **lieu**, **date d’expiration**, **difficulté**, **récompense**.  
    Présenter les résultats de la date d’expiration la plus proche à la plus lointaine.
 
-2. Afficher les quêtes qui sont **actives** et dont la date d’expiration est aujourd’hui ou ultérieure.
+2. Afficher les quêtes qui sont **actives** et dont la date d’expiration est aujourd’hui ou ultérieure (dans le futur).
 
 <div class="eval">
      Produire du code SQL avec alias et jointures qui accompli la demande. Donner juste le code.
 </div>
 
-3. Produire une recherche combinant plusieurs critères, par exemple :  
-   quêtes actives ET (difficulté élevée OU récompense élevée).  
-   La requête doit démontrer une priorité claire dans l’évaluation des conditions.
+3. Afficher les quêtes faciles dont la récompense est **supérieure** à celle **d’au moins une** quête périlleuse.
+
+<div class="eval">
+     Produire du code SQL avec alias et jointures qui accompli la demande. Donner juste le code.
+</div>
 
 4. Afficher la liste des **lieux distincts** où des quêtes sont affichées, triée alphabétiquement.
 
@@ -118,13 +131,19 @@ Dans plusieurs cas, vous devez choisir vous-mêmes les données dans les filtres
      Produire du code SQL avec alias et jointures qui accompli la demande. Donner juste le code.
 </div>
 
-5. Afficher les aventuriers **actifs** en retournant : **nom**, **classe**, **niveau**, **courriel**, triés du plus haut niveau au plus bas.
+5. Afficher les aventuriers **actifs** en retournant : **nom**, **classe**, **niveau**, **courriel**, triés du plus haut niveau au plus bas. L'affichage des aventuriers d'un même niveau (ex.: 19) devraient être affichés en ordre alphabétique (A, B, C, ...)
 
 <div class="eval">
      Produire du code SQL avec alias et jointures qui accompli la demande. Donner juste le code.
 </div>
 
-6. Afficher les aventuriers appartenant à une liste de classes choisie ET dont le niveau se situe dans une plage choisie.
+6. Afficher les aventuriers appartenant à une liste de classes choisie (ex.: guerrier, mage ou druide) ET dont le niveau se situe dans une plage choisie.
+
+<div class="eval">
+     Produire du code SQL avec alias et jointures qui accompli la demande. Donner juste le code.
+</div>
+
+7. Afficher les aventuriers dont le nom commence par une lettre choisie (ex.: A).
 
 ---
 
@@ -134,18 +153,24 @@ Dans plusieurs cas, vous devez choisir vous-mêmes les données dans les filtres
      Produire du code SQL avec alias et jointures qui accompli la demande. Donner juste le code.
 </div>
 
-7. Afficher les contrats correspondant à un statut choisi ET signés dans une période choisie.
+8. Afficher les contrats **en cours** ET signés dans une période choisie, triés par date ascendante.
 
-8. Afficher les contrats actifs liés à des quêtes actives.  
+<div class="eval">
+     Produire du code SQL avec alias et jointures qui accompli la demande. Donner juste le code.
+</div>
+
+9. Afficher les contrats actifs liés à des quêtes actives.  
     *(Cette requête permet de vérifier la cohérence du registre.)*
-
-9. Afficher la liste des aventuriers ayant signé au moins un contrat (sans doublons).
 
 <div class="eval">
      Produire du code SQL avec alias et jointures qui accompli la demande. Donner juste le code.
 </div>
 
 10. Afficher la liste des aventuriers ayant au moins un contrat dont le statut est « en_cours » (sans doublons).
+
+<div class="eval">
+     Produire du code SQL avec alias et jointures qui accompli la demande. Donner juste le code.
+</div>
 
 11. Afficher les aventuriers ayant réussi un contrat lié à une quête dont la récompense dépasse une valeur choisie.
 
@@ -189,7 +214,7 @@ Mise en garde : ce qui part aux oubliettes ne revient pas. Agir avec méthode.
 </div>
 
 15. Un contrat a été saisi en double par erreur.  
-    - Supprimer un contrat précis identifié clairement (par exemple à l’aide de la combinaison quête + aventurier).  
+    - Supprimer un contrat précis identifié clairement à l’aide de la combinaison quête + aventurier.  
     - Aucun autre contrat ne doit être supprimé.
 
 <div class="eval">
@@ -237,7 +262,7 @@ create table aventurier (
   courriel varchar(160) not null unique,
   classe varchar(40) not null,
   niveau int not null check (niveau between 1 and 20),
-  actif boolean not null default true,
+  actif boolean not null default true
 );
 
 create table contrat (
@@ -247,7 +272,7 @@ create table contrat (
   date_signature date not null default current_date,
   statut statut_contrat not null default 'disponible',
   notes text,
-  actif boolean not null default true
+  actif boolean not null default true,
 
   foreign key (quete_id) references quete(id),
   foreign key (aventurier_id) references aventurier(id),

@@ -52,12 +52,12 @@ Pour résoudre ce problème, il faut **partir de la fin** et **décortiquer la r
 
 1. **Comprendre le résultat final souhaité** : noms des participants
 2. **Identifier les relations** : participants → inscriptions → événements
-3. **Construire les sous-requêtes de l'intérieur vers l'extérieur**
+3. **Construire les sous-requêtes en partant de la table la plus loin et en remontant vers la table qu'on veut afficher**
 
 Voici la requête complète :
 
 ```sql
-select nom, courriel
+select nom
 from participant
 where id in (
   select participant_id

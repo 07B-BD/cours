@@ -7,13 +7,15 @@ aside: false
 
 ## Travail à réaliser
 
-### 1. Préparation de l'environnement
+### 1. Base de données de test à importer (c'est la même qu'au labo précédent)
 
-1) Assurez-vous d'avoir la base de données `gestion_evenement_data` importée (du Lab 04).
+<div class="my-6 rounded-lg border border-yellow-300 bg-yellow-50 p-4 text-yellow-900">
+<strong>Attention</strong><br>
 
-2) Ouvrez DBeaver et connectez-vous à cette base de données.
+Pour réaliser ce labo, vous devez importer une <strong>base de données de test</strong>.<br>
+[BD de test](../modules/03-sql-base/02-select-where#base-de-donnees-de-test-a-importer)
 
-3) Créez un nouveau script SQL pour ce laboratoire.
+</div>
 
 ### 2. Exercices de modification de données
 
@@ -46,13 +48,12 @@ Avant chaque `update` ou `delete`, testez d'abord avec un `select` pour vérifie
 - Événements dont le nom commence par "Conférence"
 
 #### c) Intervals BETWEEN et listes IN
-- Événements prévus entre juin et août 2026
+- Événements prévus entre aujourd'hui et le 1er août 2026
 - Participants dans les villes "Paris", "Lyon", "Marseille"
 - Événements avec capacité entre 100 et 500
 
 #### d) Élimination des doublons DISTINCT
 - Liste des villes distinctes où ont lieu des événements
-- Liste des types d'événements distincts
 
 ### 4. Exercices avec les sous-requêtes non corrélées
 
@@ -64,19 +65,7 @@ Avant chaque `update` ou `delete`, testez d'abord avec un `select` pour vérifie
 #### b) Sous-requêtes avec ANY/ALL
 - Événements plus chers que TOUS les événements à Lyon
 - Événements moins chers qu'AU MOINS UN événement à Paris
-- Participants plus âgés que TOUS les participants de moins de 25 ans
 
 #### c) Requêtes complexes multi-niveaux
 - Participants inscrits à des événements gratuits ET actifs
-- Événements qui ont plus d'inscriptions que la moyenne
-- Participants qui se sont inscrits à tous les événements d'un certain type
-
-### 5. Défi final — Requête complète
-
-Écrivez une requête qui trouve **les noms des participants actifs** qui se sont inscrits à **au moins un événement payant** (prix > 0) **à Paris** ou **Lyon**, et dont **le nom contient "Tech"**.
-
-::: tip 💡 Indices pour le défi
-- Commencez par identifier les événements qui correspondent aux critères
-- Utilisez des sous-requêtes imbriquées lorsque nécessaire (revoir les étapes)
-- Testez étape par étape avant de combiner
-:::
+- Participants **actifs** qui se sont inscrits à **au moins un événement payant** (prix > 0) **à Paris** ou **Lyon**, et dont **le nom contient "Tech"**
