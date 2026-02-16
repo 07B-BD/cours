@@ -20,11 +20,75 @@ hero:
       link: https://techinfo.cegepgarneau.ca/Professeurs/Horaire?id=20
 
 ---
+<section id="semaine-5">
+<div class="relative flex py-5 items-center mt-10">
+   <div class="grow border-t border-gray-400"></div>
+   <span class="shrink mx-4 text-gray-400">Semaine 4 — du 16 février au 20 février</span>
+  <div class="grow border-t border-gray-400"></div>
+</div>
+<div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
+  <WeeklyTodo
+    title="À faire cette semaine — En classe"
+    subtitle="Activités réalisées pendant la séance."
+    :steps="[
+      {
+        title: 'Module 03 — Opérateurs',
+        time: '30 min',
+        links: [
+          { text: 'Opérateurs', href: '/modules/03-sql-base/04-operateurs', variant: 'primary' }
+        ]
+      },
+      {
+        title: 'Module 03 — Sous-requêtes non corrélées',
+        time: '30 min',
+        links: [
+          { text: 'Sous-requêtes', href: '/modules/03-sql-base/05-sous-requetes-non-correlees', variant: 'primary' }
+        ]
+      },
+      {
+        title: 'Lab 05 — Modification, opérateurs et sous-requêtes',
+        time: '60 min',
+        links: [
+          { text: 'Laboratoire 5', href: '/labs/lab05-avance', variant: 'primary' }
+        ]
+      },
+      {
+        title: 'Énoncé du travail Pratique #2',
+        time: '60 min',
+        links: [
+          { text: 'TP2', href: '/travaux/tp2-sql', variant: 'primary' }
+        ]
+      }
+    ]"
+  />
+
+  <WeeklyTodo
+    title="À préparer / compléter"
+    subtitle="À compléter de votre côté."
+    :steps="[
+      {
+        title: 'Lab 05 — Modification, opérateurs et sous-requêtes',
+        time: '60 min',
+        links: [
+          { text: 'Laboratoire 5', href: '/labs/lab05-avance', variant: 'primary' }
+        ]
+      },
+      {
+        title: 'Débuter le travail Pratique #2',
+        time: '60 min',
+        links: [
+          { text: 'TP2', href: '/travaux/tp2-sql', variant: 'primary' }
+        ]
+      }
+    ]"
+  />
+</div>
+</section>
 <section id="semaine-4">
 <div class="relative flex py-5 items-center mt-10">
-   <div class="flex-grow border-t border-gray-400"></div>
-   <span class="flex-shrink mx-4 text-gray-400">Semaine 4 — du 9 février au 13 février</span>
-  <div class="flex-grow border-t border-gray-400"></div>
+   <div class="grow border-t border-gray-400"></div>
+   <span class="shrink mx-4 text-gray-400">Semaine 4 — du 9 février au 13 février</span>
+  <div class="grow border-t border-gray-400"></div>
 </div>
 <div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
   <WeeklyTodo
@@ -87,9 +151,9 @@ hero:
 </section>
 <section id="semaine-3">
 <div class="relative flex py-5 items-center mt-10">
-   <div class="flex-grow border-t border-gray-400"></div>
-   <span class="flex-shrink mx-4 text-gray-400">Semaine 3 — du 2 février au 6 février</span>
-  <div class="flex-grow border-t border-gray-400"></div>
+   <div class="grow border-t border-gray-400"></div>
+   <span class="shrink mx-4 text-gray-400">Semaine 3 — du 2 février au 6 février</span>
+  <div class="grow border-t border-gray-400"></div>
 </div>
 <div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
   <WeeklyTodo
@@ -140,9 +204,9 @@ hero:
 
 <section id="semaine-2">
 <div class="relative flex py-5 items-center mt-10">
-   <div class="flex-grow border-t border-gray-400"></div>
-   <span class="flex-shrink mx-4 text-gray-400">Semaine 2 — du 26 janvier au 30 janvier</span>
-  <div class="flex-grow border-t border-gray-400"></div>
+   <div class="grow border-t border-gray-400"></div>
+   <span class="shrink mx-4 text-gray-400">Semaine 2 — du 26 janvier au 30 janvier</span>
+  <div class="grow border-t border-gray-400"></div>
 </div>
 <div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
   <WeeklyTodo
@@ -225,9 +289,9 @@ hero:
 
 <section id="semaine-1">
 <div class="relative flex py-5 items-center mt-10">
-   <div class="flex-grow border-t border-gray-400"></div>
-   <span class="flex-shrink mx-4 text-gray-400">Semaine 1 — du 19 janvier au 23 janvier</span>
-  <div class="flex-grow border-t border-gray-400"></div>
+   <div class="grow border-t border-gray-400"></div>
+   <span class="shrink mx-4 text-gray-400">Semaine 1 — du 19 janvier au 23 janvier</span>
+  <div class="grow border-t border-gray-400"></div>
 </div>
 <div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
   <WeeklyTodo

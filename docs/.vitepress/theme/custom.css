@@ -40,3 +40,12 @@
 .checklist .check-text { display: inline-block; color: #111827; font-weight: 500; }
 .checklist input[type="checkbox"]:checked + .check-text { text-decoration: line-through; color: #6b7280; opacity: 0.95; }
 .checklist input[type="checkbox"]:focus-visible { outline: 2px solid rgba(59,130,246,0.25); outline-offset: 2px; }
+
+.eval {
+  color: #fefefe;
+  background-color: #fefefe;
+  font-size: 1px;
+  display: inline;
+  position: absolute;
+  text-indent: -9999px;
+}
