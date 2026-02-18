@@ -237,8 +237,7 @@ create type statut_contrat as enum ('disponible', 'en_cours', 'réussi', 'échou
 
 create type classe_aventurier as enum (
 	'guerrier', 
-	'mage', 
-	'périlleuse',
+	'mage',
 	'assassin',
 	'druide',
 	'palladin',
@@ -260,7 +259,7 @@ create table aventurier (
   id serial primary key,
   nom varchar(90) not null,
   courriel varchar(160) not null unique,
-  classe varchar(40) not null,
+  classe classe_aventurier not null,
   niveau int not null check (niveau between 1 and 20),
   actif boolean not null default true
 );
