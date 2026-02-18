@@ -20,6 +20,43 @@ hero:
       link: https://techinfo.cegepgarneau.ca/Professeurs/Horaire?id=20
 
 ---
+
+<section id="semaine-6">
+<div class="relative flex py-5 items-center mt-10">
+   <div class="grow border-t border-gray-400"></div>
+   <span class="shrink mx-4 text-gray-400">Semaine 6 — du 23 février au 27 février</span>
+  <div class="grow border-t border-gray-400"></div>
+</div>
+<div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
+  <WeeklyTodo
+    title="À faire cette semaine — En classe"
+    subtitle="Activités réalisées pendant la séance."
+    :steps="[
+      {
+        title: 'Révision et simulation de l\'examen 1',
+        description: 'Vous devez avoir configuré votre poste et réalisé la pratique avant l\'examen',
+        links: [
+          { text: 'Aller à la révision', href: '/modules/03-sql-base/06-examen-1', variant: 'primary' }
+        ]
+      }
+    ]"
+  />
+
+  <WeeklyTodo
+    title="À préparer / compléter"
+    subtitle="À compléter de votre côté."
+    :steps="[
+      {
+        title: 'Révision et simulation de l\'examen 1',
+        description: 'Vous devez avoir configuré votre poste et réalisé la pratique avant l\'examen',
+        links: [
+          { text: 'Aller à la révision', href: '/modules/03-sql-base/06-examen-1', variant: 'primary' }
+        ]
+      }
+    ]"
+  />
+</div>
+</section>
 <section id="semaine-5">
 <div class="relative flex py-5 items-center mt-10">
    <div class="grow border-t border-gray-400"></div>
