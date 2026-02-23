@@ -11,7 +11,7 @@ title: Révision — Examen 1 (Bases de données relationnelles)
 - Vos réponses seront inscrites dans un fichier .sql disponible  5 minutes avant l'heure de début de l'examen.
 - Le fichier .sql devra être remis au plus tard 2h50 après le début de l'examen.
 - 10% de pénalité sera appliqué par minute de retard.
-- 
+
 ### Modalités
 -	Durée : 2h50
 -	Aucune sortie tolérée
