@@ -20,6 +20,41 @@ hero:
       link: https://techinfo.cegepgarneau.ca/Professeurs/Horaire?id=20
 
 ---
+<section id="semaine-7">
+<div class="relative flex py-5 items-center mt-10">
+   <div class="grow border-t border-gray-400"></div>
+   <span class="shrink mx-4 text-gray-400">Semaine 7 — du 2 mars au 6 mars</span>
+  <div class="grow border-t border-gray-400"></div>
+</div>
+<div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
+  <WeeklyTodo
+    title="À faire cette semaine — En classe"
+    subtitle="Activités réalisées pendant la séance."
+    :steps="[
+      {
+        title: 'Examen 1',
+        description: 'Vous devez avoir configuré votre poste et réalisé la pratique avant l\'examen.',
+        links: [
+        ]
+      }
+    ]"
+  />
+
+  <WeeklyTodo
+    title="À préparer / compléter"
+    subtitle="À compléter de votre côté."
+    :steps="[
+      {
+        title: 'Terminer le TP2',
+        description: 'Le TP2 est à remettre la semaine du retour de la relâche.',
+        links: [
+          { text: 'Terminer le TP2', href: '/travaux/tp2-sql', variant: 'primary' }
+        ]
+      }
+    ]"
+  />
+</div>
+</section>
 
 <section id="semaine-6">
 <div class="relative flex py-5 items-center mt-10">
