@@ -7,6 +7,10 @@ aside: false
 
 ## Travail à réaliser
 
+### Vidéo explicative
+>Dans cette vidéo, je démontre quelques requêtes plus complexes du laboratoire.
+<iframe width="560" height="315" src="https://www.youtube.com/embed/bOvQIp7RQ1U?si=n-1-1yRi9kGwewE2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 ### 1. Base de données de test à importer (c'est la même qu'au labo précédent)
 
 <div class="my-6 rounded-lg border border-yellow-300 bg-yellow-50 p-4 text-yellow-900">
