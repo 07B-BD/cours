@@ -21,7 +21,15 @@ export default defineConfig({
 					{ text: "Groupe 3", link: "/plan-cours/calendrier-gr3" },
 				], 
 			},
-			{ text: "Modules", link: "/modules/01-introduction/" },
+			{
+				text: "Modules",
+				items: [
+					{ text: "Module 1 — Introduction", link: "/modules/01-introduction/" },
+					{ text: "Module 2 — DDL de base", link: "/modules/02-ddl-base/" },
+					{ text: "Module 3 — SQL", link: "/modules/03-sql-base/" },
+					{ text: "Module 4 — Jointures et agrégations", link: "/modules/04-jointures-agregations/" },
+				],
+			},
 			{ text: "Travaux", link: "/travaux/tp1-creation-bd" },
 			{ text: 'Documentation PostgreSQL', link: 'https://docs.postgresql.fr/18/'},
 		],
@@ -129,82 +137,64 @@ export default defineConfig({
 								link: "/modules/03-sql-base/06-examen-1",
 							}
 						]
-					},
-					/*
+					},					
 					{
-						text: "Module 4 — Relations et jointures",
+						text: "Module 4 — Jointures et agrégations",
 						collapsed: true,
 						items: [
 							{
-								text: "Clés étrangères",
-								link: "/modules/04-relations-jointures/01-cles-etrangeres",
+								text: "Expressions régulières & fonctions textuelles",
+								link: "/modules/04-jointures-aggregations/01-expressions-regulieres",
 							},
 							{
-								text: "Contraintes référentielles",
-								link: "/modules/04-relations-jointures/02-contraintes-referentielles",
+								text: "Jointures (INNER/LEFT/RIGHT/FULL)",
+								link: "/modules/04-jointures-aggregations/02-jointures",
 							},
 							{
-								text: "Index",
-								link: "/modules/04-relations-jointures/03-index",
+								text: "Fonctions d'agrégation",
+								link: "/modules/04-jointures-aggregations/03-fonctions-agregation",
 							},
 							{
-								text: "Inner/Left join",
-								link: "/modules/04-relations-jointures/04-inner-left-join",
+								text: "GROUP BY & HAVING",
+								link: "/modules/04-jointures-aggregations/04-group-by-having",
 							},
 							{
 								text: "Sous-requêtes corrélées",
-								link: "/modules/04-relations-jointures/05-sous-requetes-correlees",
-							},
-							{
-								text: "Expressions régulières",
-								link: "/modules/04-relations-jointures/06-expressions-regulieres",
+								link: "/modules/04-jointures-aggregations/05-sous-requetes-correlees",
 							},
 						],
 					},
+					/*
 					{
-						text: "Module 5 — Agrégation",
-						collapsed: true,
-						items: [
-							{
-								text: "Fonctions d’agrégation",
-								link: "/modules/05-aggregation/01-fonctions-agregation",
-							},
-							{
-								text: "GROUP BY + HAVING",
-								link: "/modules/05-aggregation/02-group-by-having",
-							},
-							{
-								text: "Exercices",
-								link: "/modules/05-aggregation/03-exercices",
-							},
-						],
-					},
-					{
-						text: "Module 6 — DDL avancé et sécurité",
+						text: "Module 5 — DDL avancé",
 						collapsed: true,
 						items: [
 							{
 								text: "ALTER TABLE",
-								link: "/modules/06-ddl-avance/01-alter-table",
+								link: "/modules/05-ddl-avance/01-alter-table",
 							},
 							{
-								text: "Contraintes avancées",
-								link: "/modules/06-ddl-avance/02-gestion-contraintes-avancees",
+								text: "Cascade DELETE / UPDATE",
+								link: "/modules/05-ddl-avance/02-cascade-delete-update",
 							},
 							{
-								text: "Cascade delete / update",
-								link: "/modules/06-ddl-avance/03-cascade-delete-update",
+								text: "Index de colonne",
+								link: "/modules/05-ddl-avance/03-index-de-colonne",
 							},
 							{
-								text: "Hachage mots de passe",
-								link: "/modules/06-ddl-avance/04-hachage-mots-de-passe",
+								text: "Gestion des comptes & privilèges",
+								link: "/modules/05-ddl-avance/04-gestion-de-comptes",
 							},
 							{
-								text: "Exercices",
-								link: "/modules/06-ddl-avance/05-exercices",
+								text: "Hachage des mots de passe",
+								link: "/modules/05-ddl-avance/05-hachage-mots-de-passe",
+							},
+							{
+								text: "Révision — Examen 2",
+								link: "/modules/05-ddl-avance/06-revision-examen-2",
 							},
 						],
-					}
+					},
 					*/
 				],
 			},
@@ -216,7 +206,13 @@ export default defineConfig({
 					{ text: "Lab 02 — Modélisation", link: "/labs/lab02-modelisation" },
 					{ text: "Lab 03 — DDL", link: "/labs/lab03-ddl" },
 					{ text: "Lab 04 — Requêtes select", link: "/labs/lab04-select" },
-					{ text: "Lab 05 — Modification, opérateurs et sous-requêtes", link: "/labs/lab05-avance" }
+					{ text: "Lab 05 — Modification, opérateurs et sous-requêtes", link: "/labs/lab05-avance" },
+					/*
+					{ text: "Lab 06 — Jointures", link: "/labs/lab06-jointures" },
+					{ text: "Lab 07 — Agrégations", link: "/labs/lab07-agregations" },
+					{ text: "Lab 08 — DDL & maintenance", link: "/labs/lab08-ddl-maintenance" },
+					{ text: "Lab 09 — Sécurité", link: "/labs/lab09-securite" }
+					*/
 				],
 			},
 			{
