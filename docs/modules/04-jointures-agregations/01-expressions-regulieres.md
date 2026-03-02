@@ -18,7 +18,7 @@ Le langage des expressions régulières est **largement similaire d’un langage
 
 ## Outil indispensable pour construire et tester une expression régulière
 
-:::tip
+:::tip Regexr
 Vous pouvez construire et tester vos expressions régulières ici :  
 https://regexr.com/
 :::
@@ -312,7 +312,7 @@ Sur un clavier « Français (Canada) » sous Windows :
 
 ### Table d'exemple
 
->Remarquer l'utilisation d'expression régulières avec `check` pour valider le courriel et le code postal. 
+>Remarquer l'utilisation d'expressions régulières avec `check` pour valider le courriel et le code postal. 
 
 >Le numéro de téléphone est intentionnellement non normalisé ici. Nous allons le faire dans une démo plus bas avec un `insert`.
 ```sql
@@ -380,7 +380,7 @@ insert into utilisateur (nom, courriel, telephone, notes, code_postal) values (
 
 ## Exercices avec PostgreSQL
 
-On travaille ici sur des **produits alimentaires** stockés en base.
+On travaille ici sur des **produits alimentaires** stockés en base de données.
 
 ### Table de départ
 
@@ -406,52 +406,67 @@ create table produits (
 
 ### 2. `insert` avec nettoyage de caractères
 
-Un fournisseur envoie des données un peu « sales » pour le `sku` :
+Un fournisseur envoie des données un peu non normalisées pour le `sku` :
 
 - `boi 1234`
-- `Boi-12 34`
-- `  boi_1234  `
+- `Boi_1234`
 
-Par exemple, les données brutes pourraient ressembler à :
+Nous cherchons à normaliser le sku au format `BOI-1234` avant de le stocker en base de données.
+Corrigez les insert suivants à l'aide de `upper(...)` et `regexp_replace` pour 
+- convertir le `sku` en majuscules 
+- supprimer les espaces inutiles et caractères de séparation (`_`, `/`, etc.) 
+- inséser au final un `sku` du type `BOI-1234`.
 
 ```sql
-insert into produits (sku, code_couleur, ingredients) values
-('boi 1234',     '#FF8800', 'Boisson orange, sucre, arômes'),
-('Boi-12 34',    '#00FF00', 'Boisson pomme, eau, colorant E102'),
-('  boi_1234  ', '#333333', 'Boisson cola, caféine, colorant E150a');
+insert into produits (sku, code_couleur, ingredients) values (
+	'boi 1234', -- Utiliser upper et regexp_replace sur cette colonne
+	'#FF8800', 
+	'Boisson orange', 
+	'sucre, arômes'
+);
+
+insert into produits (sku, code_couleur, ingredients) values (
+	'Boi_1234', -- Utiliser upper et regexp_replace sur cette colonne
+	'#00FF00', 
+	'Boisson pomme', 
+	'colorant E102'
+);
 ```
-
-On veut **normaliser** et stocker un `sku` propre au format `BOI-1234` :
-
-1. Proposez deux commandes `insert into produits (...) values (...)` qui :
-	- convertissent le `sku` en majuscules ;
-	- suppriment les espaces inutiles et caractères de séparation (`_`, `/`, etc.) ;
-	- insèrent au final un `sku` du type `BOI-1234`.
-
-2. Dans au moins un des `insert`, utilisez `regexp_replace` pour nettoyer le `sku` avant l’insertion.
-
-*Indication : vous pouvez combiner `upper(...)` et `regexp_replace(..., '[^A-Z0-9]', '', 'g')`, puis insérer un tiret au bon endroit.*
 
 ### 3. `select` avec `~` et `regexp_matches`
 
+Pour les deux exercices suivants, exécutez les insertions suivantes:
+
+```sql
+-- Quelques produits "normaux" et "série spéciale -25XX"
+insert into produits (sku, code_couleur, ingredients) values
+('BOI-2501', '#FF8800', 'Ingrédients : eau, sucre, colorant E102, conservateur E220'),
+('BOI-2509', '#FFA500', 'Eau, arômes, E330, E414, colorant E160a'),          -- E160a => la regex E[0-9]{3} extrait "E160"
+('JUS-2510', '#F4D03F', 'Jus de pomme, antioxydant E300, acidifiant E330'),
+('CHP-2599', '#D35400', 'Pomme de terre, sel, paprika, exhausteur E621'),
+('BAR-2500', '#8E44AD', 'Céréales, sirop de glucose, émulsifiant E322, E322'), -- E322 répété
+
+-- Hors série -25XX (ne doit pas sortir dans la requête a)
+('BOI-2401', '#00FF00', 'Eau, sucre'),                                       -- aucun additif E###
+('SOU-2601', '#3498DB', 'Tomates, eau, sel, correcteur d’acidité E509'),
+('THE-1234', '#2ECC71', 'Thé, arômes naturels, colorant E150d'),             -- extrait "E150" (car E150d)
+('BIS-2314', '#111111', 'Farine, sucre, E202'); 
+```
+
 Sur la table `produits` remplie avec quelques lignes, écrivez les requêtes suivantes.
 
-#### a) Deux `select` qui utilisent `~`
+#### a) `select` qui utilise `~`
 
-1. Sélectionner les produits dont le `sku` correspond à une **série spéciale 2025**, par exemple tous les codes finissant par `-25XX` (vous choisissez la convention exacte et le motif regex).
+Sélectionner les produits dont le `sku` correspond à une **série spéciale -25XX**, par exemple tous les codes finissant par `-25XX`.
 
-2. Sélectionner les produits dont le `code_couleur` est un **gris** pur en notation hexadécimale, c’est‑à‑dire où les trois composantes sont identiques (`#333333`, `#AFAFAF`, etc.).
+#### b) `select` qui utilise `regexp_matches`
 
-#### b) Deux `select` qui utilisent `regexp_matches`
-
-On suppose que la colonne `description` peut contenir des codes d’additifs, par exemple :
+On suppose que la colonne `ingredients` peut contenir des codes d’additifs, par exemple :
 
 - `Ingrédients : sucre, colorant E102, conservateur E220`
 - `Eau, arômes, E330, E414, colorant E160a`
 
-1. Écrire une requête qui, pour chaque produit contenant au moins un additif, **extrait un code d’additif** de la forme `E` suivi de 3 chiffres (par exemple `E220`).
-
-2. Écrire une requête qui extrait **tous** les codes d’additifs présents dans `description`, en utilisant `regexp_matches` avec le drapeau `'g'`, même si cela produit plusieurs lignes par produit.
+Écrire une requête qui, pour chaque produit contenant au moins un additif, **extrait un code d’additif** de la forme `E` suivi de 3 chiffres (par exemple `E220`).
 
 *Indication : un code d’additif peut être modélisé par le motif `E[0-9]{3}`.*
 
