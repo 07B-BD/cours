@@ -5,43 +5,65 @@ title: "01 — Expressions régulières"
 # Expressions régulières
 > Adapté des notes de Gilles Duquerroy et Nouha Bouteldja
 
-Les expressions régulières (regex) sont des **séquences de métacaractères**. C’est un mécanisme des langages informatiques qui se retrouve dans de nombreux langages et qui est un moyen puissant :
-- d’**évaluer la forme**, voire le contenu, d’une chaîne de caractère.
-- **extraire des parties** d’une chaîne de caractère.
+Les expressions régulières (regex) sont des **motifs décrivant la forme d’une chaîne de caractères**.
 
-Les **métacaractères** sont des caractères décrivant la composition possible d’une chaîne de caractère.
+Elles servent surtout à :
+- **valider des données** (ex. formulaires web, contraintes en base de données) ;
+- **rechercher / filtrer** du texte (logs, contenu d’une BD, fichiers texte) ;
+- **extraire ou transformer** certaines parties d’une chaîne de caractères.
 
-Le langage des expressions régulières est **constant d’un langage informatique à un autre**.
+Les **métacaractères** sont les symboles qui permettent de décrire ces motifs.
 
-## Métacaractères principaux
+Le langage des expressions régulières est **largement similaire d’un langage à un autre** (avec quelques variations selon les outils ou SGBD).
+
+## Outil indispensable pour construire et tester une expression régulière
+
+:::tip
+Vous pouvez construire et tester vos expressions régulières ici :  
+https://regexr.com/
+:::
+
+## Métacaractères de base
 
 | Métacaractère | Signification | Exemples |
 |---------------|--------------|----------|
 | `[]` | Classe de caractères | `[abc]` : la chaîne contient **a**, **b** ou **c** |
-| `[^]` | Négation de classe | `[^abc]` : la chaîne ne contient ni **a**, ni **b**, ni **c** |
 | `[A-Z]`<br>`[0-9]` | Intervalle de caractères | `[A-Z]` : lettres majuscules<br>`[0-9]` : chiffres |
-| `{n}`<br>`{n,m}` | Nombre d’occurrences de l’élément précédent | `a{9}` : **a** apparaît 9 fois<br>`a{2,3}` : **a** apparaît 2 ou 3 fois |
+| `{n}`<br>`{n,m}` | Nombre d’occurrences de l’élément précédent | `a{3}` : **a** apparaît 3 fois<br>`a{2,3}` : **a** apparaît 2 ou 3 fois |
 | `*` | 0, 1 ou plusieurs occurrences | `a*` : **a** apparaît 0, 1 ou plusieurs fois |
+| `+` | 1 ou plusieurs occurrences | `a+` : **a** apparaît au moins une fois |
 | `?` | 0 ou 1 occurrence | `a?` : **a** apparaît ou non |
 | `.` | N’importe quel caractère (selon le moteur, inclut ou non le saut de ligne) | `.{2,3}` : deux à trois caractères |
 | `^` | Début de chaîne | `^b` : commence par **b** |
 | `$` | Fin de chaîne | `b$` : finit par **b** |
-| `\|` | Ou (alternance) | `Banane\|Pomme` : contient Banane ou Pomme |
-| `()` | Groupe de caractères | `(ab)+` : **ab** apparaît une ou plusieurs fois |
-| `\w` (resp. `\W`) | Caractère alphanumérique ou `_` (resp. inverse) | `^a\w*$` : variable qui commence par **a** |
-| `\d` (resp. `\D`) | Chiffre (resp. pas chiffre) | `^\d{3}$` : exactement 3 chiffres |
 
-## Exemples typiques
+### Autres métacaractères utiles
+
+| Métacaractère | Signification | Exemples |
+|---------------|--------------|----------|
+| `[^...]` | Négation de classe (tout sauf…) | `[^abc]` : la chaîne ne contient ni **a**, ni **b**, ni **c** |
+| `()` | Groupe de caractères | `(ab)+` : **ab** apparaît une ou plusieurs fois |
+| `\d` / `\D` | Chiffre (`0` à `9`) / tout sauf un chiffre | `^\d{3}$` : exactement 3 chiffres |
+| `\w` / `\W` | Caractère alphanumérique ou `_` / tout sauf ces caractères | `^a\w*$` : variable qui commence par **a** |
+| `\s` / `\S` | Caractère d'espacement (espace, tabulation, retour de ligne) / tout sauf un caractère d'espacement | `\s+` : une ou plusieurs occurrences d'un espace ou autre blanc |
+
+## Exemples simples de motifs
 
 | Expression | Signification |
 |------------|--------------|
 | `.*` | Tout ou rien |
 | `[a-z]{3}` | Trois lettres minuscules |
-| `[a-zA-Z]+` | Au moins une lettre |
+| `[a-zA-Z]+` | Au moins une lettre (majuscule ou minuscule)|
 | `^A.*a$` | Chaîne commençant par **A** et finissant par **a** |
 | `^19[0-9]{2}$` | Année du 20e siècle |
 
-## Caractère d’échappement
+:::warning Important
+`^` et `$` servent à **ancrer la regex** au début et à la fin de la chaîne.
+Sans eux, le motif peut correspondre à **une sous-partie du texte seulement** (par ex. `123` dans `abc123xyz`).
+Attention : **à l’intérieur d’une classe de caractères** `[...]`, `^` ne signifie plus « début de chaîne » mais « tout sauf ».
+:::
+
+## Caractère d’échappement `\`
 
 :::warning Important
 Le caractère d’échappement est `\`.  
@@ -56,7 +78,7 @@ Exemple :
 
 ---
 
-## Exemples avec échappement
+### Exemples avec échappement
 
 | Expression | Signification |
 |------------|--------------|
@@ -66,7 +88,7 @@ Exemple :
 
 ---
 
-## Exemple guidé --- valider un courriel
+## Exemple guidé — valider un courriel
 
 Objectif : accepter des courriels simples comme :
 
@@ -82,7 +104,7 @@ Refuser :
 
 ------------------------------------------------------------------------
 
-### Étape 1 --- Structure minimale d'un courriel
+### Étape 1 — Structure minimale d'un courriel
 
 Un courriel simple ressemble à :
 
@@ -98,28 +120,30 @@ Donc on a :
 
 ------------------------------------------------------------------------
 
-### Étape 2 --- Construire progressivement
+### Étape 2 — Construire progressivement
 
 #### 1. Autoriser « du texte » avant le @
 
-On veut \*\*au moins un caractère qui n'est pas un espace ni un @*\* :
+On veut **au moins un caractère qui n'est pas un espace ni un @** :
 
-    [^@\s]+
+```text
+[^@\s]+
+```
 
-### Métacaractères utilisés ici
+### Détail des éléments utilisés
 
-  Élément           Signification
-  ----------------- ----------------------------
-  `[]`              Classe de caractères
-  `^` (dans `[]`)   Négation
-  `\s`              Espace
-  `+`               1 ou plusieurs occurrences
+Dans ce motif :
+
+- `[]` définit une **classe de caractères**.
+- `^` **à l’intérieur des crochets** signifie « tout sauf ».
+- `\s` représente un **caractère d’espacement** (espace, tabulation, retour de ligne).
+- `+` signifie **une ou plusieurs occurrences** de l’élément précédent.
 
 Donc :
-
-    [^@\s]+
-
-= 1 ou plusieurs caractères qui ne sont ni `@` ni espace.
+```text
+[^@\s]+
+```
+correspond à une ou plusieurs occurrences d’un caractère qui n’est ni `@` ni un espace.
 
 ------------------------------------------------------------------------
 
@@ -127,7 +151,9 @@ Donc :
 
 On ajoute simplement :
 
-    [^@\s]+@
+```text
+[^@\s]+@
+```
 
 Le `@` n'est pas un métacaractère → pas besoin d'échappement.
 
@@ -137,7 +163,9 @@ Le `@` n'est pas un métacaractère → pas besoin d'échappement.
 
 Même logique que la partie locale :
 
-    [^@\s]+@[^@\s]+
+```text
+[^@\s]+@[^@\s]+
+```
 
 ------------------------------------------------------------------------
 
@@ -145,13 +173,13 @@ Même logique que la partie locale :
 
 Le point est un métacaractère (`.` = n'importe quel caractère).
 
-Pour un point littéral, on doit écrire :
-
-    \.
+Pour un point littéral, on doit écrire : `\.`
 
 On obtient :
 
+```text
     [^@\s]+@[^@\s]+\.[^@\s]+
+```
 
 ------------------------------------------------------------------------
 
@@ -164,116 +192,268 @@ Pour valider toute la chaîne, on ajoute :
 
 Version finale :
 
-    ^[^@\s]+@[^@\s]+\.[^@\s]+$
+```text
+^[^@\s]+@[^@\s]+\.[^@\s]+$
+```
 
-------------------------------------------------------------------------
-
-## Résumé des métacaractères utilisés dans cet exemple
-
-  Métacaractère   Rôle dans la regex
-  --------------- ----------------------------
-  `^`             Début de chaîne
-  `$`             Fin de chaîne
-  `[]`            Classe de caractères
-  `[^...]`        Négation
-  `\s`            Espace
-  `+`             1 ou plusieurs occurrences
-  `\.`            Point littéral
-
-------------------------------------------------------------------------
-
-## Important
+### Important
 
 Cette regex est volontairement simple.
 
 Elle ne couvre pas toutes les règles officielles des courriels (RFC).
 
-## Utilisation dans PostgreSQL
+## Exercices — s'entraîner avec regexr
 
-Dans PostgreSQL, on peut entre autres : 
-- utiliser les expressions régulières pour appliquer des filtres plus complexes dans des requêtes de sélection (regexp_matches)
-- utiliser les expressions régulières pour nettoyer une chaîne de caractères pour répondre à un format attendu (regexp_replace)
-> [Voir la documentation pour toutes les autres utilisations](https://www.postgresql.org/docs/current/functions-matching.html)
+Pour les exercices suivants, utilisez https://regexr.com/ pour construire et tester vos expressions régulières.
 
-### Exemples pratiques
+### Exercice 1 — code produit
 
--- Table d'exemple
-```sql
-CREATE TEMP TABLE users (
-	id serial PRIMARY KEY,
-	name text,
-	email text,
-	phone text,
-	notes text
-);
+Construire une expression régulière qui valide un **code produit** composé de :
 
-INSERT INTO users (name,email,phone,notes) VALUES
-('Alice','alice@example.com','(418) 456-7890','#tag1 data'),
-('Bob','bob.surname@domain.org','418.123.4567','other'),
-('Charlie','invalid-email','+1 418 999 0000','#tag2 more');
-```
+- exactement **3 lettres majuscules**
+- suivies de **2 chiffres**
 
-- Valider une adresse email simple :
+Par exemple, un format du type :
 
-```sql
-SELECT id,email
-FROM users
-WHERE email ~ '^[^@\s]+@[^@\s]+\.[^@\s]+$';
-```
+- `ABC12`
 
-- Extraire le domaine d'une adresse email :
+Jeu de tests à essayer dans regexr :
 
-```sql
-SELECT email, regexp_replace(email, '.*@', '') AS domain
-FROM users;
-```
+- Doit correspondre (match full) : `ABC12`, `SQL20`, `XYZ00` 
+- Ne doit pas correspondre (match none) : `AB12`, `ABCD12`, `abc12`, `A1B23`, `12345`
 
-- Supprimer tous les caractères non numériques d'un numéro de téléphone (normalisation) :
-
-```sql
-SELECT phone, regexp_replace(phone, '\D', '', 'g') AS digits
-FROM users;
-```
-
-- Masquer une partie d'une chaîne (ex. SSN simulé) :
-
-```sql
-SELECT regexp_replace('123456789', '^(\d{3})\d{2}(\d{4})$', '\1**\2') AS masked;
-```
-
-- Récupérer toutes les occurrences d'un motif (groupes) — `regexp_matches` avec le drapeau `g` :
-
-```sql
-SELECT id, regexp_matches(notes, '#(\w+)', 'g') AS tags
-FROM users;
--- retourne un set de tableaux; utiliser UNNEST pour lister
-```
-
-- Diviser une chaîne en mots (split) :
-
-```sql
-SELECT regexp_split_to_table('un deux trois', '\s+') AS mot;
-```
-
-### Cas problèmes à résoudre (patterns courants)
-- Valider une adresse courriel
-- Extraire le domaine d'une adresse courriel
-- Normaliser un numéro de téléphone (garder seulement les chiffres)
-- Remplacer les séparateurs non désirés (virgules, points) dans une chaîne
-- Extraire la première suite de chiffres d'une chaîne
-
-Pour chacun, on combine `WHERE ... ~ pattern` pour filtrer, `regexp_matches` pour valider, et `regexp_replace` pour transformer.
-
-## Ressource pour tester vos regex
-
-:::tip
-Vous pouvez construire et tester vos expressions régulières ici :  
-https://regexr.com/
+:::tip Conseils pour regexr
+- Utilisez la **cheatsheet** (onglet « Cheatsheet » à gauche) pour retrouver rapidement la syntaxe des quantificateurs (`{}`, `*`, `+`, `?`) et des classes (`[A-Z]`, `[0-9]`, etc.).
+- Ajoutez les exemples ci-dessus dans l’onglet **Tests** de regexr et indiquez lesquels doivent « matcher » ou non. Cela vous permet de voir rapidement si votre regex couvre tous les cas.
+- Pensez à **ancrer** votre regex avec `^` (début de chaîne) et `$` (fin de chaîne) pour vérifier toute la chaîne, pas seulement une partie du texte.
 :::
 
-## Exercices
+### Exercice 2 — identifiant de variable
 
----
+Construire une expression régulière qui valide un **identifiant de variable simple** :
+
+- commence par **une lettre minuscule**
+- est suivi de **0 ou plusieurs** caractères alphanumériques ou `_`
+
+Exemples de tests à essayer dans regexr :
+
+- Doit correspondre : `nom`, `x1`, `compteur_total`, `index2`, `a`
+- Ne doit pas correspondre : `1x`, `_var`, `nom-variable`, `mon var`, `Nom`
+
+### Exercice 3 — date au format AAAA-MM-JJ
+
+Construire une expression régulière qui valide une **date simple** au format :
+
+- `AAAA-MM-JJ` (par exemple `2025-03-07`)
+
+Contraintes à respecter :
+
+- exactement 4 chiffres, un tiret, 2 chiffres, un tiret, 2 chiffres
+- pas d'espaces avant ou après
+
+Défi (optionnel) :
+
+- n'accepter que des années dans les **1900** ou **2000** (par exemple `1999`, `2005`)
+
+À vous de proposer plusieurs dates valides et invalides, puis de les tester dans regexr.
+
+### Exercice 4 — numéro composé uniquement de chiffres
+
+Construire une expression régulière qui valide un **numéro de téléphone simplifié** composé :
+
+- uniquement de **chiffres** (`0` à `9`)
+- exactement 10 caractères
+
+Contraintes à respecter :
+
+- pas d'espaces ni de tirets ni de parenthèses
+- pas d'autres caractères que les chiffres
+
+À vous d'imaginer des numéros valides et invalides, puis de les tester dans regexr.
+
+### Exercice 5 — cibler les séparateurs dans un numéro de téléphone
+
+Dans cet exercice, on s'intéresse uniquement aux **séparateurs** d'un numéro de téléphone :
+
+- parenthèses `(` et `)`
+- tirets `-`
+- espaces
+
+Objectif : construire une expression régulière qui **repère seulement ces caractères** (et non les chiffres), par exemple dans un texte contenant plusieurs numéros comme :
+
+- `(418) 456-7890`
+- `418-123-4567`
+- `418 999 0000`
+
+Consigne : testez cette regex dans l'onglet **Text** de regexr (et non dans l'onglet Tests). Vous devriez voir les parenthèses, les tirets et les espaces **surlignés** dans le texte.
+
+## Utilisation avec PostgreSQL
+
+Dans PostgreSQL, les expressions régulières sont surtout utiles pour :
+
+- **filtrer ou valider** des valeurs (`~`, `regexp_matches`)
+- **nettoyer ou transformer** des valeurs (`regexp_replace`)
+
+### L'opérateur `~` (tilde)
+
+En PostgreSQL, `~` signifie **« la valeur correspond à cette expression régulière »**.
+
+- `colonne ~ 'motif'` : la valeur matche le motif regex.
+- `not (colonne ~ 'motif')` : la valeur ne matche pas.
+- Version insensible à la casse : `colonne ~* 'motif'`.
+
+Par rapport à `LIKE`, `~` permet d'exprimer des contraintes plus précises (longueur, classes de caractères, position dans la chaîne, etc.).
+
+:::tip Clavier — taper le caractère `~`
+Sur un clavier « Français (Canada) » sous Windows :
+- appuyez sur `AltGr` (celui de droite) + `;:` (à côté du L), pour insérer `~` ;
+- ou maintenez `Alt` (celui de gauche) enfoncé et tapez `126` sur le pavé numérique, puis relâchez `Alt` (`~` est le caractère ASCII 126).
+:::
+
+### Table d'exemple
+
+>Remarquer l'utilisation d'expression régulières avec `check` pour valider le courriel et le code postal. 
+
+>Le numéro de téléphone est intentionnellement non normalisé ici. Nous allons le faire dans une démo plus bas avec un `insert`.
+```sql
+create table utilisateur (
+	id serial primary key,
+	nom varchar(100) not null,
+	courriel varchar(150) unique not null check (courriel ~ '^[^@\s]+@[^@\s]+\.[^@\s]+$'),
+	telephone varchar(25) not null,
+	notes text,
+	code_postal varchar check (upper(code_postal) ~ '^[A-Z][0-9][A-Z][0-9][A-Z][0-9]$')
+);
+
+-- Insert non valide --> Que faut-il corriger?
+insert into utilisateur (nom, courriel, telephone, notes, code_postal) values
+('Alice', 'alice@exemple.com', '(418) 456-7890', '#tag1 data', 'G1K 7P4');
+
+-- Insert non valide --> Que faut-il corriger?
+insert into utilisateur (nom, courriel, telephone, notes, code_postal) values
+('Paul', 'paulexemple.com', '(418) 555-7890', '#tag1 data', 'G1K8P4');
+
+-- Données supplémentaires
+insert into utilisateur (nom, courriel, telephone, notes, code_postal) values
+('Sophie', 'sophie@exemple.com', '4187771234', 'urgent : paiement en retard #facture #urgent', 'H2X1Y4'),
+('Marc',   'marc@exemple.com',   '4187779999', 'à rappeler demain #client_important #vip',   'G1K8P4');
+```
+
+### Filtrer / valider avec un motif
+
+- Extraire les tags dans la colonne `notes` avec `regexp_matches` :
+
+```sql
+select id, regexp_matches(notes, '#(\w+)', 'g') as tag
+from utilisateur;
+```
+
+- Rechercher les numéros de téléphone où **l'indicatif régional (3 chiffres)** est immédiatement suivi de `777` :
+
+```sql
+select id, nom, telephone
+from utilisateur
+where telephone ~ '^(\d){3}777';
+```
+
+### Nettoyer un numéro de téléphone avec `regexp_replace`
+
+- Conserver uniquement les chiffres lors d'un `INSERT` pour stocker seulement les chiffres dans un numéro de téléphone.
+
+```sql
+insert into utilisateur (nom, courriel, telephone, notes, code_postal) values (
+	'Olivier', 
+	'olivier3@exemple.com', 
+	regexp_replace('(418) 888-7890', '[()\-\s]', '', 'g'), 
+	'#tag1 data', 
+	'G1K8P4'
+);
+```
+
+:::tip Détail sur le paramètre `'g'`
+- Dans `regexp_matches(..., 'g')`, le `g` signifie **global** : on récupère **toutes** les occurrences qui correspondent au motif dans la chaîne, pas seulement la première.
+- Dans `regexp_replace(..., 'g')`, le `g` indique que le remplacement s'applique à **toutes** les correspondances dans la chaîne (et pas uniquement à la première).
+:::
+
+> Pour d'autres usages avancés, voir la documentation PostgreSQL : https://www.postgresql.org/docs/current/functions-matching.html
+
+
+## Exercices avec PostgreSQL
+
+On travaille ici sur des **produits alimentaires** stockés en base.
+
+### Table de départ
+
+```sql
+create table produits (
+	id serial primary key,
+	sku varchar(8) not null,      -- code article interne
+	code_couleur varchar(7) not null, -- couleur en notation hexadécimale (#RRGGBB)
+	ingredients text              -- texte libre : ingrédients, additifs, etc.
+);
+```
+
+### 1. Deux contraintes `check` avec regex
+
+1. Ajoutez une contrainte `check` sur `sku` qui impose le format suivant :  
+	- 3 lettres majuscules, un tiret, 4 chiffres, par exemple `BOI-1234`.
+
+2. Ajoutez une contrainte `check` sur `code_couleur` qui impose un format de couleur hexadécimale simple :  
+	- un `#` suivi de exactement 6 caractères hexadécimaux (`0–9`, `A–F` ou `a–f`), 
+	- par exemple `#FF8800`.
+
+*Indication : utilisez l’opérateur `~` et ancrez bien vos motifs avec `^` et `$`.*
+
+### 2. `insert` avec nettoyage de caractères
+
+Un fournisseur envoie des données un peu « sales » pour le `sku` :
+
+- `boi 1234`
+- `Boi-12 34`
+- `  boi_1234  `
+
+Par exemple, les données brutes pourraient ressembler à :
+
+```sql
+insert into produits (sku, code_couleur, ingredients) values
+('boi 1234',     '#FF8800', 'Boisson orange, sucre, arômes'),
+('Boi-12 34',    '#00FF00', 'Boisson pomme, eau, colorant E102'),
+('  boi_1234  ', '#333333', 'Boisson cola, caféine, colorant E150a');
+```
+
+On veut **normaliser** et stocker un `sku` propre au format `BOI-1234` :
+
+1. Proposez deux commandes `insert into produits (...) values (...)` qui :
+	- convertissent le `sku` en majuscules ;
+	- suppriment les espaces inutiles et caractères de séparation (`_`, `/`, etc.) ;
+	- insèrent au final un `sku` du type `BOI-1234`.
+
+2. Dans au moins un des `insert`, utilisez `regexp_replace` pour nettoyer le `sku` avant l’insertion.
+
+*Indication : vous pouvez combiner `upper(...)` et `regexp_replace(..., '[^A-Z0-9]', '', 'g')`, puis insérer un tiret au bon endroit.*
+
+### 3. `select` avec `~` et `regexp_matches`
+
+Sur la table `produits` remplie avec quelques lignes, écrivez les requêtes suivantes.
+
+#### a) Deux `select` qui utilisent `~`
+
+1. Sélectionner les produits dont le `sku` correspond à une **série spéciale 2025**, par exemple tous les codes finissant par `-25XX` (vous choisissez la convention exacte et le motif regex).
+
+2. Sélectionner les produits dont le `code_couleur` est un **gris** pur en notation hexadécimale, c’est‑à‑dire où les trois composantes sont identiques (`#333333`, `#AFAFAF`, etc.).
+
+#### b) Deux `select` qui utilisent `regexp_matches`
+
+On suppose que la colonne `description` peut contenir des codes d’additifs, par exemple :
+
+- `Ingrédients : sucre, colorant E102, conservateur E220`
+- `Eau, arômes, E330, E414, colorant E160a`
+
+1. Écrire une requête qui, pour chaque produit contenant au moins un additif, **extrait un code d’additif** de la forme `E` suivi de 3 chiffres (par exemple `E220`).
+
+2. Écrire une requête qui extrait **tous** les codes d’additifs présents dans `description`, en utilisant `regexp_matches` avec le drapeau `'g'`, même si cela produit plusieurs lignes par produit.
+
+*Indication : un code d’additif peut être modélisé par le motif `E[0-9]{3}`.*
 
 
 

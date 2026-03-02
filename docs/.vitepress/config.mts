@@ -110,7 +110,7 @@ export default defineConfig({
 					},					
 					{
 						text: "Module 3 — SQL",
-						collapsed: false,
+						collapsed: true,
 						items: [
 							{
 								text: "Insert",
@@ -140,27 +140,27 @@ export default defineConfig({
 					},					
 					{
 						text: "Module 4 — Jointures et agrégations",
-						collapsed: true,
+						collapsed: false,
 						items: [
 							{
 								text: "Expressions régulières & fonctions textuelles",
-								link: "/modules/04-jointures-aggregations/01-expressions-regulieres",
+								link: "/modules/04-jointures-agregations/01-expressions-regulieres",
 							},
 							{
 								text: "Jointures (INNER/LEFT/RIGHT/FULL)",
-								link: "/modules/04-jointures-aggregations/02-jointures",
+								link: "/modules/04-jointures-agregations/02-jointures",
 							},
 							{
 								text: "Fonctions d'agrégation",
-								link: "/modules/04-jointures-aggregations/03-fonctions-agregation",
+								link: "/modules/04-jointures-agregations/03-fonctions-agregation",
 							},
 							{
 								text: "GROUP BY & HAVING",
-								link: "/modules/04-jointures-aggregations/04-group-by-having",
+								link: "/modules/04-jointures-agregations/04-group-by-having",
 							},
 							{
 								text: "Sous-requêtes corrélées",
-								link: "/modules/04-jointures-aggregations/05-sous-requetes-correlees",
+								link: "/modules/04-jointures-agregations/05-sous-requetes-correlees",
 							},
 						],
 					},
