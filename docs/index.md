@@ -46,6 +46,13 @@ hero:
     subtitle="À compléter de votre côté."
     :steps="[
       {
+        title: 'RegexLearn',
+        description: 'Se rendre jusqu\'à 56 dans RegexLearn.',
+        links: [
+          { text: 'RegexLearn', href: 'https://regexlearn.com/fr/learn/regex101', variant: 'primary' }
+        ]
+      },
+      {
         title: 'Terminer le TP2',
         description: 'Le TP2 est à remettre la semaine du retour de la relâche.',
         links: [
