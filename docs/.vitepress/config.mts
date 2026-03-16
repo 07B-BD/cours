@@ -146,6 +146,7 @@ export default defineConfig({
 								text: "Expressions régulières & fonctions textuelles",
 								link: "/modules/04-jointures-agregations/01-expressions-regulieres",
 							},
+							/*
 							{
 								text: "Jointures (INNER/LEFT/RIGHT/FULL)",
 								link: "/modules/04-jointures-agregations/02-jointures",
@@ -162,6 +163,7 @@ export default defineConfig({
 								text: "Sous-requêtes corrélées",
 								link: "/modules/04-jointures-agregations/05-sous-requetes-correlees",
 							},
+							*/
 						],
 					},
 					/*
