@@ -16,6 +16,15 @@ Les **métacaractères** sont les symboles qui permettent de décrire ces motifs
 
 Le langage des expressions régulières est **largement similaire d’un langage à un autre** (avec quelques variations selon les outils ou SGBD).
 
+## Ressource complémentaire utile
+
+:::tip RegexLearn
+Pour pratiquer avec un parcours interactif :  
+https://regexlearn.com/fr/learn/regex101
+
+À faire sur votre téléphone mobile dans l'autobus.
+:::
+
 ## Outil indispensable pour construire et tester une expression régulière
 
 :::tip Regexr
