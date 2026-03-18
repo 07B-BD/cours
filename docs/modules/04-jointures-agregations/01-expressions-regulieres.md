@@ -58,19 +58,46 @@ https://regexr.com/
 
 ## Exemples simples de motifs
 
-| Expression | Signification |
-|------------|--------------|
-| `.*` | Tout ou rien |
-| `[a-z]{3}` | Trois lettres minuscules |
-| `[a-zA-Z]+` | Au moins une lettre (majuscule ou minuscule)|
-| `^A.*a$` | Chaîne commençant par **A** et finissant par **a** |
-| `^19[0-9]{2}$` | Année du 20e siècle |
+### Texte à coller dans Regexr pour tester
+
+chat chien Chat alpha beta gamma abc abbc ac aabc abbbc 123 4567 A1B2 Z99 hello world hello_world nom-variable nom variable test@test.com alice@example.com bob@domain.org invalid-email @example.com alice@ alice@example ABC12 SQL20 XYZ00 AB12 ABCD12 abc12 A1B23 12345 2025-03-07 1999-12-31 2005-01-01 25-03-07 2025/03/07 (418) 456-7890 418-123-4567 418 999 0000 4187771234 G1K8P4 G1K 8P4 #tag #urgent #client_important fin.
+
+| Étape | Expression | Concept | Explication |
+|------|------------|--------|-------------|
+| 1 | `chat` | Texte littéral | Cherche exactement le mot |
+| 2 | `[abc]` | Classe de caractères | Correspond à **un caractère parmi a,b,c** |
+| 3 | `[a-z]` | Intervalle | Toute lettre minuscule |
+| 4 | `[A-Z]` | Intervalle | Toute lettre majuscule |
+| 5 | `[0-9]` | Intervalle | Tout chiffre |
+| 6 | `[0-9]{4}` | Quantificateur | Exactement **4 chiffres** |
+| 7 | `[0-9]{2,4}` | Quantificateur | Entre **2 et 4 chiffres** |
+| 8 | `ab*c` | `*` | 0 ou plusieurs occurrences |
+| 9 | `ab+c` | `+` | 1 ou plusieurs occurrences |
+| 10 | `ab?c` | `?` | 0 ou 1 occurrence |
+| 11 | `a.c` | `.` | N’importe quel caractère |
+| 12 | `[^0-9]` | Négation | Tout sauf un chiffre |
+| 13 | `\d` | Classe spéciale | Un chiffre |
+| 14 | `\d{3}` | Quantificateur | Trois chiffres consécutifs |
+| 15 | `\w+` | Mot | Suite de caractères alphanumériques ou `_` |
+| 16 | `\s` | Espace | Un caractère d’espacement |
+| 17 | `\s+` | Quantificateur | Un ou plusieurs espaces |
+| 18 | `\S+` | Non espace | Suite de caractères sans espace |
+| 19 | `\.` | Échappement | Point littéral |
 
 :::warning Important
 `^` et `$` servent à **ancrer la regex** au début et à la fin de la chaîne.
 Sans eux, le motif peut correspondre à **une sous-partie du texte seulement** (par ex. `123` dans `abc123xyz`).
 Attention : **à l’intérieur d’une classe de caractères** `[...]`, `^` ne signifie plus « début de chaîne » mais « tout sauf ».
 :::
+
+| Expression | Objectif | Correspond | Ne correspond pas |
+|-----------|---------|------------|------------------|
+| `\d{3}` | Cherche 3 chiffres | 123 dans 12345 | — |
+| `^\d{3}$` | Exactement 3 chiffres | 123 | 4567 |
+| `^[^@\s]+@[^@\s]+\.[^@\s]+$` | Courriel simple | alice@example.com | alice@ |
+| `^A` | Commence par A | ABC12 | SQL20 |
+| `0$` | Finit par 0 | SQL20 | ABC12 |
+| `^A.*0$` | Commence par A et finit par 0 | A100 | SQL20 |
 
 ## Caractère d’échappement `\`
 
