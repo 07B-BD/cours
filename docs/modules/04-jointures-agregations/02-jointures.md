@@ -18,23 +18,6 @@ Dans les exemples, on utilise des **alias de tables** (ex. `piste p`, `album al`
 
 ---
 
-## Activité de matching
-
-<iframe
-	src="https://docs.google.com/presentation/d/1jHwBZHlpLVLO4YjiPU5Q3G-RC0l-dfIy37wwTbOTusg/embed?start=false&loop=false&delayms=3000"
-	width="100%"
-	height="480"
-	frameborder="0"
-	allowfullscreen="true"
-	mozallowfullscreen="true"
-	webkitallowfullscreen="true"
-></iframe>
-
-Lien (ouvrir dans un nouvel onglet) :
-https://docs.google.com/presentation/d/1jHwBZHlpLVLO4YjiPU5Q3G-RC0l-dfIy37wwTbOTusg/edit?usp=sharing
-
----
-
 ## Base de données de test à importer (Chinook)
 
 <div class="my-6 rounded-lg border border-yellow-300 bg-yellow-50 p-4 text-yellow-900">
