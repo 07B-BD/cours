@@ -1,22 +1,13 @@
-/*******************************************************************************
-   Chinook Database - Version 1.4
-   Script: Chinook_PostgreSql.sql
-   Description: Creates and populates the Chinook database.
-   DB Server: PostgreSql
-   Author: Luis Rocha
-   License: http://www.codeplex.com/ChinookDatabase/license
-********************************************************************************/
-
 --
 -- PostgreSQL database dump
 --
 
-\restrict yVshL5XUkPfEuAitIX937OpBCTlgTQdn2kkAPaghfmiGkyYyRldwVPywX8c2lnB
+\restrict LKm5rMTKSmEIg1M58CPxAHC0fJFbx2irzqD8cb1eyRbjandUVRTvLladuk7YERi
 
 -- Dumped from database version 18.1
 -- Dumped by pg_dump version 18.1
 
--- Started on 2026-03-02 17:08:48
+-- Started on 2026-03-22 21:17:43
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -32,7 +23,7 @@ SET row_security = off;
 
 DROP DATABASE chinook;
 --
--- TOC entry 5084 (class 1262 OID 21726)
+-- TOC entry 5131 (class 1262 OID 19186)
 -- Name: chinook; Type: DATABASE; Schema: -; Owner: postgres
 --
 
@@ -41,9 +32,9 @@ CREATE DATABASE chinook WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE_PROVI
 
 ALTER DATABASE chinook OWNER TO postgres;
 
-\unrestrict yVshL5XUkPfEuAitIX937OpBCTlgTQdn2kkAPaghfmiGkyYyRldwVPywX8c2lnB
+\unrestrict LKm5rMTKSmEIg1M58CPxAHC0fJFbx2irzqD8cb1eyRbjandUVRTvLladuk7YERi
 \connect chinook
-\restrict yVshL5XUkPfEuAitIX937OpBCTlgTQdn2kkAPaghfmiGkyYyRldwVPywX8c2lnB
+\restrict LKm5rMTKSmEIg1M58CPxAHC0fJFbx2irzqD8cb1eyRbjandUVRTvLladuk7YERi
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -62,7 +53,7 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- TOC entry 220 (class 1259 OID 21728)
+-- TOC entry 219 (class 1259 OID 19187)
 -- Name: album; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -76,7 +67,7 @@ CREATE TABLE public.album (
 ALTER TABLE public.album OWNER TO postgres;
 
 --
--- TOC entry 219 (class 1259 OID 21727)
+-- TOC entry 220 (class 1259 OID 19193)
 -- Name: album_album_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -92,8 +83,8 @@ CREATE SEQUENCE public.album_album_id_seq
 ALTER SEQUENCE public.album_album_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5085 (class 0 OID 0)
--- Dependencies: 219
+-- TOC entry 5132 (class 0 OID 0)
+-- Dependencies: 220
 -- Name: album_album_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -101,7 +92,7 @@ ALTER SEQUENCE public.album_album_id_seq OWNED BY public.album.album_id;
 
 
 --
--- TOC entry 222 (class 1259 OID 21738)
+-- TOC entry 221 (class 1259 OID 19194)
 -- Name: artiste; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -114,7 +105,7 @@ CREATE TABLE public.artiste (
 ALTER TABLE public.artiste OWNER TO postgres;
 
 --
--- TOC entry 221 (class 1259 OID 21737)
+-- TOC entry 222 (class 1259 OID 19198)
 -- Name: artiste_artiste_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -130,8 +121,8 @@ CREATE SEQUENCE public.artiste_artiste_id_seq
 ALTER SEQUENCE public.artiste_artiste_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5086 (class 0 OID 0)
--- Dependencies: 221
+-- TOC entry 5133 (class 0 OID 0)
+-- Dependencies: 222
 -- Name: artiste_artiste_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -139,7 +130,7 @@ ALTER SEQUENCE public.artiste_artiste_id_seq OWNED BY public.artiste.artiste_id;
 
 
 --
--- TOC entry 224 (class 1259 OID 21746)
+-- TOC entry 223 (class 1259 OID 19199)
 -- Name: client; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -163,7 +154,7 @@ CREATE TABLE public.client (
 ALTER TABLE public.client OWNER TO postgres;
 
 --
--- TOC entry 223 (class 1259 OID 21745)
+-- TOC entry 224 (class 1259 OID 19206)
 -- Name: client_client_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -179,8 +170,8 @@ CREATE SEQUENCE public.client_client_id_seq
 ALTER SEQUENCE public.client_client_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5087 (class 0 OID 0)
--- Dependencies: 223
+-- TOC entry 5134 (class 0 OID 0)
+-- Dependencies: 224
 -- Name: client_client_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -188,7 +179,7 @@ ALTER SEQUENCE public.client_client_id_seq OWNED BY public.client.client_id;
 
 
 --
--- TOC entry 226 (class 1259 OID 21757)
+-- TOC entry 225 (class 1259 OID 19207)
 -- Name: employe; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -214,7 +205,7 @@ CREATE TABLE public.employe (
 ALTER TABLE public.employe OWNER TO postgres;
 
 --
--- TOC entry 225 (class 1259 OID 21756)
+-- TOC entry 226 (class 1259 OID 19213)
 -- Name: employe_employe_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -230,8 +221,8 @@ CREATE SEQUENCE public.employe_employe_id_seq
 ALTER SEQUENCE public.employe_employe_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5088 (class 0 OID 0)
--- Dependencies: 225
+-- TOC entry 5135 (class 0 OID 0)
+-- Dependencies: 226
 -- Name: employe_employe_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -239,7 +230,7 @@ ALTER SEQUENCE public.employe_employe_id_seq OWNED BY public.employe.employe_id;
 
 
 --
--- TOC entry 230 (class 1259 OID 21775)
+-- TOC entry 227 (class 1259 OID 19214)
 -- Name: facture; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -259,7 +250,7 @@ CREATE TABLE public.facture (
 ALTER TABLE public.facture OWNER TO postgres;
 
 --
--- TOC entry 229 (class 1259 OID 21774)
+-- TOC entry 228 (class 1259 OID 19221)
 -- Name: facture_facture_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -275,8 +266,8 @@ CREATE SEQUENCE public.facture_facture_id_seq
 ALTER SEQUENCE public.facture_facture_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5089 (class 0 OID 0)
--- Dependencies: 229
+-- TOC entry 5136 (class 0 OID 0)
+-- Dependencies: 228
 -- Name: facture_facture_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -284,7 +275,7 @@ ALTER SEQUENCE public.facture_facture_id_seq OWNED BY public.facture.facture_id;
 
 
 --
--- TOC entry 228 (class 1259 OID 21767)
+-- TOC entry 229 (class 1259 OID 19222)
 -- Name: genre; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -297,7 +288,7 @@ CREATE TABLE public.genre (
 ALTER TABLE public.genre OWNER TO postgres;
 
 --
--- TOC entry 227 (class 1259 OID 21766)
+-- TOC entry 230 (class 1259 OID 19226)
 -- Name: genre_genre_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -313,8 +304,8 @@ CREATE SEQUENCE public.genre_genre_id_seq
 ALTER SEQUENCE public.genre_genre_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5090 (class 0 OID 0)
--- Dependencies: 227
+-- TOC entry 5137 (class 0 OID 0)
+-- Dependencies: 230
 -- Name: genre_genre_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -322,7 +313,7 @@ ALTER SEQUENCE public.genre_genre_id_seq OWNED BY public.genre.genre_id;
 
 
 --
--- TOC entry 232 (class 1259 OID 21786)
+-- TOC entry 231 (class 1259 OID 19227)
 -- Name: ligne_facture; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -338,7 +329,7 @@ CREATE TABLE public.ligne_facture (
 ALTER TABLE public.ligne_facture OWNER TO postgres;
 
 --
--- TOC entry 231 (class 1259 OID 21785)
+-- TOC entry 232 (class 1259 OID 19235)
 -- Name: ligne_facture_ligne_facture_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -354,8 +345,8 @@ CREATE SEQUENCE public.ligne_facture_ligne_facture_id_seq
 ALTER SEQUENCE public.ligne_facture_ligne_facture_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5091 (class 0 OID 0)
--- Dependencies: 231
+-- TOC entry 5138 (class 0 OID 0)
+-- Dependencies: 232
 -- Name: ligne_facture_ligne_facture_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -363,7 +354,7 @@ ALTER SEQUENCE public.ligne_facture_ligne_facture_id_seq OWNED BY public.ligne_f
 
 
 --
--- TOC entry 236 (class 1259 OID 21806)
+-- TOC entry 233 (class 1259 OID 19236)
 -- Name: liste_lecture; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -376,7 +367,7 @@ CREATE TABLE public.liste_lecture (
 ALTER TABLE public.liste_lecture OWNER TO postgres;
 
 --
--- TOC entry 235 (class 1259 OID 21805)
+-- TOC entry 234 (class 1259 OID 19240)
 -- Name: liste_lecture_liste_lecture_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -392,8 +383,8 @@ CREATE SEQUENCE public.liste_lecture_liste_lecture_id_seq
 ALTER SEQUENCE public.liste_lecture_liste_lecture_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5092 (class 0 OID 0)
--- Dependencies: 235
+-- TOC entry 5139 (class 0 OID 0)
+-- Dependencies: 234
 -- Name: liste_lecture_liste_lecture_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -401,7 +392,7 @@ ALTER SEQUENCE public.liste_lecture_liste_lecture_id_seq OWNED BY public.liste_l
 
 
 --
--- TOC entry 237 (class 1259 OID 21813)
+-- TOC entry 235 (class 1259 OID 19241)
 -- Name: liste_lecture_piste; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -414,7 +405,7 @@ CREATE TABLE public.liste_lecture_piste (
 ALTER TABLE public.liste_lecture_piste OWNER TO postgres;
 
 --
--- TOC entry 239 (class 1259 OID 21821)
+-- TOC entry 236 (class 1259 OID 19246)
 -- Name: piste; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -434,7 +425,7 @@ CREATE TABLE public.piste (
 ALTER TABLE public.piste OWNER TO postgres;
 
 --
--- TOC entry 238 (class 1259 OID 21820)
+-- TOC entry 237 (class 1259 OID 19254)
 -- Name: piste_piste_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -450,8 +441,8 @@ CREATE SEQUENCE public.piste_piste_id_seq
 ALTER SEQUENCE public.piste_piste_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5093 (class 0 OID 0)
--- Dependencies: 238
+-- TOC entry 5140 (class 0 OID 0)
+-- Dependencies: 237
 -- Name: piste_piste_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -459,7 +450,7 @@ ALTER SEQUENCE public.piste_piste_id_seq OWNED BY public.piste.piste_id;
 
 
 --
--- TOC entry 234 (class 1259 OID 21798)
+-- TOC entry 238 (class 1259 OID 19255)
 -- Name: type_media; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -472,7 +463,7 @@ CREATE TABLE public.type_media (
 ALTER TABLE public.type_media OWNER TO postgres;
 
 --
--- TOC entry 233 (class 1259 OID 21797)
+-- TOC entry 239 (class 1259 OID 19259)
 -- Name: type_media_type_media_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -488,8 +479,8 @@ CREATE SEQUENCE public.type_media_type_media_id_seq
 ALTER SEQUENCE public.type_media_type_media_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5094 (class 0 OID 0)
--- Dependencies: 233
+-- TOC entry 5141 (class 0 OID 0)
+-- Dependencies: 239
 -- Name: type_media_type_media_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -497,7 +488,7 @@ ALTER SEQUENCE public.type_media_type_media_id_seq OWNED BY public.type_media.ty
 
 
 --
--- TOC entry 4858 (class 2604 OID 21731)
+-- TOC entry 4905 (class 2604 OID 19260)
 -- Name: album album_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -505,7 +496,7 @@ ALTER TABLE ONLY public.album ALTER COLUMN album_id SET DEFAULT nextval('public.
 
 
 --
--- TOC entry 4859 (class 2604 OID 21741)
+-- TOC entry 4906 (class 2604 OID 19261)
 -- Name: artiste artiste_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -513,7 +504,7 @@ ALTER TABLE ONLY public.artiste ALTER COLUMN artiste_id SET DEFAULT nextval('pub
 
 
 --
--- TOC entry 4860 (class 2604 OID 21749)
+-- TOC entry 4907 (class 2604 OID 19262)
 -- Name: client client_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -521,7 +512,7 @@ ALTER TABLE ONLY public.client ALTER COLUMN client_id SET DEFAULT nextval('publi
 
 
 --
--- TOC entry 4861 (class 2604 OID 21760)
+-- TOC entry 4908 (class 2604 OID 19263)
 -- Name: employe employe_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -529,7 +520,7 @@ ALTER TABLE ONLY public.employe ALTER COLUMN employe_id SET DEFAULT nextval('pub
 
 
 --
--- TOC entry 4863 (class 2604 OID 21778)
+-- TOC entry 4909 (class 2604 OID 19264)
 -- Name: facture facture_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -537,7 +528,7 @@ ALTER TABLE ONLY public.facture ALTER COLUMN facture_id SET DEFAULT nextval('pub
 
 
 --
--- TOC entry 4862 (class 2604 OID 21770)
+-- TOC entry 4910 (class 2604 OID 19265)
 -- Name: genre genre_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -545,7 +536,7 @@ ALTER TABLE ONLY public.genre ALTER COLUMN genre_id SET DEFAULT nextval('public.
 
 
 --
--- TOC entry 4864 (class 2604 OID 21789)
+-- TOC entry 4911 (class 2604 OID 19266)
 -- Name: ligne_facture ligne_facture_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -553,7 +544,7 @@ ALTER TABLE ONLY public.ligne_facture ALTER COLUMN ligne_facture_id SET DEFAULT 
 
 
 --
--- TOC entry 4866 (class 2604 OID 21809)
+-- TOC entry 4912 (class 2604 OID 19267)
 -- Name: liste_lecture liste_lecture_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -561,7 +552,7 @@ ALTER TABLE ONLY public.liste_lecture ALTER COLUMN liste_lecture_id SET DEFAULT 
 
 
 --
--- TOC entry 4867 (class 2604 OID 21824)
+-- TOC entry 4913 (class 2604 OID 19268)
 -- Name: piste piste_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -569,7 +560,7 @@ ALTER TABLE ONLY public.piste ALTER COLUMN piste_id SET DEFAULT nextval('public.
 
 
 --
--- TOC entry 4865 (class 2604 OID 21801)
+-- TOC entry 4914 (class 2604 OID 19269)
 -- Name: type_media type_media_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -577,8 +568,8 @@ ALTER TABLE ONLY public.type_media ALTER COLUMN type_media_id SET DEFAULT nextva
 
 
 --
--- TOC entry 5059 (class 0 OID 21728)
--- Dependencies: 220
+-- TOC entry 5105 (class 0 OID 19187)
+-- Dependencies: 219
 -- Data for Name: album; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -934,8 +925,8 @@ COPY public.album (album_id, titre, artiste_id) FROM stdin;
 
 
 --
--- TOC entry 5061 (class 0 OID 21738)
--- Dependencies: 222
+-- TOC entry 5107 (class 0 OID 19194)
+-- Dependencies: 221
 -- Data for Name: artiste; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1219,31 +1210,27 @@ COPY public.artiste (artiste_id, nom) FROM stdin;
 
 
 --
--- TOC entry 5063 (class 0 OID 21746)
--- Dependencies: 224
+-- TOC entry 5109 (class 0 OID 19199)
+-- Dependencies: 223
 -- Data for Name: client; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.client (client_id, prenom, nom_famille, compagnie, adresse, ville, etat_province, pays, code_postal, telephone, fax, courriel, representant_id) FROM stdin;
 1	Luís	Gonçalves	Embraer - Empresa Brasileira de Aeronáutica S.A.	Av. Brigadeiro Faria Lima, 2170	São José dos Campos	SP	Brazil	12227-000	+55 (12) 3923-5555	+55 (12) 3923-5566	luisg@embraer.com.br	3
 2	Leonie	Köhler	\N	Theodor-Heuss-Straße 34	Stuttgart	\N	Germany	70174	+49 0711 2842222	\N	leonekohler@surfeu.de	5
-3	François	Tremblay	\N	1498 rue Bélanger	Montréal	QC	Canada	H2G 1A7	+1 (514) 721-4711	\N	ftremblay@gmail.com	3
 4	Bjørn	Hansen	\N	Ullevålsveien 14	Oslo	\N	Norway	0171	+47 22 44 22 22	\N	bjorn.hansen@yahoo.no	4
 5	Frantiek	Wichterlová	JetBrains s.r.o.	Klanova 9/506	Prague	\N	Czech Republic	14700	+420 2 4172 5555	+420 2 4172 5555	frantisekw@jetbrains.com	4
 6	Helena	Holý	\N	Rilská 3174/6	Prague	\N	Czech Republic	14300	+420 2 4177 0449	\N	hholy@gmail.com	5
-7	Astrid	Gruber	\N	Rotenturmstraße 4, 1010 Innere Stadt	Vienne	\N	Austria	1010	+43 01 5134505	\N	astrid.gruber@apple.at	5
 8	Daan	Peeters	\N	Grétrystraat 63	Brussels	\N	Belgium	1000	+32 02 219 03 03	\N	daan_peeters@apple.be	4
 9	Kara	Nielsen	\N	Sønder Boulevard 51	Copenhagen	\N	Denmark	1720	+453 3331 9991	\N	kara.nielsen@jubii.dk	4
 10	Eduardo	Martins	Woodstock Discos	Rua Dr. Falcão Filho, 155	São Paulo	SP	Brazil	01007-010	+55 (11) 3033-5446	+55 (11) 3033-4564	eduardo@woodstock.com.br	4
 11	Alexandre	Rocha	Banco do Brasil S.A.	Av. Paulista, 2022	São Paulo	SP	Brazil	01310-200	+55 (11) 3055-3278	+55 (11) 3055-8131	alero@uol.com.br	5
 12	Roberto	Almeida	Riotur	Praça Pio X, 119	Rio de Janeiro	RJ	Brazil	20040-020	+55 (21) 2271-7000	+55 (21) 2271-7070	roberto.almeida@riotur.gov.br	3
-13	Fernanda	Ramos	\N	Qe 7 Bloco G	Brasília	DF	Brazil	71020-677	+55 (61) 3363-5547	+55 (61) 3363-7855	fernadaramos4@uol.com.br	4
 14	Mark	Philips	Telus	8210 111 ST NW	Edmonton	AB	Canada	T6G 2C7	+1 (780) 434-4554	+1 (780) 434-5565	mphilips12@shaw.ca	5
 15	Jennifer	Peterson	Rogers Canada	700 W Pender Street	Vancouver	BC	Canada	V6C 1G8	+1 (604) 688-2255	+1 (604) 688-8756	jenniferp@rogers.ca	3
 16	Frank	Harris	Google Inc.	1600 Amphitheatre Parkway	Mountain View	CA	USA	94043-1351	+1 (650) 253-0000	+1 (650) 253-0000	fharris@google.com	4
 17	Jack	Smith	Microsoft Corporation	1 Microsoft Way	Redmond	WA	USA	98052-8300	+1 (425) 882-8080	+1 (425) 882-8081	jacksmith@microsoft.com	5
 18	Michelle	Brooks	\N	627 Broadway	New York	NY	USA	10012-2612	+1 (212) 221-3546	+1 (212) 221-4679	michelleb@aol.com	3
-19	Tim	Goyer	Apple Inc.	1 Infinite Loop	Cupertino	CA	USA	95014	+1 (408) 996-1010	+1 (408) 996-1011	tgoyer@apple.com	3
 20	Dan	Miller	\N	541 Del Medio Avenue	Mountain View	CA	USA	94040-111	+1 (650) 644-3358	\N	dmiller@comcast.com	4
 21	Kathy	Chase	\N	801 W 4th Street	Reno	NV	USA	89503	+1 (775) 223-7665	\N	kachase@hotmail.com	5
 22	Heather	Leacock	\N	120 S Orange Ave	Orlando	FL	USA	32801	+1 (407) 999-7788	\N	hleacock@gmail.com	4
@@ -1279,17 +1266,21 @@ COPY public.client (client_id, prenom, nom_famille, compagnie, adresse, ville, e
 52	Emma	Jones	\N	202 Hoxton Street	London	\N	United Kingdom	N1 5LH	+44 020 7707 0707	\N	emma_jones@hotmail.com	3
 53	Phil	Hughes	\N	113 Lupus St	London	\N	United Kingdom	SW1V 3EN	+44 020 7976 5722	\N	phil.hughes@gmail.com	3
 54	Steve	Murray	\N	110 Raeburn Pl	Edinburgh	\N	United Kingdom	EH4 1HH	+44 0131 315 3300	\N	steve.murray@yahoo.uk	5
+13	Fernanda	Ramos	\N	Qe 7 Bloco G	Brasília	DF	Brazil	71020-677	+55 (61) 3363-5547	+55 (61) 3363-7855	fernadaramos4@uol.com.br	\N
+19	Tim	Goyer	Apple Inc.	1 Infinite Loop	Cupertino	CA	USA	95014	+1 (408) 996-1010	+1 (408) 996-1011	tgoyer@apple.com	\N
 55	Mark	Taylor	\N	421 Bourke Street	Sidney	NSW	Australia	2010	+61 (02) 9332 3633	\N	mark.taylor@yahoo.au	4
 56	Diego	Gutiérrez	\N	307 Macacha Güemes	Buenos Aires	\N	Argentina	1106	+54 (0)11 4311 4333	\N	diego.gutierrez@yahoo.ar	4
 57	Luis	Rojas	\N	Calle Lira, 198	Santiago	\N	Chile	\N	+56 (0)2 635 4444	\N	luisrojas@yahoo.cl	5
 58	Manoj	Pareek	\N	12,Community Centre	Delhi	\N	India	110017	+91 0124 39883988	\N	manoj.pareek@rediff.com	3
 59	Puja	Srivastava	\N	3,Raj Bhavan Road	Bangalore	\N	India	560001	+91 080 22289999	\N	puja_srivastava@yahoo.in	3
+3	François	Tremblay	\N	1498 rue Bélanger	Montréal	QC	Canada	H2G 1A7	+1 (514) 721-4711	\N	ftremblay@gmail.com	\N
+7	Astrid	Gruber	\N	Rotenturmstraße 4, 1010 Innere Stadt	Vienne	\N	Austria	1010	+43 01 5134505	\N	astrid.gruber@apple.at	\N
 \.
 
 
 --
--- TOC entry 5065 (class 0 OID 21757)
--- Dependencies: 226
+-- TOC entry 5111 (class 0 OID 19207)
+-- Dependencies: 225
 -- Data for Name: employe; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1306,8 +1297,8 @@ COPY public.employe (employe_id, nom_famille, prenom, titre, superviseur_id, dat
 
 
 --
--- TOC entry 5069 (class 0 OID 21775)
--- Dependencies: 230
+-- TOC entry 5113 (class 0 OID 19214)
+-- Dependencies: 227
 -- Data for Name: facture; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1409,7 +1400,6 @@ COPY public.facture (facture_id, client_id, date_facture, adresse_facture, ville
 95	36	2010-02-13 00:00:00	Tauentzienstraße 8	Berlin	\N	Germany	10789	8.91
 96	45	2010-02-18 00:00:00	Erzsébet krt. 58.	Budapest	\N	Hungary	H-1073	21.86
 97	59	2010-02-26 00:00:00	3,Raj Bhavan Road	Bangalore	\N	India	560001	1.99
-98	1	2010-03-11 00:00:00	Av. Brigadeiro Faria Lima, 2170	São José dos Campos	SP	Brazil	12227-000	3.98
 99	3	2010-03-11 00:00:00	1498 rue Bélanger	Montréal	QC	Canada	H2G 1A7	3.98
 100	5	2010-03-12 00:00:00	Klanova 9/506	Prague	\N	Czech Republic	14700	3.96
 101	9	2010-03-13 00:00:00	Sønder Boulevard 51	Copenhagen	\N	Denmark	1720	5.94
@@ -1432,7 +1422,6 @@ COPY public.facture (facture_id, client_id, date_facture, adresse_facture, ville
 118	55	2010-05-30 00:00:00	421 Bourke Street	Sidney	NSW	Australia	2010	0.99
 119	56	2010-06-12 00:00:00	307 Macacha Güemes	Buenos Aires	\N	Argentina	1106	1.98
 120	58	2010-06-12 00:00:00	12,Community Centre	Delhi	\N	India	110017	1.98
-121	1	2010-06-13 00:00:00	Av. Brigadeiro Faria Lima, 2170	São José dos Campos	SP	Brazil	12227-000	3.96
 122	5	2010-06-14 00:00:00	Klanova 9/506	Prague	\N	Czech Republic	14700	5.94
 123	11	2010-06-17 00:00:00	Av. Paulista, 2022	São Paulo	SP	Brazil	01310-200	8.91
 124	20	2010-06-22 00:00:00	541 Del Medio Avenue	Mountain View	CA	USA	94040-111	13.86
@@ -1454,7 +1443,6 @@ COPY public.facture (facture_id, client_id, date_facture, adresse_facture, ville
 140	52	2010-09-13 00:00:00	202 Hoxton Street	London	\N	United Kingdom	N1 5LH	1.98
 141	54	2010-09-13 00:00:00	110 Raeburn Pl	Edinburgh	\N	United Kingdom	EH4 1HH	1.98
 142	56	2010-09-14 00:00:00	307 Macacha Güemes	Buenos Aires	\N	Argentina	1106	3.96
-143	1	2010-09-15 00:00:00	Av. Brigadeiro Faria Lima, 2170	São José dos Campos	SP	Brazil	12227-000	5.94
 144	7	2010-09-18 00:00:00	Rotenturmstraße 4, 1010 Innere Stadt	Vienne	\N	Austria	1010	8.91
 145	16	2010-09-23 00:00:00	1600 Amphitheatre Parkway	Mountain View	CA	USA	94043-1351	13.86
 146	30	2010-10-01 00:00:00	230 Elgin Street	Ottawa	ON	Canada	K2P 1L7	0.99
@@ -1506,7 +1494,6 @@ COPY public.facture (facture_id, client_id, date_facture, adresse_facture, ville
 192	31	2011-04-20 00:00:00	194A Chain Lake Drive	Halifax	NS	Canada	B3S 1C5	5.94
 193	37	2011-04-23 00:00:00	Berger Straße 10	Frankfurt	\N	Germany	60316	14.91
 194	46	2011-04-28 00:00:00	3 Chatham Street	Dublin	Dublin	Ireland	\N	21.86
-195	1	2011-05-06 00:00:00	Av. Brigadeiro Faria Lima, 2170	São José dos Campos	SP	Brazil	12227-000	0.99
 196	2	2011-05-19 00:00:00	Theodor-Heuss-Straße 34	Stuttgart	\N	Germany	70174	1.98
 197	4	2011-05-19 00:00:00	Ullevålsveien 14	Oslo	\N	Norway	0171	1.98
 198	6	2011-05-20 00:00:00	Rilská 3174/6	Prague	\N	Czech Republic	14300	3.96
@@ -1627,7 +1614,6 @@ COPY public.facture (facture_id, client_id, date_facture, adresse_facture, ville
 313	43	2012-10-06 00:00:00	68, Rue Jouvence	Dijon	\N	France	21000	16.86
 314	57	2012-10-14 00:00:00	Calle Lira, 198	Santiago	\N	Chile	\N	0.99
 315	58	2012-10-27 00:00:00	12,Community Centre	Delhi	\N	India	110017	1.98
-316	1	2012-10-27 00:00:00	Av. Brigadeiro Faria Lima, 2170	São José dos Campos	SP	Brazil	12227-000	1.98
 317	3	2012-10-28 00:00:00	1498 rue Bélanger	Montréal	QC	Canada	H2G 1A7	3.96
 318	7	2012-10-29 00:00:00	Rotenturmstraße 4, 1010 Innere Stadt	Vienne	\N	Austria	1010	5.94
 319	13	2012-11-01 00:00:00	Qe 7 Bloco G	Brasília	DF	Brazil	71020-677	8.91
@@ -1638,7 +1624,6 @@ COPY public.facture (facture_id, client_id, date_facture, adresse_facture, ville
 324	41	2012-11-28 00:00:00	11, Place Bellecour	Lyon	\N	France	69002	3.96
 325	45	2012-11-29 00:00:00	Erzsébet krt. 58.	Budapest	\N	Hungary	H-1073	5.94
 326	51	2012-12-02 00:00:00	Celsiusg. 9	Stockholm	\N	Sweden	11230	8.91
-327	1	2012-12-07 00:00:00	Av. Brigadeiro Faria Lima, 2170	São José dos Campos	SP	Brazil	12227-000	13.86
 328	15	2012-12-15 00:00:00	700 W Pender Street	Vancouver	BC	Canada	V6C 1G8	0.99
 329	16	2012-12-28 00:00:00	1600 Amphitheatre Parkway	Mountain View	CA	USA	94043-1351	1.98
 330	18	2012-12-28 00:00:00	627 Broadway	New York	NY	USA	10012-2612	1.98
@@ -1693,7 +1678,6 @@ COPY public.facture (facture_id, client_id, date_facture, adresse_facture, ville
 379	48	2013-08-02 00:00:00	Lijnbaansgracht 120bg	Amsterdam	VV	Netherlands	1016	1.98
 380	50	2013-08-03 00:00:00	C/ San Bernardo 85	Madrid	\N	Spain	28015	3.96
 381	54	2013-08-04 00:00:00	110 Raeburn Pl	Edinburgh	\N	United Kingdom	EH4 1HH	5.94
-382	1	2013-08-07 00:00:00	Av. Brigadeiro Faria Lima, 2170	São José dos Campos	SP	Brazil	12227-000	8.91
 383	10	2013-08-12 00:00:00	Rua Dr. Falcão Filho, 155	São Paulo	SP	Brazil	01007-010	13.86
 384	24	2013-08-20 00:00:00	162 E Superior Street	Chicago	IL	USA	60611	0.99
 385	25	2013-09-02 00:00:00	319 N. Frances Street	Madison	WI	USA	53703	1.98
@@ -1728,8 +1712,8 @@ COPY public.facture (facture_id, client_id, date_facture, adresse_facture, ville
 
 
 --
--- TOC entry 5067 (class 0 OID 21767)
--- Dependencies: 228
+-- TOC entry 5115 (class 0 OID 19222)
+-- Dependencies: 229
 -- Data for Name: genre; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1763,8 +1747,8 @@ COPY public.genre (genre_id, nom) FROM stdin;
 
 
 --
--- TOC entry 5071 (class 0 OID 21786)
--- Dependencies: 232
+-- TOC entry 5117 (class 0 OID 19227)
+-- Dependencies: 231
 -- Data for Name: ligne_facture; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -2299,8 +2283,6 @@ COPY public.ligne_facture (ligne_facture_id, facture_id, piste_id, prix_unitaire
 528	96	3223	1.99	1
 529	96	3232	1.99	1
 530	97	3246	1.99	1
-531	98	3247	1.99	1
-532	98	3248	1.99	1
 533	99	3250	1.99	1
 534	99	3252	1.99	1
 535	100	3254	0.99	1
@@ -2417,10 +2399,6 @@ COPY public.ligne_facture (ligne_facture_id, facture_id, piste_id, prix_unitaire
 646	119	441	0.99	1
 647	120	443	0.99	1
 648	120	445	0.99	1
-649	121	447	0.99	1
-650	121	449	0.99	1
-651	121	451	0.99	1
-652	121	453	0.99	1
 653	122	457	0.99	1
 654	122	461	0.99	1
 655	122	465	0.99	1
@@ -2535,12 +2513,6 @@ COPY public.ligne_facture (ligne_facture_id, facture_id, piste_id, prix_unitaire
 764	142	1145	0.99	1
 765	142	1147	0.99	1
 766	142	1149	0.99	1
-767	143	1153	0.99	1
-768	143	1157	0.99	1
-769	143	1161	0.99	1
-770	143	1165	0.99	1
-771	143	1169	0.99	1
-772	143	1173	0.99	1
 773	144	1179	0.99	1
 774	144	1185	0.99	1
 775	144	1191	0.99	1
@@ -2830,7 +2802,6 @@ COPY public.ligne_facture (ligne_facture_id, facture_id, piste_id, prix_unitaire
 1059	194	2959	0.99	1
 1060	194	2968	0.99	1
 1061	194	2977	0.99	1
-1062	195	2991	0.99	1
 1063	196	2992	0.99	1
 1064	196	2993	0.99	1
 1065	197	2995	0.99	1
@@ -3479,8 +3450,6 @@ COPY public.ligne_facture (ligne_facture_id, facture_id, piste_id, prix_unitaire
 1708	314	3432	0.99	1
 1709	315	3433	0.99	1
 1710	315	3434	0.99	1
-1711	316	3436	0.99	1
-1712	316	3438	0.99	1
 1713	317	3440	0.99	1
 1714	317	3442	0.99	1
 1715	317	3444	0.99	1
@@ -3538,20 +3507,6 @@ COPY public.ligne_facture (ligne_facture_id, facture_id, piste_id, prix_unitaire
 1767	326	241	0.99	1
 1768	326	247	0.99	1
 1769	326	253	0.99	1
-1770	327	262	0.99	1
-1771	327	271	0.99	1
-1772	327	280	0.99	1
-1773	327	289	0.99	1
-1774	327	298	0.99	1
-1775	327	307	0.99	1
-1776	327	316	0.99	1
-1777	327	325	0.99	1
-1778	327	334	0.99	1
-1779	327	343	0.99	1
-1780	327	352	0.99	1
-1781	327	361	0.99	1
-1782	327	370	0.99	1
-1783	327	379	0.99	1
 1784	328	393	0.99	1
 1785	329	394	0.99	1
 1786	329	395	0.99	1
@@ -3833,15 +3788,6 @@ COPY public.ligne_facture (ligne_facture_id, facture_id, piste_id, prix_unitaire
 2062	381	2047	0.99	1
 2063	381	2051	0.99	1
 2064	381	2055	0.99	1
-2065	382	2061	0.99	1
-2066	382	2067	0.99	1
-2067	382	2073	0.99	1
-2068	382	2079	0.99	1
-2069	382	2085	0.99	1
-2070	382	2091	0.99	1
-2071	382	2097	0.99	1
-2072	382	2103	0.99	1
-2073	382	2109	0.99	1
 2074	383	2118	0.99	1
 2075	383	2127	0.99	1
 2076	383	2136	0.99	1
@@ -4013,8 +3959,8 @@ COPY public.ligne_facture (ligne_facture_id, facture_id, piste_id, prix_unitaire
 
 
 --
--- TOC entry 5075 (class 0 OID 21806)
--- Dependencies: 236
+-- TOC entry 5119 (class 0 OID 19236)
+-- Dependencies: 233
 -- Data for Name: liste_lecture; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -4041,8 +3987,8 @@ COPY public.liste_lecture (liste_lecture_id, nom) FROM stdin;
 
 
 --
--- TOC entry 5076 (class 0 OID 21813)
--- Dependencies: 237
+-- TOC entry 5121 (class 0 OID 19241)
+-- Dependencies: 235
 -- Data for Name: liste_lecture_piste; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -12766,8 +12712,8 @@ COPY public.liste_lecture_piste (liste_lecture_id, piste_id) FROM stdin;
 
 
 --
--- TOC entry 5078 (class 0 OID 21821)
--- Dependencies: 239
+-- TOC entry 5122 (class 0 OID 19246)
+-- Dependencies: 236
 -- Data for Name: piste; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -16279,8 +16225,8 @@ COPY public.piste (piste_id, nom, album_id, type_media_id, genre_id, compositeur
 
 
 --
--- TOC entry 5073 (class 0 OID 21798)
--- Dependencies: 234
+-- TOC entry 5124 (class 0 OID 19255)
+-- Dependencies: 238
 -- Data for Name: type_media; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -16294,8 +16240,8 @@ COPY public.type_media (type_media_id, nom) FROM stdin;
 
 
 --
--- TOC entry 5095 (class 0 OID 0)
--- Dependencies: 219
+-- TOC entry 5142 (class 0 OID 0)
+-- Dependencies: 220
 -- Name: album_album_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -16303,8 +16249,8 @@ SELECT pg_catalog.setval('public.album_album_id_seq', 1, false);
 
 
 --
--- TOC entry 5096 (class 0 OID 0)
--- Dependencies: 221
+-- TOC entry 5143 (class 0 OID 0)
+-- Dependencies: 222
 -- Name: artiste_artiste_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -16312,8 +16258,8 @@ SELECT pg_catalog.setval('public.artiste_artiste_id_seq', 1, false);
 
 
 --
--- TOC entry 5097 (class 0 OID 0)
--- Dependencies: 223
+-- TOC entry 5144 (class 0 OID 0)
+-- Dependencies: 224
 -- Name: client_client_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -16321,8 +16267,8 @@ SELECT pg_catalog.setval('public.client_client_id_seq', 1, false);
 
 
 --
--- TOC entry 5098 (class 0 OID 0)
--- Dependencies: 225
+-- TOC entry 5145 (class 0 OID 0)
+-- Dependencies: 226
 -- Name: employe_employe_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -16330,8 +16276,8 @@ SELECT pg_catalog.setval('public.employe_employe_id_seq', 1, false);
 
 
 --
--- TOC entry 5099 (class 0 OID 0)
--- Dependencies: 229
+-- TOC entry 5146 (class 0 OID 0)
+-- Dependencies: 228
 -- Name: facture_facture_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -16339,8 +16285,8 @@ SELECT pg_catalog.setval('public.facture_facture_id_seq', 1, false);
 
 
 --
--- TOC entry 5100 (class 0 OID 0)
--- Dependencies: 227
+-- TOC entry 5147 (class 0 OID 0)
+-- Dependencies: 230
 -- Name: genre_genre_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -16348,8 +16294,8 @@ SELECT pg_catalog.setval('public.genre_genre_id_seq', 1, false);
 
 
 --
--- TOC entry 5101 (class 0 OID 0)
--- Dependencies: 231
+-- TOC entry 5148 (class 0 OID 0)
+-- Dependencies: 232
 -- Name: ligne_facture_ligne_facture_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -16357,8 +16303,8 @@ SELECT pg_catalog.setval('public.ligne_facture_ligne_facture_id_seq', 1, false);
 
 
 --
--- TOC entry 5102 (class 0 OID 0)
--- Dependencies: 235
+-- TOC entry 5149 (class 0 OID 0)
+-- Dependencies: 234
 -- Name: liste_lecture_liste_lecture_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -16366,8 +16312,8 @@ SELECT pg_catalog.setval('public.liste_lecture_liste_lecture_id_seq', 1, false);
 
 
 --
--- TOC entry 5103 (class 0 OID 0)
--- Dependencies: 238
+-- TOC entry 5150 (class 0 OID 0)
+-- Dependencies: 237
 -- Name: piste_piste_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -16375,8 +16321,8 @@ SELECT pg_catalog.setval('public.piste_piste_id_seq', 1, false);
 
 
 --
--- TOC entry 5104 (class 0 OID 0)
--- Dependencies: 233
+-- TOC entry 5151 (class 0 OID 0)
+-- Dependencies: 239
 -- Name: type_media_type_media_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -16384,7 +16330,7 @@ SELECT pg_catalog.setval('public.type_media_type_media_id_seq', 1, false);
 
 
 --
--- TOC entry 4870 (class 2606 OID 21736)
+-- TOC entry 4917 (class 2606 OID 19271)
 -- Name: album PK_album; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -16393,7 +16339,7 @@ ALTER TABLE ONLY public.album
 
 
 --
--- TOC entry 4872 (class 2606 OID 21744)
+-- TOC entry 4919 (class 2606 OID 19273)
 -- Name: artiste PK_artiste; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -16402,7 +16348,7 @@ ALTER TABLE ONLY public.artiste
 
 
 --
--- TOC entry 4875 (class 2606 OID 21755)
+-- TOC entry 4922 (class 2606 OID 19275)
 -- Name: client PK_client; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -16411,7 +16357,7 @@ ALTER TABLE ONLY public.client
 
 
 --
--- TOC entry 4878 (class 2606 OID 21765)
+-- TOC entry 4925 (class 2606 OID 19277)
 -- Name: employe PK_employe; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -16420,7 +16366,7 @@ ALTER TABLE ONLY public.employe
 
 
 --
--- TOC entry 4883 (class 2606 OID 21784)
+-- TOC entry 4928 (class 2606 OID 19279)
 -- Name: facture PK_facture; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -16429,7 +16375,7 @@ ALTER TABLE ONLY public.facture
 
 
 --
--- TOC entry 4880 (class 2606 OID 21773)
+-- TOC entry 4930 (class 2606 OID 19281)
 -- Name: genre PK_genre; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -16438,7 +16384,7 @@ ALTER TABLE ONLY public.genre
 
 
 --
--- TOC entry 4887 (class 2606 OID 21796)
+-- TOC entry 4934 (class 2606 OID 19283)
 -- Name: ligne_facture PK_ligne_facture; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -16447,7 +16393,7 @@ ALTER TABLE ONLY public.ligne_facture
 
 
 --
--- TOC entry 4891 (class 2606 OID 21812)
+-- TOC entry 4936 (class 2606 OID 19285)
 -- Name: liste_lecture PK_liste_lecture; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -16456,7 +16402,7 @@ ALTER TABLE ONLY public.liste_lecture
 
 
 --
--- TOC entry 4894 (class 2606 OID 21819)
+-- TOC entry 4939 (class 2606 OID 19287)
 -- Name: liste_lecture_piste PK_liste_lecture_piste; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -16465,7 +16411,7 @@ ALTER TABLE ONLY public.liste_lecture_piste
 
 
 --
--- TOC entry 4899 (class 2606 OID 21831)
+-- TOC entry 4944 (class 2606 OID 19289)
 -- Name: piste PK_piste; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -16474,7 +16420,7 @@ ALTER TABLE ONLY public.piste
 
 
 --
--- TOC entry 4889 (class 2606 OID 21804)
+-- TOC entry 4946 (class 2606 OID 19291)
 -- Name: type_media PK_type_media; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -16483,7 +16429,7 @@ ALTER TABLE ONLY public.type_media
 
 
 --
--- TOC entry 4868 (class 1259 OID 21837)
+-- TOC entry 4915 (class 1259 OID 19292)
 -- Name: IFK_albumartiste_id; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -16491,7 +16437,7 @@ CREATE INDEX "IFK_albumartiste_id" ON public.album USING btree (artiste_id);
 
 
 --
--- TOC entry 4873 (class 1259 OID 21843)
+-- TOC entry 4920 (class 1259 OID 19293)
 -- Name: IFK_clientrepresentant_id; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -16499,7 +16445,7 @@ CREATE INDEX "IFK_clientrepresentant_id" ON public.client USING btree (represent
 
 
 --
--- TOC entry 4876 (class 1259 OID 21849)
+-- TOC entry 4923 (class 1259 OID 19294)
 -- Name: IFK_employesuperviseur_id; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -16507,7 +16453,7 @@ CREATE INDEX "IFK_employesuperviseur_id" ON public.employe USING btree (supervis
 
 
 --
--- TOC entry 4881 (class 1259 OID 21855)
+-- TOC entry 4926 (class 1259 OID 19295)
 -- Name: IFK_factureclient_id; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -16515,7 +16461,7 @@ CREATE INDEX "IFK_factureclient_id" ON public.facture USING btree (client_id);
 
 
 --
--- TOC entry 4884 (class 1259 OID 21861)
+-- TOC entry 4931 (class 1259 OID 19296)
 -- Name: IFK_ligne_facturefacture_id; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -16523,7 +16469,7 @@ CREATE INDEX "IFK_ligne_facturefacture_id" ON public.ligne_facture USING btree (
 
 
 --
--- TOC entry 4885 (class 1259 OID 21867)
+-- TOC entry 4932 (class 1259 OID 19297)
 -- Name: IFK_ligne_facturepiste_id; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -16531,7 +16477,7 @@ CREATE INDEX "IFK_ligne_facturepiste_id" ON public.ligne_facture USING btree (pi
 
 
 --
--- TOC entry 4892 (class 1259 OID 21878)
+-- TOC entry 4937 (class 1259 OID 19298)
 -- Name: IFK_liste_lecture_pistepiste_id; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -16539,7 +16485,7 @@ CREATE INDEX "IFK_liste_lecture_pistepiste_id" ON public.liste_lecture_piste USI
 
 
 --
--- TOC entry 4895 (class 1259 OID 21884)
+-- TOC entry 4940 (class 1259 OID 19299)
 -- Name: IFK_pistealbum_id; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -16547,7 +16493,7 @@ CREATE INDEX "IFK_pistealbum_id" ON public.piste USING btree (album_id);
 
 
 --
--- TOC entry 4896 (class 1259 OID 21890)
+-- TOC entry 4941 (class 1259 OID 19300)
 -- Name: IFK_pistegenre_id; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -16555,7 +16501,7 @@ CREATE INDEX "IFK_pistegenre_id" ON public.piste USING btree (genre_id);
 
 
 --
--- TOC entry 4897 (class 1259 OID 21896)
+-- TOC entry 4942 (class 1259 OID 19301)
 -- Name: IFK_pistetype_media_id; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -16563,7 +16509,7 @@ CREATE INDEX "IFK_pistetype_media_id" ON public.piste USING btree (type_media_id
 
 
 --
--- TOC entry 4900 (class 2606 OID 21832)
+-- TOC entry 4947 (class 2606 OID 19302)
 -- Name: album FK_albumartiste_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -16572,7 +16518,7 @@ ALTER TABLE ONLY public.album
 
 
 --
--- TOC entry 4901 (class 2606 OID 21838)
+-- TOC entry 4948 (class 2606 OID 19307)
 -- Name: client FK_clientrepresentant_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -16581,7 +16527,7 @@ ALTER TABLE ONLY public.client
 
 
 --
--- TOC entry 4902 (class 2606 OID 21844)
+-- TOC entry 4949 (class 2606 OID 19312)
 -- Name: employe FK_employesuperviseur_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -16590,7 +16536,7 @@ ALTER TABLE ONLY public.employe
 
 
 --
--- TOC entry 4903 (class 2606 OID 21850)
+-- TOC entry 4950 (class 2606 OID 19317)
 -- Name: facture FK_factureclient_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -16599,7 +16545,7 @@ ALTER TABLE ONLY public.facture
 
 
 --
--- TOC entry 4904 (class 2606 OID 21856)
+-- TOC entry 4951 (class 2606 OID 19322)
 -- Name: ligne_facture FK_ligne_facturefacture_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -16608,7 +16554,7 @@ ALTER TABLE ONLY public.ligne_facture
 
 
 --
--- TOC entry 4905 (class 2606 OID 21862)
+-- TOC entry 4952 (class 2606 OID 19327)
 -- Name: ligne_facture FK_ligne_facturepiste_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -16617,7 +16563,7 @@ ALTER TABLE ONLY public.ligne_facture
 
 
 --
--- TOC entry 4906 (class 2606 OID 21868)
+-- TOC entry 4953 (class 2606 OID 19332)
 -- Name: liste_lecture_piste FK_liste_lecture_pisteliste_lecture_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -16626,7 +16572,7 @@ ALTER TABLE ONLY public.liste_lecture_piste
 
 
 --
--- TOC entry 4907 (class 2606 OID 21873)
+-- TOC entry 4954 (class 2606 OID 19337)
 -- Name: liste_lecture_piste FK_liste_lecture_pistepiste_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -16635,7 +16581,7 @@ ALTER TABLE ONLY public.liste_lecture_piste
 
 
 --
--- TOC entry 4908 (class 2606 OID 21879)
+-- TOC entry 4955 (class 2606 OID 19342)
 -- Name: piste FK_pistealbum_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -16644,7 +16590,7 @@ ALTER TABLE ONLY public.piste
 
 
 --
--- TOC entry 4909 (class 2606 OID 21885)
+-- TOC entry 4956 (class 2606 OID 19347)
 -- Name: piste FK_pistegenre_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -16653,7 +16599,7 @@ ALTER TABLE ONLY public.piste
 
 
 --
--- TOC entry 4910 (class 2606 OID 21891)
+-- TOC entry 4957 (class 2606 OID 19352)
 -- Name: piste FK_pistetype_media_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -16661,11 +16607,11 @@ ALTER TABLE ONLY public.piste
     ADD CONSTRAINT "FK_pistetype_media_id" FOREIGN KEY (type_media_id) REFERENCES public.type_media(type_media_id);
 
 
--- Completed on 2026-03-02 17:08:48
+-- Completed on 2026-03-22 21:17:44
 
 --
 -- PostgreSQL database dump complete
 --
 
-\unrestrict yVshL5XUkPfEuAitIX937OpBCTlgTQdn2kkAPaghfmiGkyYyRldwVPywX8c2lnB
+\unrestrict LKm5rMTKSmEIg1M58CPxAHC0fJFbx2irzqD8cb1eyRbjandUVRTvLladuk7YERi
 
