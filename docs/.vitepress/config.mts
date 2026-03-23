@@ -145,12 +145,12 @@ export default defineConfig({
 							{
 								text: "Expressions régulières & fonctions textuelles",
 								link: "/modules/04-jointures-agregations/01-expressions-regulieres",
-							},
-							/*
+							},					
 							{
-								text: "Jointures (INNER/LEFT/RIGHT/FULL)",
+								text: "Jointures de tables",
 								link: "/modules/04-jointures-agregations/02-jointures",
 							},
+							/*
 							{
 								text: "Fonctions d'agrégation",
 								link: "/modules/04-jointures-agregations/03-fonctions-agregation",
@@ -209,8 +209,8 @@ export default defineConfig({
 					{ text: "Lab 03 — DDL", link: "/labs/lab03-ddl" },
 					{ text: "Lab 04 — Requêtes select", link: "/labs/lab04-select" },
 					{ text: "Lab 05 — Modification, opérateurs et sous-requêtes", link: "/labs/lab05-avance" },
-					/*
 					{ text: "Lab 06 — Jointures", link: "/labs/lab06-jointures" },
+					/*
 					{ text: "Lab 07 — Agrégations", link: "/labs/lab07-agregations" },
 					{ text: "Lab 08 — DDL & maintenance", link: "/labs/lab08-ddl-maintenance" },
 					{ text: "Lab 09 — Sécurité", link: "/labs/lab09-securite" }

@@ -12,7 +12,7 @@ Comprendre comment **combiner des données provenant de plusieurs tables** :
 - `right join` (garder toutes les lignes de droite)
 - `full join` (garder tout des deux côtés)
 
-Dans les exemples, on utilise des **alias de tables** (ex. `piste p`, `album al`) pour :
+Dans les exemples, on utilise maintenant des **alias de tables** (ex. `piste p`, `album al`) pour :
 - rendre les requêtes plus courtes et lisibles
 - éviter l’ambiguïté quand plusieurs tables ont des colonnes du même nom
 
@@ -75,7 +75,6 @@ join table_b b
 À retenir :
 - `join` seul = `inner join`
 - préférez les **alias** (`a`, `b`) pour éviter l’ambiguïté
-- mettez la condition de jointure dans `on` (pas dans `where`)
 - dans le `on`, on compare généralement une colonne de la table de gauche avec une colonne de la table de droite (ex. `a.id = b.a_id`)
 - les lignes pour lesquelles les deux valeurs correspondent seront associées dans le résultat
 - le cas le plus courant : jointure entre une **clé primaire (PK)** et une **clé étrangère (FK)**
@@ -96,9 +95,9 @@ join album al
 	on al.album_id = p.album_id;
 ```
 
-Ensuite, on préfixe les colonnes avec l’alias (ex. `p.nom`, `al.titre`).
+On peut préfixe les colonnes avec un alias (ex. `p.nom`, `al.titre`) généralement lorsqu'on a besoin de préciser le libellé de colonne de le résultat.
 
-### Alias de colonnes
+### Alias de colonnes 
 
 ```sql
 select p.nom piste, al.titre album
@@ -113,7 +112,7 @@ left join album al
 
 Un `inner join` retourne **uniquement** les lignes qui ont une correspondance des deux côtés.
 
-### Exemple — artistes et albums
+### Exemple — Afficher les artistes et leurs albums
 
 ```sql
 select ar.nom artiste, al.titre album
@@ -123,7 +122,22 @@ join album al
 order by ar.nom, al.titre;
 ```
 
-### Exemple — factures et lignes de facture
+### Exemple — Afficher les albums et les pistes de l'artiste AC/DC
+
+Le `where` se place **après** tous les `join`, comme dans n'importe quelle requête :
+
+```sql
+select ar.nom artiste, al.titre album, p.nom piste
+from artiste ar
+join album al
+	on al.artiste_id = ar.artiste_id
+join piste p
+	on al.album_id = p.album_id 
+where ar.nom = 'AC/DC'
+order by al.titre, p.nom;
+```
+
+### Exemple — Afficher les factures et les lignes de facture
 
 ```sql
 select f.facture_id, f.date_facture, lf.piste_id, lf.quantite, lf.prix_unitaire
@@ -143,7 +157,7 @@ Un `left join` retourne :
 - **toutes** les lignes de la table de gauche
 - et les lignes correspondantes de la table de droite (sinon, des `NULL`)
 
-### Exemple — montrer tous les clients ainsi que leur représentant respectif
+### Exemple — Afficher tous les clients ainsi que leur représentant respectif
 
 Dans Chinook, un client pourrait ne pas avoir de représentant, car la colonne representant_id est nullable.
 
@@ -157,7 +171,7 @@ order by r.prenom desc;
 
 > Ici, 4 clients n'ont pas de représentant.
 
-### Exemple — garder tous les clients, même sans facture
+### Exemple — Conserver tous les clients, même ceux sans facture
 
 ```sql
 select c.client_id, c.prenom, c.nom_famille, f.facture_id
@@ -178,17 +192,29 @@ Dans les deux exemples, on veut quand-même afficher les informations de la tabl
 Un `right join` est l’équivalent d’un `left join`, mais en gardant **toutes** les lignes de la table de droite.
 En pratique, on l’utilise moins : on préfère souvent **inverser l’ordre** des tables et faire un `left join`.
 
-### Exemple — garder tous les représentants (version inversée du `left join` client → représentant)
+### Exemple — la même requête que le `left join`, réécrite en `right join`
 
-Ici, on garde **tous** les employés (représentants), même ceux qui n’ont aucun client.
+Rappel — avec un `left join` :
 
 ```sql
-select r.prenom représentant, c.prenom client
+select c.prenom client, r.prenom représentant
 from client c
-right join employe r
+left join employe r
 	on c.representant_id = r.employe_id
-order by r.prenom, c.prenom;
+order by r.prenom desc;
 ```
+
+La version strictement équivalente avec un `right join` consiste à **inverser l'ordre des tables** :
+
+```sql
+select c.prenom client, r.prenom représentant
+from employe r
+right join client c
+	on c.representant_id = r.employe_id
+order by r.prenom desc;
+```
+
+Les deux requêtes produisent **exactement le même résultat** : tous les clients, avec `NULL` pour le représentant quand il n'y en a pas.
 
 <div class="my-3 rounded-lg border border-red-300 bg-red-50 p-3 text-red-900">
 <strong>Important</strong><br>
@@ -222,7 +248,9 @@ order by r.prenom, c.prenom;
 
 ## Exemples de jointures multi-tables
 
-### Exemple A — catalogue : artiste → album → piste (+ type_media, genre)
+### Exemple A — Catalogue de musique complet
+
+>Afficher le catalogue complet de la boutique : pour chaque piste, montrer le nom de l'artiste, le titre de l'album, le nom de la piste, son type de média, son genre et son prix unitaire. Trier par artiste, puis par album, puis par piste.
 
 ```sql
 select
@@ -244,7 +272,9 @@ left join genre g
 order by ar.nom, al.titre, p.nom;
 ```
 
-### Exemple B — ventes : client → facture → ligne_facture → piste
+### Exemple B — Détail des ventes pour un client précis
+
+>Afficher le détail de toutes les ventes pour le client **François Tremblay** : pour chaque ligne de facture, montrer le prénom et nom du client, le numéro et la date de la facture, le nom de la piste achetée, la quantité, le prix unitaire et le total de la ligne. Trier par date de facture décroissante.
 
 ```sql
 select
@@ -263,6 +293,8 @@ join ligne_facture lf
 	on lf.facture_id = f.facture_id
 join piste p
 	on p.piste_id = lf.piste_id
+where c.prenom = 'François'
+	and c.nom_famille = 'Tremblay'
 order by f.date_facture desc, f.facture_id;
 ```
 

@@ -20,6 +20,55 @@ hero:
       link: https://techinfo.cegepgarneau.ca/Professeurs/Horaire?id=20
 
 ---
+<section id="semaine-9">
+<div class="relative flex py-5 items-center mt-10">
+   <div class="grow border-t border-gray-400"></div>
+   <span class="shrink mx-4 text-gray-400">Semaine 9 — du 23 mars au 27 mars</span>
+  <div class="grow border-t border-gray-400"></div>
+</div>
+<div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
+  <WeeklyTodo
+    title="À faire cette semaine — En classe"
+    subtitle="Activités réalisées pendant la séance."
+    :steps="[
+      {
+        title: 'Expressions régulières — Utilisation avec PostgreSQL',
+        description: 'Terminer les expressions régulières et leur utilisation dans PostgreSQL.',
+        links: [
+          { text: 'Expressions régulières', href: '/modules/04-jointures-agregations/01-expressions-regulieres', variant: 'primary' }
+        ]
+      },
+      {
+        title: 'Module 04 — Jointures de tables',
+        description: 'Théorie sur les jointures de tables.',
+        links: [
+          { text: 'Jointures', href: '/modules/04-jointures-agregations/02-jointures', variant: 'primary' }
+        ]
+      },
+      {
+        title: 'Lab 06 — Jointures de tables',
+        links: [
+          { text: 'Laboratoire 6', href: '/labs/lab06-jointures', variant: 'primary' }
+        ]
+      }
+    ]"
+  />
+
+  <WeeklyTodo
+    title="À préparer / compléter"
+    subtitle="À compléter de votre côté."
+    :steps="[
+      {
+        title: 'Lab 06 — Jointures de tables',
+        links: [
+          { text: 'Laboratoire 6', href: '/labs/lab06-jointures', variant: 'primary' }
+        ]
+      }
+    ]"
+  />
+</div>
+</section>
+
 <section id="semaine-8">
 <div class="relative flex py-5 items-center mt-10">
    <div class="grow border-t border-gray-400"></div>
