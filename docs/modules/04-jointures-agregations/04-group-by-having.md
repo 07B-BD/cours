@@ -1,4 +1,4 @@
----
+﻿---
 title: "04 — Group By et Having"
 ---
 
@@ -49,7 +49,7 @@ select g.nom genre, count(*) nombre_pistes
 from genre g
 join piste p
 	on g.genre_id = p.genre_id
-group by g.genre_id, g.nom
+group by g.nom
 order by g.nom;
 ```
 
@@ -288,9 +288,9 @@ Ici, on garde les clients dont la somme des factures atteint au moins 40.
 <div class="my-6 rounded-lg border border-blue-300 bg-blue-50 p-4 text-blue-900">
 	<strong class="block">ℹ️ À faire maintenant</strong>
 	<p class="m-0">
-		Pour mettre ces notions en pratique, passez au
-		<a href="./../../labs/lab06-jointures" class="font-semibold underline hover:text-blue-700">
-			Laboratoire 6 — Jointures
+		Pour mettre ces notions en pratique, passez à la
+		<a href="./../../labs/lab07-agregations#partie-1" class="font-semibold underline hover:text-blue-700">
+			partie 1 du laboratoire 7 — Agrégations, <code>group by</code> et <code>having</code>
 		</a>.
 	</p>
 </div>

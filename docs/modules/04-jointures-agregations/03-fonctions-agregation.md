@@ -17,7 +17,7 @@ Les fonctions d'agrégation SQL les plus courantes :
 *Exemple* : Quel est le prix le plus bas d'une piste ?
 
 ```sql
-select min(prix_unitaire) as prix_minimum
+select min(prix_unitaire) prix_minimum
 from piste;
 ```
 
@@ -28,7 +28,7 @@ from piste;
 *Exemple* : Quel est le prix le plus élevé d'une piste ?
 
 ```sql
-select max(prix_unitaire) as prix_maximum
+select max(prix_unitaire) prix_maximum
 from piste;
 ```
 
@@ -39,7 +39,7 @@ from piste;
 *Exemple* : Combien y a-t-il de clients ?
 
 ```sql
-select count(*) as nombre_clients
+select count(*) nombre_clients
 from client;
 ```
 
@@ -50,7 +50,7 @@ from client;
 *Exemple* : Quel est le montant total de toutes les factures ?
 
 ```sql
-select sum(total) as montant_total
+select sum(total) montant_total
 from facture;
 ```
 
@@ -61,7 +61,7 @@ from facture;
 *Exemple* : Quel est le montant moyen d'une facture ?
 
 ```sql
-select avg(total) as montant_moyen
+select avg(total) montant_moyen
 from facture;
 ```
 

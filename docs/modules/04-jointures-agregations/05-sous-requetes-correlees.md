@@ -1,4 +1,4 @@
----
+﻿---
 title: "05 — Sous-requêtes corrélées"
 ---
 
@@ -9,12 +9,9 @@ title: "05 — Sous-requêtes corrélées"
 - Comprendre ce qu'est une sous-requête corrélée
 - Bien la distinguer d'une sous-requête non corrélée
 - Savoir quand utiliser `exists`, `not exists` ou une comparaison avec une agrégation
-- Voir des exemples réalistes avec Chinook
 - Comprendre l'impact sur les performances
 
----
-
-## Principe
+## Comprendre les sous-requêtes corrélées
 
 Une sous-requête corrélée est une sous-requête qui **dépend de la ligne courante** de la requête principale.
 
@@ -24,20 +21,7 @@ Autrement dit :
 - la sous-requête est réévaluée pour cette ligne
 - puis le processus recommence pour la ligne suivante
 
-Exemple d'idée :
-- comparer une piste à la moyenne des pistes de son genre
-- vérifier si un client possède au moins une facture
-- vérifier si un employé supervise quelqu'un
-
-<div class="my-3 rounded-lg border border-red-300 bg-red-50 p-3 text-red-900">
-<strong>Important</strong><br>
-La différence centrale avec une sous-requête non corrélée est la suivante :
-une sous-requête non corrélée s'exécute indépendamment, alors qu'une sous-requête corrélée dépend de la ligne courante de la requête externe.
-</div>
-
----
-
-## Corrélée ou non corrélée ?
+### Corrélée ou non corrélée ?
 
 ### Sous-requête non corrélée
 
@@ -77,10 +61,10 @@ where p1.millisecondes > (
 );
 ```
 
-Ici, la sous-requête dépend de `p1.genre_id`.
-Elle ne peut pas être évaluée sans connaître la ligne courante de `p1`.
+>Ici, la sous-requête dépend de `p1.genre_id`.
+>Elle ne peut pas être évaluée sans connaître la ligne courante de `p1`.
 
-Si on fait un parallèle avec C#, on peut voir cette logique comme un `foreach` :
+Si on fait un parallèle avec **C#**, on peut voir cette logique comme un `foreach` :
 
 ```csharp
 foreach (var pisteCourante in pistes)
@@ -94,10 +78,10 @@ foreach (var pisteCourante in pistes)
 }
 ```
 
-L'idée n'est pas que SQL exécute littéralement ce code, mais cette image mentale aide à comprendre que:
-- la requête externe parcourt les lignes
-- pour chaque ligne, la sous-requête recalcule une valeur liée à cette ligne
-- puis SQL décide si la ligne est gardée ou non
+>L'idée n'est pas que SQL exécute littéralement ce code, mais cette image mentale aide à comprendre que:
+>- la requête externe parcourt les lignes
+>- **pour chaque ligne externe**, la sous-requête recalcule une valeur liée à cette ligne
+>- puis SQL décide si la ligne est gardée ou non
 
 ### À retenir
 
@@ -106,7 +90,7 @@ L'idée n'est pas que SQL exécute littéralement ce code, mais cette image ment
 
 ---
 
-## Quand utiliser une sous-requête corrélée ?
+### Quand utiliser une sous-requête corrélée ?
 
 Utilisez une sous-requête corrélée quand vous avez besoin de raisonner **ligne par ligne**.
 
@@ -116,16 +100,15 @@ Cas typiques :
 - vérifier l'absence d'une relation avec `not exists`
 - exprimer une règle métier qui dépend directement de l'enregistrement courant
 
-Très bon réflexe :
-- si la phrase contient "pour cette ligne", "pour ce client", "pour ce genre", "pour cet employé", une sous-requête corrélée est souvent naturelle
+>Si la phrase contient "pour cette ligne", "pour ce client", "pour ce genre", "pour cet employé", une sous-requête corrélée est souvent naturelle
 
 ---
 
-## Pourquoi les alias sont importants ?
+### Pourquoi les alias sont importants ?
 
 Dans une sous-requête corrélée, on doit distinguer clairement :
 - la table externe
-- la table relue dans la sous-requête
+- la table relue dans la sous-requête (souvent la même table)
 
 Exemple :
 
@@ -139,16 +122,11 @@ where p1.millisecondes > (
 );
 ```
 
-Sans alias, il devient difficile de savoir quelle colonne appartient à la requête externe et laquelle appartient à la sous-requête.
-
----
+>Sans alias, il devient difficile de savoir quelle colonne appartient à la requête externe et laquelle appartient à la sous-requête.
 
 ## Exemples
 
-### Exemple 1 — Pistes plus longues que la moyenne de leur genre
-
-Quand l'utiliser :
-- quand on veut comparer une ligne à une valeur agrégée calculée pour son propre groupe
+### Exemple 1 — Afficher les pistes plus longues que la moyenne de leur genre
 
 ```sql
 select p1.nom, p1.millisecondes, p1.genre_id
@@ -171,7 +149,7 @@ Pourquoi c'est corrélé :
 
 ---
 
-### Exemple 2 — Clients qui ont au moins une facture
+### Exemple 2 — Afficher les clients qui ont au moins une facture
 
 Quand l'utiliser :
 - quand on veut tester l'existence d'au moins une ligne liée
@@ -195,13 +173,15 @@ Ce que fait la requête :
 Quand préférer `exists` :
 - quand la question est "est-ce qu'il existe au moins une ligne liée ?"
 
+Pourquoi `select 1` ?
+- avec `exists`, SQL ne vérifie pas la valeur retournée, seulement la présence d'au moins une ligne
+- `select 1` est donc une convention simple pour montrer qu'on teste l'existence, pas le contenu
+
 ---
 
-### Exemple 3 — Clients sans aucune facture
+### Exemple 3 — Afficher les clients sans aucune facture
 
-Quand l'utiliser :
-- quand on veut trouver les lignes sans correspondance
-- `not exists` est souvent plus clair que d'utiliser `left join` + `is null`
+L'usage de `not exists` est ici plus clair que d'utiliser `left join` + `is null`
 
 ```sql
 select c.client_id, c.prenom, c.nom_famille
@@ -214,172 +194,89 @@ where not exists (
 order by c.client_id;
 ```
 
-Ce cas est très fréquent :
-- clients sans facture
-- artistes sans album
-- listes de lecture sans piste
-
 ---
 
-### Exemple 4 — Employés qui supervisent au moins un autre employé
-
-Quand l'utiliser :
-- quand la corrélation se fait dans la même table
-- excellent cas pour montrer qu'une sous-requête corrélée ne sert pas seulement entre deux tables différentes
+### Exemple 4 — Afficher les employés qui supervisent au moins un autre employé
 
 ```sql
-select e1.employe_id, e1.prenom, e1.nom_famille
-from employe e1
+select sup.employe_id, sup.prenom, sup.nom_famille
+from employe sup
 where exists (
 	select 1
-	from employe e2
-	where e1.employe_id = e2.superviseur_id
+	from employe emp
+	where sup.employe_id = emp.superviseur_id
 )
-order by e1.employe_id;
+order by sup.employe_id;
 ```
 
 Ici :
 - la requête externe lit un employé
 - la sous-requête vérifie s'il existe au moins un autre employé dont `superviseur_id` pointe vers cet employé
 
+## Bien choisir l'approche
+
+### Sous-requête corrélée, jointure ou `group by` ?
+
+Une sous-requête corrélée est utile quand la logique est naturellement formulée **ligne par ligne**.
+
+Préférez plutôt une jointure ou un `group by` quand :
+- une jointure simple exprime déjà clairement la relation entre les tables
+- un `group by` permet de calculer directement le résultat attendu
+- vous voulez une requête plus facile à optimiser sur de gros volumes
+
+En pratique :
+- sous-requête corrélée : bonne option pour raisonner "pour cette ligne"
+- jointure : bonne option pour relier des tables de façon directe
+- `group by` : bonne option pour résumer, compter ou additionner par groupe
+
 ---
 
-### Exemple 5 — Albums qui contiennent au moins une piste plus longue que la moyenne de l'album
+### Performance
 
-Quand l'utiliser :
-- quand la condition d'existence dépend elle-même d'un calcul corrélé
+### Exemple où une jointure est souvent plus performante
+
+Reprenons l'exemple des pistes plus longues que la moyenne de leur genre.
+
+Version avec sous-requête corrélée :
 
 ```sql
-select al.album_id, al.titre
-from album al
-where exists (
-	select 1
-	from piste p1
-	where al.album_id = p1.album_id
-		and p1.millisecondes > (
-			select avg(p2.millisecondes)
-			from piste p2
-			where p1.album_id = p2.album_id
-		)
+select p1.nom, p1.millisecondes, p1.genre_id
+from piste p1
+where p1.millisecondes > (
+	select avg(p2.millisecondes)
+	from piste p2
+	where p1.genre_id = p2.genre_id
 )
-order by al.titre;
+order by p1.genre_id, p1.millisecondes desc;
 ```
 
-Cette requête montre qu'on peut imbriquer une logique corrélée plus poussée :
-- la requête externe parcourt les albums
-- la sous-requête cherche des pistes de cet album
-- une seconde sous-requête corrélée compare chaque piste à la moyenne des pistes du même album
-
-Ce n'est pas toujours la solution la plus performante, mais c'est une bonne démonstration du mécanisme.
-
----
-
-## `exists` vs `in`
-
-Dans plusieurs cas, `exists` est plus naturel pour les sous-requêtes corrélées.
-
-Utilisez `exists` quand :
-- vous voulez simplement savoir si au moins une ligne liée existe
-- la sous-requête dépend de la ligne courante
-- vous n'avez pas besoin de récupérer une liste de valeurs
-
-Utilisez `in` plutôt quand :
-- la sous-requête n'est pas corrélée
-- vous comparez une valeur à un ensemble déjà calculé
-
-Exemple `exists` :
+Version avec jointure et agrégation :
 
 ```sql
-select c.client_id, c.prenom
-from client c
-where exists (
-	select 1
-	from facture f
-	where c.client_id = f.client_id
-);
+select p.nom, p.millisecondes, p.genre_id
+from piste p
+join (
+	select genre_id, avg(millisecondes) moyenne_genre
+	from piste
+	group by genre_id
+) stats
+	on p.genre_id = stats.genre_id
+where p.millisecondes > stats.moyenne_genre
+order by p.genre_id, p.millisecondes desc;
 ```
 
-Exemple `in` non corrélé :
+Pourquoi la seconde version est souvent meilleure :
+- la moyenne par genre est calculée une fois par groupe
+- la jointure réutilise ensuite ce résultat pour toutes les pistes du genre
+- sur un grand volume de données, cette forme est souvent plus facile à optimiser qu'un calcul répété pour chaque piste
 
-```sql
-select client_id, prenom
-from client
-where client_id in (
-	select client_id
-	from facture
-);
-```
+Quelques repères pour construire cette version :
+- commencez par écrire la requête qui calcule la moyenne par `genre_id`
+- donnez un alias à ce résultat, par exemple `stats`
+- joignez ensuite `piste` avec ce résultat sur `genre_id`
+- comparez finalement `p.millisecondes` avec `stats.moyenne_genre` dans le `where`
 
-Les deux peuvent parfois produire le même résultat, mais ils ne racontent pas exactement la même logique.
-
----
-
-## Quand ne pas les utiliser ?
-
-Évitez les sous-requêtes corrélées si :
-- une jointure simple est plus directe
-- un `group by` répond déjà bien au besoin
-- une fonction fenêtre serait plus claire pour comparer une ligne à une moyenne de groupe
-- le volume est important et la requête devient coûteuse
-
-Exemple : pour afficher le nombre de factures par client, un `group by` est généralement plus naturel qu'une sous-requête corrélée.
-
-Moins naturel :
-
-```sql
-select c.client_id, c.prenom,
-	(
-		select count(*)
-		from facture f
-		where c.client_id = f.client_id
-	) nombre_factures
-from client c;
-```
-
-Plus naturel :
-
-```sql
-select c.client_id, c.prenom, count(f.facture_id) nombre_factures
-from client c
-left join facture f
-	on c.client_id = f.client_id
-group by c.client_id, c.prenom
-order by c.client_id;
-```
-
-La sous-requête corrélée fonctionne, mais le `left join` avec `group by` exprime souvent mieux l'intention.
-
----
-
-## Performance
-
-### Comparaison générale
-
-- sous-requête non corrélée : souvent calculée une fois
-- sous-requête corrélée : souvent réévaluée pour chaque ligne de la requête externe
-- jointure avec `group by` : souvent plus facile à optimiser sur de gros volumes
-
-### Conséquence pratique
-
-Une sous-requête corrélée peut devenir plus lente quand :
-- la table externe contient beaucoup de lignes
-- la sous-requête lit elle aussi beaucoup de lignes
-- les colonnes de corrélation ne sont pas indexées
-
-### Bonnes pratiques
-
-- utilisez-la quand elle exprime clairement une logique "ligne par ligne"
-- préférez `exists` / `not exists` pour les tests d'existence
-- vérifiez toujours si une jointure ou un `group by` donnerait le même résultat plus simplement
-- sur de gros jeux de données, comparez les plans d'exécution
-
-### Idée clé
-
-Une sous-requête corrélée n'est pas "mauvaise".
-Elle est utile quand elle correspond exactement à la question posée.
-Elle devient problématique quand on l'utilise là où une requête agrégée ou une jointure ferait le travail plus efficacement.
-
----
+La sous-requête corrélée reste très utile pour comprendre la logique "pour cette ligne", mais une jointure avec agrégation peut être plus efficace quand le même calcul revient souvent.
 
 ## À retenir
 
@@ -391,8 +288,20 @@ Elle devient problématique quand on l'utilise là où une requête agrégée ou
 
 ---
 
-## Sources
+### Sources
 
 - [GeeksforGeeks — SQL Correlated Subqueries](https://www.geeksforgeeks.org/sql/sql-correlated-subqueries/)
 - [w3resource — SQL Correlated Subqueries](https://www.w3resource.com/sql/subqueries/correlated-subqueries-using-aliases.php)
 - [SQLTutorial — SQL Correlated Subquery](https://www.sqltutorial.org/sql-correlated-subquery/)
+
+---
+
+<div class="my-6 rounded-lg border border-blue-300 bg-blue-50 p-4 text-blue-900">
+	<strong class="block">ℹ️ À faire maintenant</strong>
+	<p class="m-0">
+		Pour mettre ces notions en pratique, passez à la
+		<a href="./../../labs/lab07-agregations#partie-2" class="font-semibold underline hover:text-blue-700">
+			partie 2 du laboratoire 7 — Sous-requêtes corrélées et synthèse
+		</a>.
+	</p>
+</div>

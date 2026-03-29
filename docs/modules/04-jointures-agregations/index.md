@@ -19,6 +19,6 @@ aside: false
 - [02 — Jointures](./02-jointures)
 - [Lab — Jointures](./../../labs/lab06-jointures)
 - [03 — Fonctions d'agrégation](./03-fonctions-agregation)
-- [04 — GROUP BY et HAVING](./04-group-by-having)
+- [04 — Group by et Having](./04-group-by-having)
 - [05 — Sous-requêtes corrélées](./05-sous-requetes-correlees)
 - [Lab — Agrégrations](./../../labs/lab07-agregations)
