@@ -1,1 +1,0 @@
-import{_ as e,o as t,c as r}from"./chunks/framework.BQi7Fipq.js";const d=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"grilles/grille-tp3.md","filePath":"grilles/grille-tp3.md"}'),l={name:"grilles/grille-tp3.md"};function a(s,i,o,c,n,p){return t(),r("div")}const m=e(l,[["render",a]]);export{d as __pageData,m as default};
