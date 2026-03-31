@@ -2,7 +2,7 @@
 title: "01 — Expressions régulières"
 ---
 
-# Expressions régulières
+# 01 — Expressions régulières
 > Adapté des notes de Gilles Duquerroy et Nouha Bouteldja
 
 Les expressions régulières (regex) sont des **motifs décrivant la forme d’une chaîne de caractères**.

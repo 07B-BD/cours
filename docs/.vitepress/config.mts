@@ -28,6 +28,7 @@ export default defineConfig({
 					{ text: "Module 2 — DDL de base", link: "/modules/02-ddl-base/" },
 					{ text: "Module 3 — SQL", link: "/modules/03-sql-base/" },
 					{ text: "Module 4 — Jointures et agrégations", link: "/modules/04-jointures-agregations/" },
+					{ text: "Module 5 — DDL avancé", link: "/modules/05-ddl-avance/"}
 				],
 			},
 			{ text: "Travaux", link: "/travaux/tp1-creation-bd" },
@@ -164,17 +165,16 @@ export default defineConfig({
 							},
 						],
 					},
-					/*
 					{
 						text: "Module 5 — DDL avancé",
 						collapsed: true,
 						items: [
 							{
-								text: "ALTER TABLE",
+								text: "Alter Table",
 								link: "/modules/05-ddl-avance/01-alter-table",
 							},
 							{
-								text: "Cascade DELETE / UPDATE",
+								text: "Cascade Delete / Update",
 								link: "/modules/05-ddl-avance/02-cascade-delete-update",
 							},
 							{
@@ -194,8 +194,7 @@ export default defineConfig({
 								link: "/modules/05-ddl-avance/06-revision-examen-2",
 							},
 						],
-					},
-					*/
+					}
 				],
 			},
 			{
@@ -209,10 +208,8 @@ export default defineConfig({
 					{ text: "Lab 05 — Modification, opérateurs et sous-requêtes", link: "/labs/lab05-avance" },
 					{ text: "Lab 06 — Jointures", link: "/labs/lab06-jointures" },
 					{ text: "Lab 07 — Agrégations", link: "/labs/lab07-agregations" },
-					/*
 					{ text: "Lab 08 — DDL & maintenance", link: "/labs/lab08-ddl-maintenance" },
 					{ text: "Lab 09 — Sécurité", link: "/labs/lab09-securite" }
-					*/
 				],
 			},
 			{
