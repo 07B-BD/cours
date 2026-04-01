@@ -8,8 +8,6 @@ aside: true
 ## Objectif
 Comprendre la différence entre **utilisateur**, **rôle** et **privilège** dans PostgreSQL, savoir attribuer des droits adaptés au contexte, puis vérifier que ces droits sont bien en place.
 
----
-
 ## L'essentiel à connaître
 
 Dans PostgreSQL, on ne donne pas tous les droits à tout le monde.
@@ -19,16 +17,9 @@ Le bon réflexe est :
 - séparer les responsabilités
 - éviter d'utiliser un compte trop puissant pour une application
 
-Cette idée est importante autant pour :
-- les humains
-- les équipes
-- les applications
+## Structurer les accès
 
-En cas d'erreur ou d'injection SQL, un compte trop privilégié augmente fortement les dégâts possibles.
-
----
-
-## Le modèle à retenir
+### Le modèle à retenir
 
 Pour ne pas mêler les concepts, retenez ce modèle simple :
 
@@ -47,44 +38,37 @@ Le bon réflexe est donc :
 - attribuer les privilèges aux rôles
 - ajouter ensuite les utilisateurs aux rôles
 
+![Hiérarchie utilisateur, rôle et privilèges](./images/hierarchie-utilisateur-role-privileges.svg)
+
 ---
 
-## Utilisateur, rôle, privilège
+### Utilisateur, rôle, privilège
 
 ### Utilisateur
 
 Un utilisateur est un compte qui peut se connecter à PostgreSQL.
 
 En pratique, dans PostgreSQL :
-- un utilisateur est un **rôle avec l'attribut `LOGIN`**
+- un utilisateur est un **rôle avec l'attribut `login`**
 - `create user` est essentiellement une forme pratique de `create role ... login`
 
-Exemple :
-
 ```sql
-create role alice login password 'mot_de_passe_admin';
 create user bob with password 'mot_de_passe_dev';
 ```
 
 ### Rôle
 
-Un rôle peut servir :
-- de compte de connexion
-- de groupe de droits
-
-Très souvent, on crée :
-- des rôles de groupe pour porter les permissions
-- des utilisateurs individuels qu'on ajoute à ces rôles
-
-Exemple :
+- Un rôle va normalement servir à porter des privilèges (lecture, écriture, etc.).
+- On va ensuite attribuer un à plusieurs rôles à un utilisateur
 
 ```sql
 create role admin;
 create role developpeur;
-create role lecteur_app;
+create role lecture_seule;
 
 grant admin to alice;
 grant developpeur to bob;
+grant lecture_seule to joe_analyste;
 ```
 
 ### Privilège
@@ -99,7 +83,7 @@ Exemples :
 
 ---
 
-## Qui devrait avoir quels droits
+### Qui devrait avoir quels droits
 
 Il n'existe pas une seule réponse parfaite, mais certains profils reviennent souvent.
 
@@ -122,12 +106,12 @@ Selon le contexte, un développeur peut :
 
 Mais il ne devrait pas automatiquement avoir tous les droits partout, surtout en production.
 
-### Lecteur ou testeur
+### Analyste ou lecteur
 
-Un testeur ou un lecteur a souvent seulement besoin de :
-- `connect`
+Un analyste ou un lecteur a souvent seulement besoin de :
+- `connect` à la base de données
 - `usage` sur le schéma
-- `select` sur certaines tables
+- `select` sur une à plusieurs tables
 
 ### Compte applicatif
 
@@ -147,14 +131,20 @@ En cas d'injection SQL, ce compte ne pourra alors faire que ce qui lui est permi
 
 ---
 
-## Une manière simple d'organiser les accès
+### Une manière simple d'organiser les accès
 
 Une structure simple et claire ressemble souvent à ceci :
 
+#### Utilisateurs
+
 - `alice` : utilisateur réel
 - `bob` : utilisateur réel
+- `joe_analyste` : utilisateur réel
 - `app_web` : utilisateur applicatif
-- `admin` : rôle de gestion
+
+#### Rôles
+
+- `admin` : rôle de gestion de la base de données
 - `developpeur` : rôle de travail sur les données
 - `lecture_seule` : rôle de consultation
 
@@ -165,83 +155,39 @@ Puis :
 Exemple :
 
 ```sql
+create user alice_admin with password 'mot_de_passe_admin';
+create user bob_dev with password 'mot_de_passe_dev';
+create user joe_analyste with password 'mot_de_passe_lecture';
+create user app_web with password 'mot_de_passe_app';
+
 create role admin;
 create role developpeur;
 create role lecture_seule;
 
-create role bob login password 'mot_de_passe_dev';
-create role app_web login password 'mot_de_passe_app';
-
-grant developpeur to bob;
-grant lecture_seule to app_web;
+grant admin to alice_admin;
+grant developpeur to bob_dev;
+grant lecture_seule to joe_analyste;
+grant developpeur to app_web; -- Tâches semblables au développeur
 ```
 
 Cette approche est plus facile à maintenir que de gérer chaque utilisateur séparément.
 
----
+## Gérer les privilèges avec `grant`
 
-## Avant d'exécuter les commandes
-
-Avant de créer des comptes ou de modifier des privilèges, utilisez un compte qui a déjà les droits nécessaires, par exemple :
-- `postgres`
-- ou un compte administrateur de votre environnement
-
-### Option la plus simple : DBeaver
-
-Dans ce cours, vous pouvez généralement :
-
-1. ouvrir une connexion vers PostgreSQL
-2. sélectionner la base visée, par exemple `chinook`
-3. ouvrir un nouvel éditeur SQL
-4. exécuter les commandes une à la fois
-
-Même si les rôles existent à l'échelle du cluster PostgreSQL, il est plus simple pédagogiquement de se connecter à la base sur laquelle vous travaillez.
-
-### Si vous voyez des erreurs
-
-Exemples fréquents :
-- vous n'avez pas le droit de créer un rôle
-- vous n'avez pas le droit d'accorder certains privilèges
-- vous êtes connecté avec un compte trop limité
-
-Dans ce cas :
-- reconnectez-vous avec un compte plus puissant
-- ou demandez à l'enseignant quel compte utiliser
-
-### Vérifier avec du SQL
-
-Si vous utilisez surtout DBeaver, vous pouvez valider beaucoup d'éléments directement avec des requêtes SQL.
-
-Retenez surtout l'idée :
-- vérifier les rôles
-- vérifier les privilèges
-- tester concrètement ce qu'un rôle peut faire
-
-Vous pouvez aussi compléter cette vérification dans DBeaver en explorant les propriétés des rôles, schémas et tables.
-
----
-
-## Donner des droits avec `GRANT`
-
-### Donner un rôle à un utilisateur
-
-```sql
-grant developpeur to bob;
-grant lecteur_app to application_web;
-```
-
-### Donner l'accès à la base
+### Donner l'accès à la base de données
 
 ```sql
 grant connect on database nom_de_la_bd to developpeur;
-grant connect on database nom_de_la_bd to lecteur_app;
+grant connect on database nom_de_la_bd to lecture_seule;
 ```
 
 ### Donner l'accès au schéma
 
+Dans PostgreSQL, beaucoup d'exemples utilisent le schéma `public`.
+
 ```sql
 grant usage on schema public to developpeur;
-grant usage on schema public to lecteur_app;
+grant usage on schema public to lecture_seule;
 ```
 
 ### Donner des droits sur les tables
@@ -253,12 +199,12 @@ to developpeur;
 
 grant select
 on all tables in schema public
-to lecteur_app;
+to lecture_seule;
 ```
 
-### Donner des droits sur les séquences
+### Donner des droits sur les séquences (`serial`)
 
-Quand des colonnes auto-générées utilisent des séquences, il faut parfois aussi donner des droits sur ces séquences.
+Quand des colonnes auto-générées (clés primaires) utilisent des séquences (pensez au type `serial`), il faut aussi donner des droits sur ces séquences.
 
 ```sql
 grant usage, select
@@ -266,32 +212,32 @@ on all sequences in schema public
 to developpeur;
 ```
 
-### À propos du schéma `public`
+### Donner des droits à un administrateur
 
-Dans PostgreSQL, beaucoup d'exemples utilisent le schéma `public`.
-
-Pour accéder aux objets qu'il contient, on donne souvent :
+Le rôle `admin` peut recevoir des droits plus larges sur la base de données.
 
 ```sql
-grant usage on schema public to developpeur;
+grant connect, create on database nom_de_la_bd to admin;
+grant usage, create on schema public to admin;
+grant all privileges on all tables in schema public to admin;
+grant all privileges on all sequences in schema public to admin;
 ```
 
-Sans ce droit, un rôle peut avoir des privilèges sur une table, mais rester bloqué dans certains contextes parce qu'il n'a pas accès au schéma qui la contient.
+- `admin` n'est pas automatiquement un superutilisateur PostgreSQL
+- ces `grant` donnent beaucoup de pouvoir sur les objets visés
 
 ---
 
-## Retirer des droits avec `REVOKE`
+### Retirer des droits avec `revoke`
 
 `revoke` sert à retirer un privilège ou un rôle.
-
-Exemples :
 
 ```sql
 revoke update on table employe from developpeur;
 
 revoke developpeur from bob;
 
-revoke all on table employe from lecteur_app;
+revoke all on table employe from lecture_seule;
 ```
 
 Le principe reste le même :
@@ -300,31 +246,24 @@ Le principe reste le même :
 
 ---
 
-## Quelques privilèges à connaître
+### Quelques privilèges à connaître
 
 Le tableau suivant résume les privilèges les plus utiles à retenir dans ce cours.
 L'idée n'est pas de tout mémoriser, mais de reconnaître les plus fréquents.
 
 | Privilège | S'applique surtout à | Permet essentiellement de |
 |---|---|---|
-| `CONNECT` | base de données | se connecter à une base |
-| `TEMPORARY` | base de données | créer des tables temporaires |
+| `CONNECT` | base de données | se connecter à une base de données |
 | `USAGE` | schéma, séquence, type | accéder à un schéma ou utiliser certains objets |
-| `CREATE` | base, schéma, tablespace | créer de nouveaux objets |
+| `CREATE` | base de données, schéma, tablespace | créer de nouveaux objets |
 | `SELECT` | table, vue, séquence | lire des données |
 | `INSERT` | table | ajouter des lignes |
 | `UPDATE` | table | modifier des lignes |
 | `DELETE` | table | supprimer des lignes |
-| `TRUNCATE` | table | vider rapidement une table |
 | `REFERENCES` | table, colonne | créer une clé étrangère qui référence la table |
-| `TRIGGER` | table | créer un déclencheur |
-| `EXECUTE` | fonction, procédure | exécuter une fonction ou procédure |
-| `MAINTAIN` | table | exécuter certaines opérations de maintenance comme `vacuum`, `analyze`, `reindex` |
 
 Source :
 - [PostgreSQL Documentation — Privileges](https://www.postgresql.org/docs/current/ddl-priv.html)
-
----
 
 ## Valider les droits dans PostgreSQL
 
@@ -332,9 +271,12 @@ Voici quelques requêtes SQL simples que vous pouvez exécuter directement dans 
 
 ### Voir les rôles
 
+Les rôles commençant par pg on été intentionnellement retirés.
+
 ```sql
 select rolname, rolcanlogin, rolsuper, rolcreatedb, rolcreaterole
 from pg_roles
+where rolname not like 'pg%'
 order by rolname;
 ```
 
@@ -356,14 +298,6 @@ Si vous utilisez `set role`, `current_user` peut changer alors que `session_user
 select datname
 from pg_database
 order by datname;
-```
-
-### Voir les schémas
-
-```sql
-select schema_name
-from information_schema.schemata
-order by schema_name;
 ```
 
 ### Voir les privilèges sur les tables
@@ -409,8 +343,6 @@ reset role;
 
 Cette approche permet de vérifier concrètement ce qu'un rôle peut ou ne peut pas faire.
 
----
-
 ## À retenir
 
 - dans PostgreSQL, tout tourne autour de la notion de rôle
@@ -427,3 +359,15 @@ Cette approche permet de vérifier concrètement ce qu'un rôle peut ou ne peut 
 - [PostgreSQL Documentation — Privileges](https://www.postgresql.org/docs/current/ddl-priv.html)
 - [PostgreSQL Documentation — GRANT](https://www.postgresql.org/docs/current/sql-grant.html)
 - [PostgreSQL Documentation — REVOKE](https://www.postgresql.org/docs/current/sql-revoke.html)
+---
+
+<div class="my-6 rounded-lg border border-blue-300 bg-blue-50 p-4 text-blue-900">
+	<strong class="block">ℹ️ À faire maintenant</strong>
+	<p class="m-0">
+		Passez au
+		<a href="./../../labs/lab09-securite" class="font-semibold underline hover:text-blue-700">
+			laboratoire 9 — Sécurité, comptes et privilèges
+		</a>
+		pour mettre en pratique la création de comptes, de rôles et l'attribution de privilèges dans Chinook.
+	</p>
+</div>

@@ -218,7 +218,7 @@ export default defineConfig({
 				items: [
 					{ text: "TP1 — Création BD", link: "/travaux/tp1-creation-bd" },
 					{ text: "TP2 — Requêtes SQL", link: "/travaux/tp2-sql" },
-					//{ text: "TP3 — DDL avancé", link: "/travaux/tp3-ddl-avance" },
+					{ text: "TP3 — DDL avancé", link: "/travaux/tp3-ddl-avance" },
 				],
 			},
 			{
