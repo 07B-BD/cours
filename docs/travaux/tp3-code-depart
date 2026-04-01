@@ -60,9 +60,11 @@ create table capteur (
 
 create table lecture_capteur (
     id serial primary key,
-    capteur_id integer not null references capteur(id),
+    capteur_id integer not null,
     date_heure timestamp not null,
-    valeur numeric(10,2) not null
+    valeur numeric(10,2) not null,
+    constraint lecture_capteur_capteur_fk
+        foreign key (capteur_id) references capteur(id)
 );
 
 create table type_decision (
@@ -84,7 +86,7 @@ create table log_systeme (
     code_log varchar(50) not null,
     message varchar(255) not null,
     niveau varchar(20) not null,
-    equipement_id integer
+    equipement_id integer references equipement(id)
 );
 
 create table utilisateur_systeme (

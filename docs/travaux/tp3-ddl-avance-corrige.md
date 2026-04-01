@@ -44,7 +44,7 @@ Le script de depart contient :
 | 10 | Sous-requete correlee avec `not exists` | `POR-B204`, salle `B-204` | `porte restee verrouillee` |
 | 11 | DDL maintenance | contrainte `salle_code_uq` ajoutee | `codes de salle non controles` |
 | 12 | DDL maintenance + regex | contrainte `capteur_code_format_ck` ajoutee | `codes capteurs non verifies` |
-| 13 | DDL maintenance | `log_systeme_niveau_ck` et `log_systeme_equipement_fk` ajoutes | `journaux trop permissifs` |
+| 13 | DDL maintenance | `lecture_capteur_capteur_fk` recreee avec `on delete cascade` | `maintenance de la FK capteur -> lectures` |
 | 14 | `pgcrypto` + hachage | plus de colonne mot de passe en clair | `mots de passe en clair` |
 | 15 | Contraintes sur `utilisateur_systeme` | `not null`, `unique`, `check` en place | `compte partage mal encadre` |
 | 16 | Roles et privileges | separation claire admin / enqueteur / technicien | `droits d'admin` |

@@ -11,7 +11,9 @@ title: "TP3 - Incident dans l’immeuble intelligent"
 
 <div class="my-6 rounded-lg border border-yellow-300 bg-yellow-50 p-4 text-yellow-900">
 <strong>Fichier de départ obligatoire</strong><br>
-Vous devez partir du script suivant, puis écrire toutes vos réponses dans un seul fichier SQL renommé <code>tp3_prenom_nom.sql</code>.<br>
+Téléchargez le fichier de réponses structuré suivant, renommez-le <code>tp3_prenom_nom.sql</code>, puis écrivez vos réponses directement dedans.<br>
+<a href="./tp3-reponses-depart.sql" target="_blank" rel="noopener">Télécharger le fichier de réponses du TP3</a><br><br>
+Avant de commencer à répondre, exécutez aussi le script de création et de peuplement suivant dans votre base de données de travail :<br>
 <a href="./tp3-code-depart" target="_blank" rel="noopener">Télécharger le code de départ du TP3</a>
 </div>
 
@@ -88,11 +90,14 @@ Une bonne réponse doit être claire, stable, vérifiable et directement corrige
 Chaque bonne réponse vous donnera un indice.
 Conservez-les au fur et à mesure.
 
+Les indices **[1] à [9]** sont donnés explicitement dans les **questions 1 à 9**.
+Les questions **10 à 16** servent à confirmer l’incident et à corriger la base, mais ne donnent pas de nouvel indice pour la phrase finale.
+
 En fin de TP, vous devrez compléter cette phrase :
 
-> La **[1]** de la **[2]** en **[3]** a déclenché l’alerte à **[4]**.  
-> ARGUS a ensuite **[5]** puis **[6]**.  
-> Le chaos a été aggravé par le compte partagé **[7]**, ses **[8]** et les **[9]**.
+> La **[1]** détectée par **[2]** dans la salle **[3]** à **[4]** a poussé ARGUS à **[5]**.  
+> Il a ensuite ciblé **[6]**, puis relancé **[7]**.  
+> L’équipement le plus sollicité pendant l’incident était **[8]**, et le compte vulnérable visible dans les logs de sécurité était **[9]**.
 
 ---
 
@@ -106,17 +111,25 @@ Filtrer et extraire des indices à partir des `code_log` et des messages systèm
 
 1. Affichez les logs dont `code_log` respecte le format officiel des alertes IA `^ALR-IA-[0-9]{3}$`.
    Retournez seulement `code_log`, `date_heure`, `niveau`.
-   Triez du plus ancien au plus récent.
+   Triez du plus ancien au plus récent et limitez le résultat à une seule ligne.
 
-2. À partir du log critique `ALR-IA-204`, utilisez `regexp_match` pour extraire le code de salle présent dans `message`.
+   **Indice [4] à noter :** l’heure du `date_heure` trouvé.
+
+2. À partir du log critique `ALR-IA-204`, utilisez `regexp_matches` pour extraire le code de salle présent dans `message`.
    Retournez seulement la valeur extraite.
 
-3. À partir du même log `ALR-IA-204`, utilisez `regexp_match` pour extraire la valeur du champ `motif` présent dans `message`.
+   **Indice [3] à noter :** le code de salle extrait.
+
+3. À partir du même log `ALR-IA-204`, utilisez `regexp_matches` pour extraire la valeur du champ `motif` présent dans `message`.
    Retournez seulement la valeur extraite.
 
-4. Affichez les logs de sécurité dont `code_log` respecte le format `^SEC-[A-Z]{3}-[0-9]{3}$`, puis utilisez `regexp_match` pour extraire le `nom_utilisateur` mentionné dans `message`.
+   **Indice [1] à noter :** la valeur du `motif` extrait.
+
+4. Affichez les logs de sécurité liés à la salle `B-204` dont `code_log` respecte le format `^SEC-[A-Z]{3}-[0-9]{3}$`, puis utilisez `regexp_match` pour extraire le `nom_utilisateur` mentionné dans `message`.
    Retournez `code_log`, `date_heure`, `nom_utilisateur_extrait`.
-   Triez du plus ancien au plus récent.
+   Triez du plus ancien au plus récent et limitez le résultat à une seule ligne.
+
+   **Indice [9] à noter :** le `nom_utilisateur_extrait`.
 
 ---
 
@@ -131,14 +144,20 @@ Relier les équipements, les salles, les décisions de l’IA et les journaux sy
 5. Affichez le nom de l’équipement `CAF-B204`, son `type_equipement`, le code de sa salle et le nom de sa salle.
    Utilisez une jointure entre `equipement` et `salle`.
 
-6. Affichez toutes les décisions prises par l’IA dans la salle `B-204` entre `2026-02-17 08:15:00` et `2026-02-17 08:25:00`.
+   **Indice [6] à noter :** le nom de l’équipement.
+
+6. Affichez la première décision prise par l’IA dans la salle `B-204` à partir de `2026-02-17 08:15:00`.
    Retournez `date_heure`, `decision`, `equipement`, `succes`.
    Utilisez des jointures entre `decision_ia`, `type_decision`, `equipement` et `salle`.
-   Triez par `date_heure`.
+   Triez par `date_heure` et limitez le résultat à une seule ligne.
 
-7. Affichez les équipements de la salle `B-204` qui ont été touchés par une décision `redemarrer`.
-   Retournez `equipement`, `type_equipement`, `date_heure`.
-   Utilisez des jointures et triez du plus ancien au plus récent.
+   **Indice [5] à noter :** la valeur de `decision`.
+
+7. Affichez sans doublons l’équipement de la salle `B-204` qui a été touché par une décision `redemarrer`.
+   Retournez `equipement`, `type_equipement`.
+   Utilisez des jointures.
+
+   **Indice [7] à noter :** le nom de l’équipement trouvé.
 
 ---
 
@@ -157,8 +176,12 @@ Pour chacune des questions suivantes, la solution doit utiliser **explicitement 
 8. Le 17 février 2026 à `08:15:00`, trouvez la lecture de **consommation** d’une **cafetière** qui est strictement supérieure à la moyenne des autres cafetières au même moment.
    Retournez `equipement`, `code_capteur`, `date_heure`, `valeur`.
 
-9. Affichez l’équipement qui a reçu **plus de décisions de l’IA que les autres équipements de la même salle** le `2026-02-17`.
+   **Indice [2] à noter :** la valeur de `code_capteur`.
+
+9. Affichez l’équipement de la salle `B-204` qui a reçu **plus de décisions de l’IA que les autres équipements de cette même salle** le `2026-02-17`.
    Retournez `equipement`, `salle`, `nb_decisions`.
+
+   **Indice [8] à noter :** la valeur de `equipement`.
 
 10. Affichez la porte qui a été **verrouillée avec succès** mais pour laquelle il n’existe **aucun déverrouillage réussi plus tard le même jour**.
     Retournez `equipement`, `salle`.
@@ -170,7 +193,7 @@ Pour chacune des questions suivantes, la solution doit utiliser **explicitement 
 
 ### Objectif
 
-Renforcer l’intégrité de la base pour éviter qu’ARGUS interprète n’importe quoi avec n’importe quelles données.
+Renforcer l’intégrité de la base pour éviter qu’ARGUS interprète n’importe quoi avec n’importe quelles données. Les requêtes suivantes doivent utilser `alter table` et fonctionner dans l'ordre.
 
 ### Questions
 
@@ -180,9 +203,8 @@ Renforcer l’intégrité de la base pour éviter qu’ARGUS interprète n’imp
 12. Ajoutez une contrainte `check` sur `capteur.code` pour imposer le format regex `^CAP-[A-Z]{3}-[0-9]{3}-[0-9]{2}$`.
     Le nom de la contrainte doit être exactement `capteur_code_format_ck`.
 
-13. Renforcez `log_systeme` avec les deux modifications suivantes :
-    - ajouter une contrainte `check` nommée `log_systeme_niveau_ck` pour limiter `niveau` à `info`, `avertissement` et `critique`
-    - ajouter une clé étrangère nommée `log_systeme_equipement_fk` sur `equipement_id` vers `equipement(id)`
+13. Modifiez la relation entre `lecture_capteur` et `capteur` pour que la suppression d’un capteur supprime automatiquement ses lectures associées.
+    Après votre modification, cette contrainte doit porter le nom `lecture_capteur_capteur_fk`.
 
 ---
 
@@ -221,9 +243,9 @@ Quand tous vos indices sont trouvés, complétez la phrase de conclusion directe
 
 ```sql
 -- Resolution finale :
--- La [1] de la [2] en [3] a declenche l'alerte a [4].
--- ARGUS a ensuite [5] puis [6].
--- Le chaos a ete aggrave par le compte partage [7], ses [8] et les [9].
+-- La [1] detectee par [2] dans la salle [3] a [4] a pousse ARGUS a [5].
+-- Il a ensuite cible [6], puis relance [7].
+-- L'equipement le plus sollicite pendant l'incident etait [8], et le compte visible dans les logs de securite etait [9].
 ```
 
 ## Contenu de la remise
@@ -232,13 +254,16 @@ Nom du fichier : `tp3_prenom_nom.sql`
 
 Le fichier doit contenir, dans l’ordre :
 
-- l’exécution du code de départ
 - vos requêtes de la partie A
 - vos requêtes de la partie B
 - vos requêtes de la partie C
 - vos instructions DDL de la partie D
 - vos instructions de sécurité de la partie E
 - votre résolution finale en commentaire SQL
+
+Important :
+- le script `tp3-code-depart` doit être exécuté dans votre base avant de répondre
+- vous n’avez pas besoin de recopier ce script dans le fichier remis
 
 ## Ce qui sera évalué
 
@@ -249,4 +274,4 @@ Le fichier doit contenir, dans l’ordre :
 - la pertinence des modifications DDL
 - la mise en place réaliste des comptes et privilèges
 - la bonne migration vers des mots de passe hachés
-- la cohérence de la résolution finale
+- la cohérence de la résolution finale avec les questions qui ont servies à y répondre
