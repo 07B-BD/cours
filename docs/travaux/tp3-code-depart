@@ -117,7 +117,8 @@ insert into type_decision (nom) values
 ('redemarrer'),
 ('envoyer_alerte'),
 ('activer_mode_eco'),
-('lancer_autonettoyage');
+('lancer_autonettoyage'),
+('lancer_missiles_nucleaires');
 
 insert into salle (code, nom, etage) values
 ('A-101', 'Hall d''accueil', 1),
@@ -309,7 +310,8 @@ insert into decision_ia (type_decision_id, equipement_id, date_heure, succes) va
 insert into log_systeme (date_heure, code_log, message, niveau, equipement_id) values
 ('2026-02-17 07:45:00', 'SYS-CHK-101', 'Routine salle=A-102 equip=THM-A102 statut=ok', 'info', (select id from equipement where nom = 'THM-A102')),
 ('2026-02-17 08:00:00', 'SYS-CHK-201', 'Routine salle=B-201 equip=IMP-B201 statut=ok', 'info', (select id from equipement where nom = 'IMP-B201')),
-('2026-02-17 08:15:00', 'ALR-IA-204', 'Incident salle=B-204 equip=CAF-B204 capteur=CAP-CON-028-02 motif=vapeur_cafe score=97', 'critique', (select id from equipement where nom = 'CAF-B204')),
+('2026-02-17 08:15:00', 'ALR-IA-204', 'Incident salle=B-204 equip=CAF-B204 capteur=**** motif=**** score=97', 'critique', (select id from equipement where nom = 'CAF-B204')),
+('2026-02-17 08:15:10', 'CAF-ALR-204', 'Capteur salle=B-204 equip=CAF-B204 motif=vapeur_cafe valeur=1820 seuil=900', 'critique', (select id from equipement where nom = 'CAF-B204')),
 ('2026-02-17 08:16:00', 'ACT-IA-204', 'Action salle=B-204 equip=POR-B204 decision=verrouiller raison=score_critique', 'info', (select id from equipement where nom = 'POR-B204')),
 ('2026-02-17 08:17:00', 'ACT-IA-205', 'Action salle=B-204 equip=LUM-B204 decision=eteindre raison=mode_confinement', 'info', (select id from equipement where nom = 'LUM-B204')),
 ('2026-02-17 08:18:00', 'ACT-IA-206', 'Action salle=B-204 equip=IMP-B204 decision=redemarrer raison=file_impression_suspendue', 'avertissement', (select id from equipement where nom = 'IMP-B204')),

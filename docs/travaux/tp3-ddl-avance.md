@@ -48,7 +48,7 @@ Vous devez analyser la base de données pour reconstituer ce qui s’est passé,
 
 Ce TP évalue votre capacité à utiliser, dans un même contexte :
 
-- les expressions régulières (`~`, `regexp_match`, `regexp_matches`)
+- les expressions régulières (`~`, `regexp_matches`)
 - les jointures
 - les sous-requêtes corrélées
 - le DDL de maintenance
@@ -64,7 +64,7 @@ Le script de départ crée et peuple une base de données comprenant :
 - 57 capteurs
 - 456 lectures de capteurs
 - 16 décisions prises par l’IA
-- 16 logs système
+- 17 logs système
 - 5 comptes applicatifs dans `utilisateur_systeme`
 
 Les données sont déterministes.
@@ -77,13 +77,7 @@ L’incident principal est volontairement concentré autour de la date fixe **20
 - Les questions des parties D et E doivent être répondues par des instructions SQL exécutables.
 - Quand une question demande un tri, respectez-le.
 - Quand une question demande certaines colonnes seulement, limitez votre `select` à ces colonnes.
-- Utilisez uniquement les notions vues dans les modules du cours.
-
-<div class="my-6 rounded-lg border border-red-300 bg-red-50 p-4 text-red-900">
-<strong>Important - rigueur attendue</strong><br>
-Le décor d’enquête est là pour rendre le TP plus engageant, mais l’évaluation reste strictement SQL.<br>
-Une bonne réponse doit être claire, stable, vérifiable et directement corrigeable.
-</div>
+- Utilisez uniquement les notions vues dans les modules du cours. **TOUTES** les notions disponibles sur le site du cours sont permises.
 
 ## Indices à noter
 
@@ -91,7 +85,7 @@ Chaque bonne réponse vous donnera un indice.
 Conservez-les au fur et à mesure.
 
 Les indices **[1] à [9]** sont donnés explicitement dans les **questions 1 à 9**.
-Les questions **10 à 16** servent à confirmer l’incident et à corriger la base, mais ne donnent pas de nouvel indice pour la phrase finale.
+Les questions **10 à 16** servent à confirmer l’incident et à corriger la base de données, mais ne donnent pas de nouvel indice pour la phrase finale.
 
 En fin de TP, vous devrez compléter cette phrase :
 
@@ -109,18 +103,18 @@ Filtrer et extraire des indices à partir des `code_log` et des messages systèm
 
 ### Questions
 
-1. Affichez les logs dont `code_log` respecte le format officiel des alertes IA `^ALR-IA-[0-9]{3}$`.
+1. Affichez les logs dont `code_log` commence par `ALR-IA-` suivi exactement de 3 chiffres.
    Retournez seulement `code_log`, `date_heure`, `niveau`.
-   Triez du plus ancien au plus récent et limitez le résultat à une seule ligne.
+   Triez du plus ancien au plus récent et limitez le résultat à une seule ligne. ([Indice : `limit`](../modules/03-sql-base/02-select-where#limit))
 
    **Indice [4] à noter :** l’heure du `date_heure` trouvé.
 
-2. À partir du log critique `ALR-IA-204`, utilisez `regexp_matches` pour extraire le code de salle présent dans `message`.
+2. À partir du **log ciblé** à la question 1, utilisez `regexp_matches` pour extraire le code de salle présent dans `message`.
    Retournez seulement la valeur extraite.
 
    **Indice [3] à noter :** le code de salle extrait.
 
-3. À partir du même log `ALR-IA-204`, utilisez `regexp_matches` pour extraire la valeur du champ `motif` présent dans `message`.
+3. À partir du log `CAF-ALR-204`, utilisez `regexp_matches` pour extraire la valeur du champ `motif` présent dans `message`.
    Retournez seulement la valeur extraite.
 
    **Indice [1] à noter :** la valeur du `motif` extrait.
