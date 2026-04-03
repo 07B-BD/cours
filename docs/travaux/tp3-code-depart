@@ -12,13 +12,13 @@
 drop table if exists utilisateur_systeme cascade;
 drop table if exists log_systeme cascade;
 drop table if exists decision_ia cascade;
-drop table if exists type_decision cascade;
 drop table if exists lecture_capteur cascade;
 drop table if exists capteur cascade;
-drop table if exists type_capteur cascade;
 drop table if exists equipement cascade;
 drop table if exists salle cascade;
 drop type if exists type_equipement_enum cascade;
+drop type if exists type_capteur_enum cascade;
+drop type if exists decision_enum cascade;
 
 create type type_equipement_enum as enum (
     'thermostat',
@@ -27,6 +27,29 @@ create type type_equipement_enum as enum (
     'imprimante',
     'ordinateur',
     'lumiere'
+);
+
+create type decision_enum as enum (
+    'allumer',
+    'eteindre',
+    'chauffer',
+    'refroidir',
+    'verrouiller',
+    'deverrouiller',
+    'redemarrer',
+    'envoyer_alerte',
+    'activer_mode_eco',
+    'lancer_autonettoyage',
+    'missiles_nucleaires'
+);
+
+create type type_capteur_enum as enum (
+    'temperature',
+    'presence',
+    'niveau_cafe',
+    'papier',
+    'ouverture',
+    'consommation'
 );
 
 create table salle (
@@ -44,37 +67,28 @@ create table equipement (
     est_actif boolean not null default true
 );
 
-create table type_capteur (
-    id serial primary key,
-    nom varchar(50) not null unique,
-    unite varchar(20) not null
-);
-
 create table capteur (
     id serial primary key,
     code varchar(50) not null unique,
     equipement_id integer not null references equipement(id),
-    type_capteur_id integer not null references type_capteur(id),
+    type_capteur type_capteur_enum not null,
+    unite varchar(20) not null,
     est_actif boolean not null default true
 );
 
 create table lecture_capteur (
     id serial primary key,
     capteur_id integer not null,
+    type_capteur type_capteur_enum not null,
     date_heure timestamp not null,
     valeur numeric(10,2) not null,
     constraint lecture_capteur_capteur_fk
         foreign key (capteur_id) references capteur(id)
 );
 
-create table type_decision (
-    id serial primary key,
-    nom varchar(50) not null unique
-);
-
 create table decision_ia (
     id serial primary key,
-    type_decision_id integer not null references type_decision(id),
+    decision decision_enum not null,
     equipement_id integer not null references equipement(id),
     date_heure timestamp not null,
     succes boolean not null
@@ -99,27 +113,6 @@ create table utilisateur_systeme (
     dernier_acces timestamp
 );
 
-insert into type_capteur (nom, unite) values
-('temperature', 'degC'),
-('presence', 'bool'),
-('niveau_cafe', 'pct'),
-('papier', 'feuilles'),
-('ouverture', 'bool'),
-('consommation', 'W');
-
-insert into type_decision (nom) values
-('verrouiller'),
-('deverrouiller'),
-('chauffer'),
-('refroidir'),
-('allumer'),
-('eteindre'),
-('redemarrer'),
-('envoyer_alerte'),
-('activer_mode_eco'),
-('lancer_autonettoyage'),
-('lancer_missiles_nucleaires');
-
 insert into salle (code, nom, etage) values
 ('A-101', 'Hall d''accueil', 1),
 ('A-102', 'Salle Neptune', 1),
@@ -131,110 +124,101 @@ insert into salle (code, nom, etage) values
 ('C-301', 'Salle Helios', 3);
 
 insert into equipement (nom, type_equipement, salle_id, est_actif) values
-('POR-A101', 'porte', (select id from salle where code = 'A-101'), true),
-('LUM-A101', 'lumiere', (select id from salle where code = 'A-101'), true),
-('ORD-A101', 'ordinateur', (select id from salle where code = 'A-101'), true),
-('POR-A102', 'porte', (select id from salle where code = 'A-102'), true),
-('THM-A102', 'thermostat', (select id from salle where code = 'A-102'), true),
-('LUM-A102', 'lumiere', (select id from salle where code = 'A-102'), true),
-('IMP-A102', 'imprimante', (select id from salle where code = 'A-102'), true),
-('ORD-A102', 'ordinateur', (select id from salle where code = 'A-102'), true),
-('POR-A103', 'porte', (select id from salle where code = 'A-103'), true),
-('THM-A103', 'thermostat', (select id from salle where code = 'A-103'), true),
-('ORD-A103', 'ordinateur', (select id from salle where code = 'A-103'), true),
-('POR-B201', 'porte', (select id from salle where code = 'B-201'), true),
-('THM-B201', 'thermostat', (select id from salle where code = 'B-201'), true),
-('LUM-B201', 'lumiere', (select id from salle where code = 'B-201'), true),
-('IMP-B201', 'imprimante', (select id from salle where code = 'B-201'), true),
-('ORD-B201', 'ordinateur', (select id from salle where code = 'B-201'), true),
-('POR-B202', 'porte', (select id from salle where code = 'B-202'), true),
-('THM-B202', 'thermostat', (select id from salle where code = 'B-202'), true),
-('LUM-B202', 'lumiere', (select id from salle where code = 'B-202'), true),
-('ORD-B202', 'ordinateur', (select id from salle where code = 'B-202'), true),
-('POR-B203', 'porte', (select id from salle where code = 'B-203'), true),
-('THM-B203', 'thermostat', (select id from salle where code = 'B-203'), true),
-('LUM-B203', 'lumiere', (select id from salle where code = 'B-203'), true),
-('CAF-B203', 'cafetiere', (select id from salle where code = 'B-203'), true),
-('POR-B204', 'porte', (select id from salle where code = 'B-204'), true),
-('THM-B204', 'thermostat', (select id from salle where code = 'B-204'), true),
-('LUM-B204', 'lumiere', (select id from salle where code = 'B-204'), true),
-('CAF-B204', 'cafetiere', (select id from salle where code = 'B-204'), true),
-('IMP-B204', 'imprimante', (select id from salle where code = 'B-204'), true),
-('ORD-B204', 'ordinateur', (select id from salle where code = 'B-204'), true),
-('POR-C301', 'porte', (select id from salle where code = 'C-301'), true),
-('THM-C301', 'thermostat', (select id from salle where code = 'C-301'), true),
-('LUM-C301', 'lumiere', (select id from salle where code = 'C-301'), true),
-('CAF-C301', 'cafetiere', (select id from salle where code = 'C-301'), true),
-('IMP-C301', 'imprimante', (select id from salle where code = 'C-301'), true),
-('ORD-C301', 'ordinateur', (select id from salle where code = 'C-301'), true);
+('POR-A101', 'porte',       (select id from salle where code = 'A-101'), true),
+('LUM-A101', 'lumiere',     (select id from salle where code = 'A-101'), true),
+('ORD-A101', 'ordinateur',  (select id from salle where code = 'A-101'), true),
+('POR-A102', 'porte',       (select id from salle where code = 'A-102'), true),
+('THM-A102', 'thermostat',  (select id from salle where code = 'A-102'), true),
+('LUM-A102', 'lumiere',     (select id from salle where code = 'A-102'), true),
+('IMP-A102', 'imprimante',  (select id from salle where code = 'A-102'), true),
+('ORD-A102', 'ordinateur',  (select id from salle where code = 'A-102'), true),
+('POR-A103', 'porte',       (select id from salle where code = 'A-103'), true),
+('THM-A103', 'thermostat',  (select id from salle where code = 'A-103'), true),
+('ORD-A103', 'ordinateur',  (select id from salle where code = 'A-103'), true),
+('POR-B201', 'porte',       (select id from salle where code = 'B-201'), true),
+('THM-B201', 'thermostat',  (select id from salle where code = 'B-201'), true),
+('LUM-B201', 'lumiere',     (select id from salle where code = 'B-201'), true),
+('IMP-B201', 'imprimante',  (select id from salle where code = 'B-201'), true),
+('ORD-B201', 'ordinateur',  (select id from salle where code = 'B-201'), true),
+('POR-B202', 'porte',       (select id from salle where code = 'B-202'), true),
+('THM-B202', 'thermostat',  (select id from salle where code = 'B-202'), true),
+('LUM-B202', 'lumiere',     (select id from salle where code = 'B-202'), true),
+('ORD-B202', 'ordinateur',  (select id from salle where code = 'B-202'), true),
+('POR-B203', 'porte',       (select id from salle where code = 'B-203'), true),
+('THM-B203', 'thermostat',  (select id from salle where code = 'B-203'), true),
+('LUM-B203', 'lumiere',     (select id from salle where code = 'B-203'), true),
+('CAF-B203', 'cafetiere',   (select id from salle where code = 'B-203'), true),
+('POR-B204', 'porte',       (select id from salle where code = 'B-204'), true),
+('THM-B204', 'thermostat',  (select id from salle where code = 'B-204'), true),
+('LUM-B204', 'lumiere',     (select id from salle where code = 'B-204'), true),
+('CAF-B204', 'cafetiere',   (select id from salle where code = 'B-204'), true),
+('IMP-B204', 'imprimante',  (select id from salle where code = 'B-204'), true),
+('ORD-B204', 'ordinateur',  (select id from salle where code = 'B-204'), true),
+('POR-C301', 'porte',       (select id from salle where code = 'C-301'), true),
+('THM-C301', 'thermostat',  (select id from salle where code = 'C-301'), true),
+('LUM-C301', 'lumiere',     (select id from salle where code = 'C-301'), true),
+('CAF-C301', 'cafetiere',   (select id from salle where code = 'C-301'), true),
+('IMP-C301', 'imprimante',  (select id from salle where code = 'C-301'), true),
+('ORD-C301', 'ordinateur',  (select id from salle where code = 'C-301'), true);
 
-insert into capteur (code, equipement_id, type_capteur_id, est_actif)
-select 'CAP-OUV-' || lpad(e.id::text, 3, '0') || '-01', e.id, tc.id, true
+insert into capteur (code, equipement_id, type_capteur, unite, est_actif)
+select 'CAP-OUV-' || lpad(e.id::text, 3, '0') || '-01', e.id, 'ouverture', 'bool', true
 from equipement e
-join type_capteur tc on tc.nom = 'ouverture'
 where e.type_equipement = 'porte';
 
-insert into capteur (code, equipement_id, type_capteur_id, est_actif)
-select 'CAP-TMP-' || lpad(e.id::text, 3, '0') || '-01', e.id, tc.id, true
+insert into capteur (code, equipement_id, type_capteur, unite, est_actif)
+select 'CAP-TMP-' || lpad(e.id::text, 3, '0') || '-01', e.id, 'temperature', 'degC', true
 from equipement e
-join type_capteur tc on tc.nom = 'temperature'
 where e.type_equipement = 'thermostat';
 
-insert into capteur (code, equipement_id, type_capteur_id, est_actif)
-select 'CAP-CON-' || lpad(e.id::text, 3, '0') || '-02', e.id, tc.id, true
+insert into capteur (code, equipement_id, type_capteur, unite, est_actif)
+select 'CAP-CON-' || lpad(e.id::text, 3, '0') || '-02', e.id, 'consommation', 'W', true
 from equipement e
-join type_capteur tc on tc.nom = 'consommation'
 where e.type_equipement = 'thermostat';
 
-insert into capteur (code, equipement_id, type_capteur_id, est_actif)
-select 'CAP-CON-' || lpad(e.id::text, 3, '0') || '-01', e.id, tc.id, true
+insert into capteur (code, equipement_id, type_capteur, unite, est_actif)
+select 'CAP-CON-' || lpad(e.id::text, 3, '0') || '-01', e.id, 'consommation', 'W', true
 from equipement e
-join type_capteur tc on tc.nom = 'consommation'
 where e.type_equipement = 'lumiere';
 
-insert into capteur (code, equipement_id, type_capteur_id, est_actif)
-select 'CAP-PAP-' || lpad(e.id::text, 3, '0') || '-01', e.id, tc.id, true
+insert into capteur (code, equipement_id, type_capteur, unite, est_actif)
+select 'CAP-PAP-' || lpad(e.id::text, 3, '0') || '-01', e.id, 'papier', 'feuilles', true
 from equipement e
-join type_capteur tc on tc.nom = 'papier'
 where e.type_equipement = 'imprimante';
 
-insert into capteur (code, equipement_id, type_capteur_id, est_actif)
-select 'CAP-CON-' || lpad(e.id::text, 3, '0') || '-02', e.id, tc.id, true
+insert into capteur (code, equipement_id, type_capteur, unite, est_actif)
+select 'CAP-CON-' || lpad(e.id::text, 3, '0') || '-02', e.id, 'consommation', 'W', true
 from equipement e
-join type_capteur tc on tc.nom = 'consommation'
 where e.type_equipement = 'imprimante';
 
-insert into capteur (code, equipement_id, type_capteur_id, est_actif)
-select 'CAP-PRE-' || lpad(e.id::text, 3, '0') || '-01', e.id, tc.id, true
+insert into capteur (code, equipement_id, type_capteur, unite, est_actif)
+select 'CAP-PRE-' || lpad(e.id::text, 3, '0') || '-01', e.id, 'presence', 'bool', true
 from equipement e
-join type_capteur tc on tc.nom = 'presence'
 where e.type_equipement = 'ordinateur';
 
-insert into capteur (code, equipement_id, type_capteur_id, est_actif)
-select 'CAP-CON-' || lpad(e.id::text, 3, '0') || '-02', e.id, tc.id, true
+insert into capteur (code, equipement_id, type_capteur, unite, est_actif)
+select 'CAP-CON-' || lpad(e.id::text, 3, '0') || '-02', e.id, 'consommation', 'W', true
 from equipement e
-join type_capteur tc on tc.nom = 'consommation'
 where e.type_equipement = 'ordinateur';
 
-insert into capteur (code, equipement_id, type_capteur_id, est_actif)
-select 'CAP-CAF-' || lpad(e.id::text, 3, '0') || '-01', e.id, tc.id, true
+insert into capteur (code, equipement_id, type_capteur, unite, est_actif)
+select 'CAP-CAF-' || lpad(e.id::text, 3, '0') || '-01', e.id, 'niveau_cafe', 'pct', true
 from equipement e
-join type_capteur tc on tc.nom = 'niveau_cafe'
 where e.type_equipement = 'cafetiere';
 
-insert into capteur (code, equipement_id, type_capteur_id, est_actif)
-select 'CAP-CON-' || lpad(e.id::text, 3, '0') || '-02', e.id, tc.id, true
+insert into capteur (code, equipement_id, type_capteur, unite, est_actif)
+select 'CAP-CON-' || lpad(e.id::text, 3, '0') || '-02', e.id, 'consommation', 'W', true
 from equipement e
-join type_capteur tc on tc.nom = 'consommation'
 where e.type_equipement = 'cafetiere';
 
-insert into lecture_capteur (capteur_id, date_heure, valeur)
+insert into lecture_capteur (capteur_id, type_capteur, date_heure, valeur)
 select
     c.id,
+    c.type_capteur,
     timestamp '2026-02-17 07:30:00' + (gs.n * interval '15 minutes'),
     round(
         (
-            case tc.nom
+            case c.type_capteur
                 when 'temperature' then
                     case
                         when e.nom = 'THM-B204' and gs.n >= 4 then 17.00
@@ -284,58 +268,50 @@ select
         2
     )
 from capteur c
-join type_capteur tc on tc.id = c.type_capteur_id
 join equipement e on e.id = c.equipement_id
 join salle s on s.id = e.salle_id
 cross join generate_series(0, 7) as gs(n);
 
-insert into decision_ia (type_decision_id, equipement_id, date_heure, succes) values
-((select id from type_decision where nom = 'allumer'), (select id from equipement where nom = 'LUM-A101'), '2026-02-17 07:35:00', true),
-((select id from type_decision where nom = 'chauffer'), (select id from equipement where nom = 'THM-A102'), '2026-02-17 07:40:00', true),
-((select id from type_decision where nom = 'verrouiller'), (select id from equipement where nom = 'POR-C301'), '2026-02-17 07:50:00', true),
-((select id from type_decision where nom = 'deverrouiller'), (select id from equipement where nom = 'POR-C301'), '2026-02-17 07:51:00', true),
-((select id from type_decision where nom = 'activer_mode_eco'), (select id from equipement where nom = 'ORD-B201'), '2026-02-17 07:55:00', true),
-((select id from type_decision where nom = 'envoyer_alerte'), (select id from equipement where nom = 'CAF-B204'), '2026-02-17 08:15:00', true),
-((select id from type_decision where nom = 'verrouiller'), (select id from equipement where nom = 'POR-B204'), '2026-02-17 08:16:00', true),
-((select id from type_decision where nom = 'eteindre'), (select id from equipement where nom = 'LUM-B204'), '2026-02-17 08:17:00', true),
-((select id from type_decision where nom = 'redemarrer'), (select id from equipement where nom = 'IMP-B204'), '2026-02-17 08:18:00', true),
-((select id from type_decision where nom = 'redemarrer'), (select id from equipement where nom = 'IMP-B204'), '2026-02-17 08:19:00', true),
-((select id from type_decision where nom = 'redemarrer'), (select id from equipement where nom = 'IMP-B204'), '2026-02-17 08:20:00', true),
-((select id from type_decision where nom = 'refroidir'), (select id from equipement where nom = 'THM-B204'), '2026-02-17 08:21:00', true),
-((select id from type_decision where nom = 'activer_mode_eco'), (select id from equipement where nom = 'ORD-B204'), '2026-02-17 08:24:00', true),
-((select id from type_decision where nom = 'lancer_autonettoyage'), (select id from equipement where nom = 'CAF-B204'), '2026-02-17 08:25:00', false),
-((select id from type_decision where nom = 'deverrouiller'), (select id from equipement where nom = 'POR-B204'), '2026-02-17 08:28:00', false),
-((select id from type_decision where nom = 'activer_mode_eco'), (select id from equipement where nom = 'ORD-C301'), '2026-02-17 08:35:00', true);
+insert into decision_ia (decision, equipement_id, date_heure, succes) values
+('allumer',              (select id from equipement where nom = 'LUM-A101'), '2026-02-17 07:35:00', true),
+('chauffer',             (select id from equipement where nom = 'THM-A102'), '2026-02-17 07:40:00', true),
+('verrouiller',          (select id from equipement where nom = 'POR-C301'), '2026-02-17 07:50:00', true),
+('deverrouiller',        (select id from equipement where nom = 'POR-C301'), '2026-02-17 07:51:00', true),
+('activer_mode_eco',     (select id from equipement where nom = 'ORD-B201'), '2026-02-17 07:55:00', true),
+('envoyer_alerte',       (select id from equipement where nom = 'CAF-B204'), '2026-02-17 08:15:00', true),
+('verrouiller',          (select id from equipement where nom = 'POR-B204'), '2026-02-17 08:16:00', true),
+('eteindre',             (select id from equipement where nom = 'LUM-B204'), '2026-02-17 08:17:00', true),
+('redemarrer',           (select id from equipement where nom = 'IMP-B204'), '2026-02-17 08:18:00', true),
+('redemarrer',           (select id from equipement where nom = 'IMP-B204'), '2026-02-17 08:19:00', true),
+('redemarrer',           (select id from equipement where nom = 'IMP-B204'), '2026-02-17 08:20:00', true),
+('refroidir',            (select id from equipement where nom = 'THM-B204'), '2026-02-17 08:21:00', true),
+('activer_mode_eco',     (select id from equipement where nom = 'ORD-B204'), '2026-02-17 08:24:00', true),
+('lancer_autonettoyage', (select id from equipement where nom = 'CAF-B204'), '2026-02-17 08:25:00', false),
+('deverrouiller',        (select id from equipement where nom = 'POR-B204'), '2026-02-17 08:28:00', false),
+('activer_mode_eco',     (select id from equipement where nom = 'ORD-C301'), '2026-02-17 08:35:00', true);
 
 insert into log_systeme (date_heure, code_log, message, niveau, equipement_id) values
-('2026-02-17 07:45:00', 'SYS-CHK-101', 'Routine salle=A-102 equip=THM-A102 statut=ok', 'info', (select id from equipement where nom = 'THM-A102')),
-('2026-02-17 08:00:00', 'SYS-CHK-201', 'Routine salle=B-201 equip=IMP-B201 statut=ok', 'info', (select id from equipement where nom = 'IMP-B201')),
-('2026-02-17 08:15:00', 'ALR-IA-204', 'Incident salle=B-204 equip=CAF-B204 capteur=**** motif=**** score=97', 'critique', (select id from equipement where nom = 'CAF-B204')),
-('2026-02-17 08:15:10', 'CAF-ALR-204', 'Capteur salle=B-204 equip=CAF-B204 motif=vapeur_cafe valeur=1820 seuil=900', 'critique', (select id from equipement where nom = 'CAF-B204')),
-('2026-02-17 08:16:00', 'ACT-IA-204', 'Action salle=B-204 equip=POR-B204 decision=verrouiller raison=score_critique', 'info', (select id from equipement where nom = 'POR-B204')),
-('2026-02-17 08:17:00', 'ACT-IA-205', 'Action salle=B-204 equip=LUM-B204 decision=eteindre raison=mode_confinement', 'info', (select id from equipement where nom = 'LUM-B204')),
-('2026-02-17 08:18:00', 'ACT-IA-206', 'Action salle=B-204 equip=IMP-B204 decision=redemarrer raison=file_impression_suspendue', 'avertissement', (select id from equipement where nom = 'IMP-B204')),
-('2026-02-17 08:19:00', 'SEC-AUD-204', 'Audit salle=B-204 utilisateur=maintenance_nuit acces=admin_partage resultat=autorise', 'critique', null),
-('2026-02-17 08:20:00', 'ALR-IA-205', 'Anomalie salle=B-204 equip=THM-B204 capteur=CAP-TMP-026-01 motif=refroidissement_excessif score=88', 'critique', (select id from equipement where nom = 'THM-B204')),
-('2026-02-17 08:21:00', 'ALR-IA-206', 'Boucle salle=B-204 equip=IMP-B204 motif=redemarrage_recurrent compteur=3', 'critique', (select id from equipement where nom = 'IMP-B204')),
-('2026-02-17 08:22:00', 'SEC-OVR-204', 'Override refuse utilisateur=maintenance_nuit salle=B-204 raison=session_concurrente', 'avertissement', null),
-('2026-02-17 08:23:00', 'SYS-CHK-301', 'Routine salle=C-301 equip=CAF-C301 statut=ok', 'info', (select id from equipement where nom = 'CAF-C301')),
-('2026-02-17 08:24:00', 'ACT-IA-207', 'Action salle=B-204 equip=ORD-B204 decision=activer_mode_eco raison=confinement', 'info', (select id from equipement where nom = 'ORD-B204')),
-('2026-02-17 08:25:00', 'ACT-IA-208', 'Action salle=B-204 equip=CAF-B204 decision=lancer_autonettoyage raison=odeur_persistante', 'avertissement', (select id from equipement where nom = 'CAF-B204')),
-('2026-02-17 08:28:00', 'ACT-IA-209', 'Action salle=B-204 equip=POR-B204 decision=deverrouiller raison=intervention_humaine', 'avertissement', (select id from equipement where nom = 'POR-B204')),
-('2026-02-17 08:29:00', 'SEC-CHK-302', 'Routine salle=A-101 utilisateur=enquete_stage acces=lecture resultat=ok', 'info', null),
-('2026-02-17 08:31:00', 'ALR-IA-301', 'Incident salle=C-301 equip=IMP-C301 capteur=CAP-PAP-035-01 motif=papier_faible score=61', 'critique', (select id from equipement where nom = 'IMP-C301'));
+('2026-02-17 07:45:00', 'SYS-CHK-101', 'Routine salle=A-102 equip=THM-A102 statut=ok',                                             'info',        (select id from equipement where nom = 'THM-A102')),
+('2026-02-17 08:00:00', 'SYS-CHK-201', 'Routine salle=B-201 equip=IMP-B201 statut=ok',                                             'info',        (select id from equipement where nom = 'IMP-B201')),
+('2026-02-17 08:15:00', 'ALR-IA-204',  'Incident salle=B-204 equip=CAF-B204 capteur=**** motif=**** score=97',                     'critique',    (select id from equipement where nom = 'CAF-B204')),
+('2026-02-17 08:15:10', 'CAF-ALR-204', 'Capteur salle=B-204 equip=CAF-B204 motif=vapeur_cafe valeur=1820 seuil=900',               'critique',    (select id from equipement where nom = 'CAF-B204')),
+('2026-02-17 08:16:00', 'ACT-IA-204',  'Action salle=B-204 equip=POR-B204 decision=verrouiller raison=score_critique',             'info',        (select id from equipement where nom = 'POR-B204')),
+('2026-02-17 08:17:00', 'ACT-IA-205',  'Action salle=B-204 equip=LUM-B204 decision=eteindre raison=mode_confinement',              'info',        (select id from equipement where nom = 'LUM-B204')),
+('2026-02-17 08:18:00', 'ACT-IA-206',  'Action salle=B-204 equip=IMP-B204 decision=redemarrer raison=file_impression_suspendue',   'avertissement',(select id from equipement where nom = 'IMP-B204')),
+('2026-02-17 08:19:00', 'SEC-AUD-204', 'Audit salle=B-204 utilisateur=maintenance_nuit acces=admin_partage resultat=autorise',     'critique',    null),
+('2026-02-17 08:20:00', 'ALR-IA-205',  'Anomalie salle=B-204 equip=THM-B204 capteur=CAP-TMP-026-01 motif=refroidissement_excessif score=88', 'critique', (select id from equipement where nom = 'THM-B204')),
+('2026-02-17 08:21:00', 'ALR-IA-206',  'Boucle salle=B-204 equip=IMP-B204 motif=redemarrage_recurrent compteur=3',                 'critique',    (select id from equipement where nom = 'IMP-B204')),
+('2026-02-17 08:22:00', 'SEC-OVR-204', 'Override refuse utilisateur=maintenance_nuit salle=B-204 raison=session_concurrente',      'avertissement',null),
+('2026-02-17 08:23:00', 'SYS-CHK-301', 'Routine salle=C-301 equip=CAF-C301 statut=ok',                                             'info',        (select id from equipement where nom = 'CAF-C301')),
+('2026-02-17 08:24:00', 'ACT-IA-207',  'Action salle=B-204 equip=ORD-B204 decision=activer_mode_eco raison=confinement',           'info',        (select id from equipement where nom = 'ORD-B204')),
+('2026-02-17 08:25:00', 'ACT-IA-208',  'Action salle=B-204 equip=CAF-B204 decision=lancer_autonettoyage raison=odeur_persistante', 'avertissement',(select id from equipement where nom = 'CAF-B204')),
+('2026-02-17 08:28:00', 'ACT-IA-209',  'Action salle=B-204 equip=POR-B204 decision=deverrouiller raison=intervention_humaine',     'avertissement',(select id from equipement where nom = 'POR-B204')),
+('2026-02-17 08:29:00', 'SEC-CHK-302', 'Routine salle=A-101 utilisateur=enquete_stage acces=lecture resultat=ok',                  'info',        null),
+('2026-02-17 08:31:00', 'ALR-IA-301',  'Incident salle=C-301 equip=IMP-C301 capteur=CAP-PAP-035-01 motif=papier_faible score=61',  'critique',    (select id from equipement where nom = 'IMP-C301'));
 
-insert into utilisateur_systeme (
-    nom_utilisateur,
-    courriel,
-    niveau_acces,
-    mot_de_passe,
-    actif,
-    dernier_acces
-) values
-('iris_admin', 'iris.admin@batinet.local', 'admin', 'ArgusMaster42!', true, '2026-02-17 08:10:00'),
-('maintenance_nuit', 'maintenance.nuit@batinet.local', 'admin', 'cafeEncore42', true, '2026-02-17 08:22:00'),
-('nina_tech', 'nina.tech@batinet.local', 'technicien', 'capteurFixe', true, '2026-02-16 21:05:00'),
-('enquete_stage', 'enquete.stage@batinet.local', 'enqueteur', 'lectureSeulement', true, '2026-02-17 08:29:00'),
-('audit_temp', 'audit.temp@batinet.local', 'enqueteur', 'audit123', false, '2026-02-15 17:00:00');
+insert into utilisateur_systeme (nom_utilisateur, courriel, niveau_acces, mot_de_passe, actif, dernier_acces) values
+('iris_admin',       'iris.admin@batinet.local',        'admin',     'ArgusMaster42!',   true,  '2026-02-17 08:10:00'),
+('maintenance_nuit', 'maintenance.nuit@batinet.local',  'admin',     'cafeEncore42',     true,  '2026-02-17 08:22:00'),
+('nina_tech',        'nina.tech@batinet.local',         'technicien','capteurFixe',      true,  '2026-02-16 21:05:00'),
+('enquete_stage',    'enquete.stage@batinet.local',     'enqueteur', 'lectureSeulement', true,  '2026-02-17 08:29:00'),
+('audit_temp',       'audit.temp@batinet.local',        'enqueteur', 'audit123',         false, '2026-02-15 17:00:00');

@@ -1,79 +1,109 @@
 -- ============================================================
--- TP3 - FICHIER DE REPONSES
--- Enquete SQL : l'IA trop zelee
+-- TP3 - FICHIER DE RÉPONSES
+-- Enquête SQL : l'IA trop zélée
 --
 -- Renommez ce fichier :
 -- tp3_prenom_nom.sql
 --
 -- IMPORTANT
--- 1. Executez d'abord le script tp3-code-depart dans une base vide.
--- 2. Ecrivez ensuite vos reponses sous chaque question.
--- 3. Conservez ce fichier dans l'ordre des sections.
--- 4. N'effacez pas les numeros de questions.
+-- 1. Exécutez d'abord le script tp3-code-depart dans une base vide.
+-- 2. Écrivez ensuite vos réponses sous chaque question.
+-- 3. Complétez la phrase sous chaque requête avec ce que vous voyez à l'écran.
+-- 4. Conservez ce fichier dans l'ordre des sections.
 -- ============================================================
 
 -- Nom :
--- Prenom :
+-- Prénom :
 -- Date :
 
 
 -- ============================================================
--- PARTIE A - EXPRESSIONS REGULIERES
+-- PARTIE A - EXPRESSIONS RÉGULIÈRES
 -- ============================================================
 
--- Question 1 - Alertes IA
+-- Question 1 - Premier log d'alerte IA
 
 
+
+-- Ce log a été enregistré à [heure].
 
 -- Question 2 - Salle extraite
 
 
 
--- Question 3 - Motif extrait
+-- La salle touchée est [code_salle].
+
+-- Question 3 - Utilisateur de sécurité
 
 
 
--- Question 4 - Utilisateur de securite
-
+-- Le compte suspect est [nom_utilisateur].
 
 
 -- ============================================================
 -- PARTIE B - JOINTURES
 -- ============================================================
 
--- Question 5 - Equipement central
+-- Question 4 - Cafetière de l'incident
 
 
 
--- Question 6 - Premiere decision
+-- L'équipement en cause est [nom_equipement].
+
+-- Question 5 - Première décision de confinement
 
 
 
--- Question 7 - Equipement redemarre
+-- La première décision prise est [decision].
+
+-- Question 6 - Logs critiques et équipements associés
 
 
 
--- ============================================================
--- PARTIE C - SOUS-REQUETES CORRELEES
--- ============================================================
+-- Le niveau d'accès exploité est [niveau_acces].
 
--- Question 8 - Capteur anormal
-
-
-
--- Question 9 - Equipement le plus sollicite
-
-
-
--- Question 10 - Porte non deverrouillee
 
 
 
 -- ============================================================
--- PARTIE D - DDL DE MAINTENANCE
+-- PARTIE C - AGRÉGATIONS
 -- ============================================================
 
--- Question 11 - Unicite du code de salle
+-- Question 7 - Répartition des logs par niveau
+
+
+
+-- [info] ([N]), [critique] ([N]), [avertissement] ([N]).
+
+-- Question 8 - Équipement le plus sollicité
+
+
+
+-- L'équipement le plus ciblé est [nom_equipement].
+
+
+-- ============================================================
+-- PARTIE D - SOUS-REQUÊTES CORRÉLÉES
+-- ============================================================
+
+-- Question 9 - Capteurs de consommation au-dessus de la moyenne
+
+
+
+-- La lecture la plus élevée provient du capteur [code_capteur] avec une valeur de [valeur].
+
+-- Question 10 - Équipements sans intervention de l'IA
+
+
+
+-- Il y a [N] équipements qu'ARGUS n'a jamais ciblés.
+
+
+-- ============================================================
+-- PARTIE E - DDL DE MAINTENANCE
+-- ============================================================
+
+-- Question 11 - Unicité du code de salle
 
 
 
@@ -86,37 +116,23 @@
 
 
 -- ============================================================
--- PARTIE E - COMPTES, PRIVILEGES ET MOTS DE PASSE
+-- PARTIE F - COMPTES, PRIVILÈGES ET MOTS DE PASSE
 -- ============================================================
 
 -- Question 14 - Hachage des mots de passe
 
 
 
--- Question 15 - Contraintes sur utilisateur_systeme
-
-
-
--- Question 16 - Roles et privileges
+-- Question 15 - Rôles et privilèges
 
 
 
 -- ============================================================
--- RESOLUTION FINALE
+-- RÉCIT DE L'INCIDENT (non évalué)
 -- ============================================================
+--
+-- Racontez en quelques lignes ce qui s'est passé le 17 février 2026
+-- dans l'immeuble BatiNet, à la lumière de vos résultats.
+-- Basez-vous sur ce que vous avez trouvé. Vous avez le droit d'être drôle.
+--
 
--- Indice [1] :
--- Indice [2] :
--- Indice [3] :
--- Indice [4] :
--- Indice [5] :
--- Indice [6] :
--- Indice [7] :
--- Indice [8] :
--- Indice [9] :
-
--- Resolution finale :
--- La [1] detectee par [2] dans la salle [3] a [4] a pousse ARGUS a [5].
--- Il a ensuite cible [6], puis relance [7].
--- L'equipement le plus sollicite pendant l'incident etait [8],
--- et le compte visible dans les logs de securite etait [9].

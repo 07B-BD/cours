@@ -42,7 +42,7 @@ En moins de quinze minutes, l’IA a :
 - tenté un autonettoyage à un moment franchement mal choisi
 
 Votre rôle est celui d’une enquêtrice ou d’un enquêteur SQL.
-Vous devez analyser la base de données pour reconstituer ce qui s’est passé, identifier la véritable anomalie de départ, puis proposer des corrections de structure et de sécurité pour éviter un second mélodrame caféiné.
+Vous devez analyser la base de données pour reconstituer ce qui s’est passé, **identifier la véritable anomalie de départ** qui a tout fait planter, puis proposer des corrections de structure et de sécurité pour éviter un second mélodrame caféiné.
 
 ## Objectif
 
@@ -50,6 +50,7 @@ Ce TP évalue votre capacité à utiliser, dans un même contexte :
 
 - les expressions régulières (`~`, `regexp_matches`)
 - les jointures
+- les agrégations avec `group by` et `having`
 - les sous-requêtes corrélées
 - le DDL de maintenance
 - la gestion de comptes et de privilèges
@@ -72,118 +73,107 @@ L’incident principal est volontairement concentré autour de la date fixe **20
 
 ## Consignes générales
 
-- Toutes les requêtes `select` doivent utiliser des alias clairs.
-- Les questions de la partie C doivent utiliser **explicitement une sous-requête corrélée**.
+- Utiliser des alias de table dans toutes les jointures. Utiliser des alias de colonne quand le nom retourné serait ambigu ou peu lisible : colonne partagée entre deux tables (`nom`, `code`, `date_heure`), résultat d'une fonction (`count`, `avg`, `regexp_matches`, `substring`), ou toute colonne dont le nom dans le résultat ne correspond pas à ce qui est demandé.
 - Les questions des parties D et E doivent être répondues par des instructions SQL exécutables.
 - Quand une question demande un tri, respectez-le.
-- Quand une question demande certaines colonnes seulement, limitez votre `select` à ces colonnes.
+- Quand une question demande certaines colonnes seulement ("Retournez..."), limitez votre `select` à ces colonnes.
+- Après chaque requête des parties A, B, C et D, **complétez le commentaire** qui suit en remplaçant les crochets par les valeurs obtenues à l'écran.
 - Utilisez uniquement les notions vues dans les modules du cours. **TOUTES** les notions disponibles sur le site du cours sont permises.
-
-## Indices à noter
-
-Chaque bonne réponse vous donnera un indice.
-Conservez-les au fur et à mesure.
-
-Les indices **[1] à [9]** sont donnés explicitement dans les **questions 1 à 9**.
-Les questions **10 à 16** servent à confirmer l’incident et à corriger la base de données, mais ne donnent pas de nouvel indice pour la phrase finale.
-
-En fin de TP, vous devrez compléter cette phrase :
-
-> La **[1]** détectée par **[2]** dans la salle **[3]** à **[4]** a poussé ARGUS à **[5]**.  
-> Il a ensuite ciblé **[6]**, puis relancé **[7]**.  
-> L’équipement le plus sollicité pendant l’incident était **[8]**, et le compte vulnérable visible dans les logs de sécurité était **[9]**.
 
 ---
 
-## Partie A - Expressions régulières
+## Partie A — Expressions régulières
 
 ### Objectif
 
-Filtrer et extraire des indices à partir des `code_log` et des messages système liés à l’incident.
+Filtrer et extraire des indices à partir des logs système liés à l'incident.
+
+:::tip Fonctions utiles
+Les opérateurs `~` et `regexp_matches` permettent de filtrer et d’extraire du texte avec une expression régulière. Pensez aussi à [`limit`](../modules/03-sql-base/02-select-where#limit) pour restreindre le nombre de lignes retournées.
+:::
 
 ### Questions
 
 1. Affichez les logs dont `code_log` commence par `ALR-IA-` suivi exactement de 3 chiffres.
    Retournez seulement `code_log`, `date_heure`, `niveau`.
-   Triez du plus ancien au plus récent et limitez le résultat à une seule ligne. ([Indice : `limit`](../modules/03-sql-base/02-select-where#limit))
-
-   **Indice [4] à noter :** l’heure du `date_heure` trouvé.
-
-2. À partir du **log ciblé** à la question 1, utilisez `regexp_matches` pour extraire le code de salle présent dans `message`.
-   Retournez seulement la valeur extraite.
-
-   **Indice [3] à noter :** le code de salle extrait.
-
-3. À partir du log `CAF-ALR-204`, utilisez `regexp_matches` pour extraire la valeur du champ `motif` présent dans `message`.
-   Retournez seulement la valeur extraite.
-
-   **Indice [1] à noter :** la valeur du `motif` extrait.
-
-4. Affichez les logs de sécurité liés à la salle `B-204` dont `code_log` respecte le format `^SEC-[A-Z]{3}-[0-9]{3}$`, puis utilisez `regexp_match` pour extraire le `nom_utilisateur` mentionné dans `message`.
-   Retournez `code_log`, `date_heure`, `nom_utilisateur_extrait`.
    Triez du plus ancien au plus récent et limitez le résultat à une seule ligne.
 
-   **Indice [9] à noter :** le `nom_utilisateur_extrait`.
+2. Ciblez le log trouvé à la question 1 en filtrant sur son `code_log`. Extrayez le code de salle présent dans `message`.
+   Retournez `code_log` et le code de salle extrait.
+
+3. Parmi les logs de niveau `critique` dont le message contient le mot-clé `utilisateur=`, extrayez le nom d’utilisateur.
+   Retournez `code_log`, `date_heure` et le nom d’utilisateur extrait.
+   Triez du plus ancien au plus récent et limitez à une seule ligne.
 
 ---
 
-## Partie B - Jointures
+## Partie B — Jointures
 
 ### Objectif
 
-Relier les équipements, les salles, les décisions de l’IA et les journaux système pour reconstruire la chronologie de l’incident.
+Relier les équipements, les salles et les décisions de l’IA pour reconstituer la chronologie de l’incident. 
 
 ### Questions
 
-5. Affichez le nom de l’équipement `CAF-B204`, son `type_equipement`, le code de sa salle et le nom de sa salle.
+4. Affichez les équipements de type `cafetiere` et qui sont situés dans la salle identifiée à la question 2.
+   Retournez le nom de l’équipement, le type d’équipement, le code de la salle et le nom de la salle.
    Utilisez une jointure entre `equipement` et `salle`.
 
-   **Indice [6] à noter :** le nom de l’équipement.
+5. Affichez la première décision prise par l'IA dans la salle identifiée à la question 2, à partir de `2026-02-17 08:16:00` (plus grand ou égal).
+   Retournez `date_heure`, `decision`, le nom de l’équipement et `succes`.
+   Utilisez des jointures entre `decision_ia`, `equipement` et `salle`.
+   Triez par `date_heure` et limitez à une seule ligne.
 
-6. Affichez la première décision prise par l’IA dans la salle `B-204` à partir de `2026-02-17 08:15:00`.
-   Retournez `date_heure`, `decision`, `equipement`, `succes`.
-   Utilisez des jointures entre `decision_ia`, `type_decision`, `equipement` et `salle`.
-   Triez par `date_heure` et limitez le résultat à une seule ligne.
-
-   **Indice [5] à noter :** la valeur de `decision`.
-
-7. Affichez sans doublons l’équipement de la salle `B-204` qui a été touché par une décision `redemarrer`.
-   Retournez `equipement`, `type_equipement`.
-   Utilisez des jointures.
-
-   **Indice [7] à noter :** le nom de l’équipement trouvé.
+6. Affichez tous les logs de niveau `critique`, avec le nom et le type d'équipement lié — ou `null` si aucun équipement n'est associé au log.
+   Retournez `code_log`, `message`, le nom de l’équipement et `type_equipement`, triés par nom d’équipement décroissant.
+   Utilisez une jointure entre `log_systeme` et `equipement` de façon à conserver tous les logs critiques, même ceux sans équipement associé.
 
 ---
 
-## Partie C - Sous-requêtes corrélées
+## Partie C — Agrégations
 
 ### Objectif
 
-Mettre en évidence l’anomalie réelle et les effets anormaux de l’incident.
+Identifier les volumes et les patterns d’activité anormale durant l’incident.
+
+:::tip Filtrer les groupes
+`group by` regroupe les lignes. `having` filtre ensuite sur les groupes formés, contrairement à `where` qui filtre avant le regroupement.
+:::
+
+### Questions
+
+1. Affichez le nombre de logs enregistrés par `niveau`.
+   Retournez `niveau` et le nombre de logs, triés du plus grand au plus petit.
+
+2. Affichez le nombre de **décisions** prises par l’IA **par équipement**.
+   Ne conservez que les équipements ayant reçu **plus d’une décision**.
+   Retournez le nom de l’équipement et le nombre de décisions, triés du plus grand au plus petit.
+
+---
+
+## Partie D — Sous-requêtes corrélées
+
+### Objectif
+
+Mettre en évidence l’anomalie réelle à l’origine de la cascade de décisions.
 
 ### Important
 
-Pour chacune des questions suivantes, la solution doit utiliser **explicitement une sous-requête corrélée**.
+Pour chacune des questions suivantes, la solution doit utiliser **explicitement une sous-requête corrélée**. Les opérateurs `exists` et `not exists` sont des formes de sous-requêtes corrélées.
 
 ### Questions
 
-8. Le 17 février 2026 à `08:15:00`, trouvez la lecture de **consommation** d’une **cafetière** qui est strictement supérieure à la moyenne des autres cafetières au même moment.
-   Retournez `equipement`, `code_capteur`, `date_heure`, `valeur`.
+9. Affichez les lectures de capteurs de type `consommation` dont la valeur est **strictement supérieure à la moyenne des lectures du même type de capteur**.
+   Retournez le code du capteur, `type_capteur`, `date_heure`, `valeur`.
+   Triez par `valeur` décroissant.
 
-   **Indice [2] à noter :** la valeur de `code_capteur`.
-
-9. Affichez l’équipement de la salle `B-204` qui a reçu **plus de décisions de l’IA que les autres équipements de cette même salle** le `2026-02-17`.
-   Retournez `equipement`, `salle`, `nb_decisions`.
-
-   **Indice [8] à noter :** la valeur de `equipement`.
-
-10. Affichez la porte qui a été **verrouillée avec succès** mais pour laquelle il n’existe **aucun déverrouillage réussi plus tard le même jour**.
-    Retournez `equipement`, `salle`.
-    La solution doit utiliser `not exists` dans une sous-requête corrélée.
+10. Affichez les équipements qui n’ont **jamais fait l’objet d’une décision de l’IA** — ceux qu’ARGUS n’a pas touchés.
+    Retournez le nom de l’équipement, `type_equipement` et le nom de la salle.
+    Triez par `type_equipement`, puis par nom d’équipement.
 
 ---
 
-## Partie D - DDL de maintenance
+## Partie E — DDL de maintenance
 
 ### Objectif
 
@@ -194,7 +184,7 @@ Renforcer l’intégrité de la base pour éviter qu’ARGUS interprète n’imp
 11. Ajoutez une contrainte `unique` sur `salle.code`.
     Le nom de la contrainte doit être exactement `salle_code_uq`.
 
-12. Ajoutez une contrainte `check` sur `capteur.code` pour imposer le format regex `^CAP-[A-Z]{3}-[0-9]{3}-[0-9]{2}$`.
+12. Ajoutez une contrainte `check` sur `capteur.code` pour imposer le format `CAP-` suivi de 3 lettres majuscules, un tiret, 3 chiffres, un tiret, et 2 chiffres (ex. : `CAP-SRV-001-01`).
     Le nom de la contrainte doit être exactement `capteur_code_format_ck`.
 
 13. Modifiez la relation entre `lecture_capteur` et `capteur` pour que la suppression d’un capteur supprime automatiquement ses lectures associées.
@@ -202,7 +192,7 @@ Renforcer l’intégrité de la base pour éviter qu’ARGUS interprète n’imp
 
 ---
 
-## Partie E - Comptes, privilèges et mots de passe
+## Partie F — Comptes, privilèges et mots de passe
 
 ### Objectif
 
@@ -210,16 +200,10 @@ Corriger la partie sécurité, qui s’est révélée presque aussi imprudente q
 
 ### Questions
 
-14. Activez l’extension `pgcrypto`, ajoutez une colonne `mot_de_passe_hache`, hachez tous les mots de passe existants avec `crypt(..., gen_salt('bf'))`, puis supprimez la colonne `mot_de_passe` en clair.
+14. Activez l’extension `pgcrypto`, ajoutez une colonne `mot_de_passe_hache`, hachez tous les mots de passe existants à l'aide d'un `update` avec `crypt(..., gen_salt('bf'))`, puis supprimez la colonne `mot_de_passe` en clair.
     À la fin de cette question, la table `utilisateur_systeme` ne doit plus contenir de mot de passe lisible.
 
-15. Renforcez la table `utilisateur_systeme` avec les opérations suivantes :
-    - rendre `nom_utilisateur`, `courriel` et `niveau_acces` obligatoires
-    - ajouter une contrainte `unique` nommée `utilisateur_systeme_nom_uq` sur `nom_utilisateur`
-    - ajouter une contrainte `unique` nommée `utilisateur_systeme_courriel_uq` sur `courriel`
-    - ajouter une contrainte `check` nommée `utilisateur_systeme_niveau_ck` pour limiter `niveau_acces` à `admin`, `enqueteur`, `technicien`
-
-16. Mettez en place des comptes PostgreSQL séparés selon le principe du moindre privilège.
+15. Mettez en place des comptes PostgreSQL séparés selon le principe du moindre privilège.
     Vous devez :
     - créer les rôles `tp3_admin`, `tp3_enqueteur`, `tp3_technicien`
     - créer les utilisateurs `alice_admin`, `nora_enquete`, `tom_tech`
@@ -228,19 +212,6 @@ Corriger la partie sécurité, qui s’est révélée presque aussi imprudente q
     - donner à `tp3_technicien` les droits `select`, `insert`, `update` sur `equipement`, `capteur`, `lecture_capteur`, `decision_ia`, `log_systeme`
     - retirer explicitement `delete` sur `lecture_capteur` et `log_systeme` au rôle `tp3_technicien`
     - donner à `tp3_admin` les droits les plus larges sur les tables et séquences du schéma `public`
-
----
-
-## Résolution finale
-
-Quand tous vos indices sont trouvés, complétez la phrase de conclusion directement dans un commentaire SQL à la fin de votre fichier :
-
-```sql
--- Resolution finale :
--- La [1] detectee par [2] dans la salle [3] a [4] a pousse ARGUS a [5].
--- Il a ensuite cible [6], puis relance [7].
--- L'equipement le plus sollicite pendant l'incident etait [8], et le compte visible dans les logs de securite etait [9].
-```
 
 ## Contenu de la remise
 
@@ -251,9 +222,9 @@ Le fichier doit contenir, dans l’ordre :
 - vos requêtes de la partie A
 - vos requêtes de la partie B
 - vos requêtes de la partie C
-- vos instructions DDL de la partie D
-- vos instructions de sécurité de la partie E
-- votre résolution finale en commentaire SQL
+- vos requêtes de la partie D
+- vos instructions DDL de la partie E
+- vos instructions de sécurité de la partie F
 
 Important :
 - le script `tp3-code-depart` doit être exécuté dans votre base avant de répondre
@@ -264,8 +235,15 @@ Important :
 - l’exactitude des requêtes
 - l’utilisation correcte des regex
 - la qualité des jointures
+- l’utilisation de `group by` et `having`
 - l’utilisation explicite et correcte des sous-requêtes corrélées
 - la pertinence des modifications DDL
 - la mise en place réaliste des comptes et privilèges
 - la bonne migration vers des mots de passe hachés
-- la cohérence de la résolution finale avec les questions qui ont servies à y répondre
+---
+
+## Récit de l’incident (non évalué)
+
+Une fois toutes vos requêtes complétées, rédigez en quelques lignes — directement en commentaires SQL à la fin de votre fichier de remise — ce qui s’est passé ce matin-là dans l’immeuble BatiNet (le point de départ, l'heure, le lieu, ce qui est arrivé et ce qui a été tenté).
+
+Basez-vous d'abord sur vos résultats, mais vous avez le droit de fouiller dans les tables. Soyez concis, mais vous avez le droit d’être drôle — Indice tout a commencé avec une cafétière qui en demandait un peu trop.
