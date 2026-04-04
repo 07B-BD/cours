@@ -31,7 +31,14 @@ export default defineConfig({
 					{ text: "Module 5 — DDL avancé", link: "/modules/05-ddl-avance/"}
 				],
 			},
-			{ text: "Travaux", link: "/travaux/tp1-creation-bd" },
+			{
+				text: "Travaux",
+				items: [
+					{ text: "TP1 — Création de BD", link: "/travaux/tp1-creation-bd" },
+					{ text: "TP2 — SQL", link: "/travaux/tp2-sql" },
+					{ text: "TP3 — DDL avancé", link: "/travaux/tp3-ddl-avance" },
+				],
+			},
 			{ text: 'Documentation PostgreSQL', link: 'https://docs.postgresql.fr/18/'},
 		],
 		sidebar: [

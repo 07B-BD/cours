@@ -73,7 +73,7 @@ L’incident principal est volontairement concentré autour de la date fixe **20
 
 ## Consignes générales
 
-- Utiliser des alias de table dans toutes les jointures. Utiliser des alias de colonne quand le nom retourné serait ambigu ou peu lisible : colonne partagée entre deux tables (`nom`, `code`, `date_heure`), résultat d'une fonction (`count`, `avg`, `regexp_matches`, `substring`), ou toute colonne dont le nom dans le résultat ne correspond pas à ce qui est demandé.
+- Utiliser des alias de table dans toutes les jointures. Utiliser des alias de colonne quand le nom retourné serait ambigu ou peu lisible : colonne partagée entre deux tables (`nom`, `code`, `date_heure`), résultat d'une fonction (`count`, `avg`, `regexp_matches`), ou toute colonne dont le nom dans le résultat ne correspond pas à ce qui est demandé.
 - Les questions des parties D et E doivent être répondues par des instructions SQL exécutables.
 - Quand une question demande un tri, respectez-le.
 - Quand une question demande certaines colonnes seulement ("Retournez..."), limitez votre `select` à ces colonnes.
