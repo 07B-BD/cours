@@ -2,11 +2,8 @@
 -- TP3 - FICHIER DE RÉPONSES
 -- Enquête SQL : l'IA trop zélée
 --
--- Renommez ce fichier :
--- tp3_prenom_nom.sql
---
 -- IMPORTANT
--- 1. Exécutez d'abord le script tp3-code-depart dans une base vide.
+-- 1. Exécutez d'abord le script tp3-code-depart dans une base de données vide.
 -- 2. Écrivez ensuite vos réponses sous chaque question.
 -- 3. Complétez la phrase sous chaque requête avec ce que vous voyez à l'écran.
 -- 4. Conservez ce fichier dans l'ordre des sections.

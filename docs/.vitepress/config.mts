@@ -234,7 +234,7 @@ export default defineConfig({
 				items: [
 					{ text: "Grille — TP1", link: "/grilles/grille-tp1" },
 					{ text: "Grille — TP2", link: "/grilles/grille-tp2" },
-					//{ text: "Grille — TP3", link: "/grilles/grille-tp3" },
+					{ text: "Grille — TP3", link: "/grilles/grille-tp3" },
 					//{ text: "Grille — Examen 1", link: "/grilles/grille-examen1" },
 					//{ text: "Grille — Examen 2", link: "/grilles/grille-examen2" },
 				],

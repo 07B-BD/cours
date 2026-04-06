@@ -1,4 +1,4 @@
----
+﻿---
 title: "TP3 - Incident dans l’immeuble intelligent"
 ---
 
@@ -12,9 +12,9 @@ title: "TP3 - Incident dans l’immeuble intelligent"
 <div class="my-6 rounded-lg border border-yellow-300 bg-yellow-50 p-4 text-yellow-900">
 <strong>Fichier de départ obligatoire</strong><br>
 Téléchargez le fichier de réponses structuré suivant, renommez-le <code>tp3_prenom_nom.sql</code>, puis écrivez vos réponses directement dedans.<br>
-<a href="./tp3-reponses-depart.sql" target="_blank" rel="noopener">Télécharger le fichier de réponses du TP3</a><br><br>
-Avant de commencer à répondre, exécutez aussi le script de création et de peuplement suivant dans votre base de données de travail :<br>
-<a href="./tp3-code-depart" target="_blank" rel="noopener">Télécharger le code de départ du TP3</a>
+<a href="../databases/tp3-reponses-depart.sql" target="_blank" rel="noopener">Télécharger le fichier de réponses du TP3</a><br><br>
+Avant de commencer à répondre, importez aussi le script de création et de peuplement suivant dans votre base de données de travail via la ligne de commande (<code>psql -U postgres -d votre_base -f tp3_bd_a_importer_argus.sql</code>) :<br>
+<a href="../databases/tp3_bd_a_importer_argus.sql" target="_blank" rel="noopener">Télécharger le code de départ du TP3</a>
 </div>
 
 ## Contexte
@@ -77,8 +77,9 @@ L’incident principal est volontairement concentré autour de la date fixe **20
 - Les questions des parties D et E doivent être répondues par des instructions SQL exécutables.
 - Quand une question demande un tri, respectez-le.
 - Quand une question demande certaines colonnes seulement ("Retournez..."), limitez votre `select` à ces colonnes.
+- N'utilisez `limit` que lorsque la question le demande **explicitement**.
 - Après chaque requête des parties A, B, C et D, **complétez le commentaire** qui suit en remplaçant les crochets par les valeurs obtenues à l'écran.
-- Utilisez uniquement les notions vues dans les modules du cours. **TOUTES** les notions disponibles sur le site du cours sont permises.
+- Utilisez uniquement les notions vues dans les modules du cours. **Toutes** les notions disponibles sur le site du cours sont permises.
 
 ---
 
@@ -96,14 +97,20 @@ Les opérateurs `~` et `regexp_matches` permettent de filtrer et d’extraire du
 
 1. Affichez les logs dont `code_log` commence par `ALR-IA-` suivi exactement de 3 chiffres.
    Retournez seulement `code_log`, `date_heure`, `niveau`.
-   Triez du plus ancien au plus récent et limitez le résultat à une seule ligne.
+   Triez du plus ancien au plus récent et **limitez le résultat à une seule ligne**.
 
-2. Ciblez le log trouvé à la question 1 en filtrant sur son `code_log`. Extrayez le code de salle présent dans `message`.
+   <img src="./images/tp3/q1.png" alt="Résultat attendu" class="img-bordered" />
+
+2. Ciblez le log trouvé à la question 1 en filtrant sur son `code_log` (vous pouvez utiliser la valeur codée en dur). Extrayez le code de salle présent dans `message`.
    Retournez `code_log` et le code de salle extrait.
+
+   <img src="./images/tp3/q2.png" alt="Résultat attendu" class="img-bordered" />
 
 3. Parmi les logs de niveau `critique` dont le message contient le mot-clé `utilisateur=`, extrayez le nom d’utilisateur.
    Retournez `code_log`, `date_heure` et le nom d’utilisateur extrait.
-   Triez du plus ancien au plus récent et limitez à une seule ligne.
+   Triez du plus ancien au plus récent et **limitez à une seule ligne**.
+
+   <img src="./images/tp3/q3.png" alt="Résultat attendu" class="img-bordered" />
 
 ---
 
@@ -119,18 +126,24 @@ Relier les équipements, les salles et les décisions de l’IA pour reconstitue
    Retournez le nom de l’équipement, le type d’équipement, le code de la salle et le nom de la salle.
    Utilisez une jointure entre `equipement` et `salle`.
 
+   <img src="./images/tp3/q4.png" alt="Résultat attendu" class="img-bordered" />
+
 5. Affichez la première décision prise par l'IA dans la salle identifiée à la question 2, à partir de `2026-02-17 08:16:00` (plus grand ou égal).
    Retournez `date_heure`, `decision`, le nom de l’équipement et `succes`.
    Utilisez des jointures entre `decision_ia`, `equipement` et `salle`.
-   Triez par `date_heure` et limitez à une seule ligne.
+   Triez par `date_heure` et **limitez à une seule ligne**.
+
+   <img src="./images/tp3/q5.png" alt="Résultat attendu" class="img-bordered" />
 
 6. Affichez tous les logs de niveau `critique`, avec le nom et le type d'équipement lié — ou `null` si aucun équipement n'est associé au log.
    Retournez `code_log`, `message`, le nom de l’équipement et `type_equipement`, triés par nom d’équipement décroissant.
    Utilisez une jointure entre `log_systeme` et `equipement` de façon à conserver tous les logs critiques, même ceux sans équipement associé.
 
+   <img src="./images/tp3/q6.png" alt="Résultat attendu" class="img-bordered" />
+
 ---
 
-## Partie C — Agrégations
+## Partie C — Agrégations et groupements
 
 ### Objectif
 
@@ -142,12 +155,16 @@ Identifier les volumes et les patterns d’activité anormale durant l’inciden
 
 ### Questions
 
-1. Affichez le nombre de logs enregistrés par `niveau`.
+7. Affichez le nombre de logs enregistrés par `niveau`.
    Retournez `niveau` et le nombre de logs, triés du plus grand au plus petit.
 
-2. Affichez le nombre de **décisions** prises par l’IA **par équipement**.
+   <img src="./images/tp3/q7.png" alt="Résultat attendu" class="img-bordered" />
+
+8. Affichez le nombre de **décisions** prises par l’IA **par équipement**.
    Ne conservez que les équipements ayant reçu **plus d’une décision**.
    Retournez le nom de l’équipement et le nombre de décisions, triés du plus grand au plus petit.
+
+   <img src="./images/tp3/q8.png" alt="Résultat attendu" class="img-bordered" />
 
 ---
 
@@ -167,9 +184,13 @@ Pour chacune des questions suivantes, la solution doit utiliser **explicitement 
    Retournez le code du capteur, `type_capteur`, `date_heure`, `valeur`.
    Triez par `valeur` décroissant.
 
+   <img src="./images/tp3/q9.png" alt="Résultat attendu" class="img-bordered" />
+
 10. Affichez les équipements qui n’ont **jamais fait l’objet d’une décision de l’IA** — ceux qu’ARGUS n’a pas touchés.
     Retournez le nom de l’équipement, `type_equipement` et le nom de la salle.
     Triez par `type_equipement`, puis par nom d’équipement.
+
+    <img src="./images/tp3/q10.png" alt="Résultat attendu" class="img-bordered" />
 
 ---
 
@@ -184,11 +205,17 @@ Renforcer l’intégrité de la base pour éviter qu’ARGUS interprète n’imp
 11. Ajoutez une contrainte `unique` sur `salle.code`.
     Le nom de la contrainte doit être exactement `salle_code_uq`.
 
+    <img src="./images/tp3/q11.png" alt="Résultat attendu" class="img-bordered" />
+
 12. Ajoutez une contrainte `check` sur `capteur.code` pour imposer le format `CAP-` suivi de 3 lettres majuscules, un tiret, 3 chiffres, un tiret, et 2 chiffres (ex. : `CAP-SRV-001-01`).
     Le nom de la contrainte doit être exactement `capteur_code_format_ck`.
 
+    <img src="./images/tp3/q12.png" alt="Résultat attendu" class="img-bordered" />
+
 13. Modifiez la relation entre `lecture_capteur` et `capteur` pour que la suppression d’un capteur supprime automatiquement ses lectures associées.
     Après votre modification, cette contrainte doit porter le nom `lecture_capteur_capteur_fk`.
+
+    <img src="./images/tp3/q13.png" alt="Résultat attendu" class="img-bordered" />
 
 ---
 
@@ -203,15 +230,17 @@ Corriger la partie sécurité, qui s’est révélée presque aussi imprudente q
 14. Activez l’extension `pgcrypto`, ajoutez une colonne `mot_de_passe_hache`, hachez tous les mots de passe existants à l'aide d'un `update` avec `crypt(..., gen_salt('bf'))`, puis supprimez la colonne `mot_de_passe` en clair.
     À la fin de cette question, la table `utilisateur_systeme` ne doit plus contenir de mot de passe lisible.
 
+    <img src="./images/tp3/q14.png" alt="Résultat attendu" class="img-bordered" />
+
 15. Mettez en place des comptes PostgreSQL séparés selon le principe du moindre privilège.
     Vous devez :
     - créer les rôles `tp3_admin`, `tp3_enqueteur`, `tp3_technicien`
     - créer les utilisateurs `alice_admin`, `nora_enquete`, `tom_tech`
     - associer chaque utilisateur à son rôle
     - donner à `tp3_enqueteur` un accès en lecture seule sur les tables du schéma `public`
-    - donner à `tp3_technicien` les droits `select`, `insert`, `update` sur `equipement`, `capteur`, `lecture_capteur`, `decision_ia`, `log_systeme`
+    - donner à `tp3_technicien` les droits `select`, `insert`, `update`, `delete` sur toutes les tables du schéma `public`
     - retirer explicitement `delete` sur `lecture_capteur` et `log_systeme` au rôle `tp3_technicien`
-    - donner à `tp3_admin` les droits les plus larges sur les tables et séquences du schéma `public`
+    - donner à `tp3_admin` tous les droits (`all privileges`) sur toutes les tables et toutes les séquences du schéma `public`
 
 ## Contenu de la remise
 
@@ -229,7 +258,7 @@ Le fichier doit contenir, dans l’ordre :
 Important :
 - le script `tp3-code-depart` doit être exécuté dans votre base avant de répondre
 - vous n’avez pas besoin de recopier ce script dans le fichier remis
-
+- **N'oubliez pas de compléter les réponses entre crochets dans les commentaires qui suivent chaque requête des parties A, B, C et D, en y inscrivant les valeurs obtenues à l'écran.**
 ## Ce qui sera évalué
 
 - l’exactitude des requêtes
