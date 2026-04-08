@@ -102,6 +102,33 @@ order by date_evenement desc;
 
 ---
 
+## Limiter le nombre de résultats (`limit`) {#limit}
+
+La clause `limit` permet de restreindre le **nombre de lignes** retournées par une requête.
+
+```sql
+select nom, date_evenement
+from evenement
+limit 5;
+```
+> Retourne seulement les 5 premières lignes.
+
+Combinée avec `order by`, elle permet d'obtenir les premiers ou les derniers selon un critère :
+
+```sql
+select nom, date_evenement
+from evenement
+order by date_evenement desc
+limit 1;
+```
+> Retourne l'événement le plus récent.
+
+::: tip
+`limit` s'applique **après** le tri. Sans `order by`, l'ordre des lignes retournées n'est pas garanti.
+:::
+
+---
+
 ## Filtrer les données (where)
 
 La clause `where` permet de **restreindre** les lignes retournées.
