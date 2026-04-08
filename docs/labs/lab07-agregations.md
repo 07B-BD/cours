@@ -97,46 +97,43 @@ Pour chacune des requêtes suivantes :
 Écrivez deux sous-requêtes corrélées en utilisant explicitement `exists` et `not exists`.
 
 1. Afficher les **artistes** qui ont **au moins un album**.
-2. Afficher les **genres** qui ne sont associés à **aucune piste**.
+2. Afficher les **employés** qui ne représentent **aucun client**.
 
 ### b) Deux autres sous-requêtes corrélées
 
-Écrivez les requêtes suivantes avec des sous-requêtes corrélées, sans utiliser `exists` ni `not exists`.
+Écrivez les requêtes suivantes avec des sous-requêtes corrélées.
 
 1. Afficher les **pistes** dont le **prix unitaire** est supérieur au **prix moyen des pistes du même type de média**.
 2. Afficher les **factures** dont le **total** est supérieur au **montant moyen des factures du même pays de facturation**.
 
-### c) Réécriture avec jointure et `group by`
+## 5 — Exercices supplémentaires
 
-Réécrivez les **deux requêtes de la section précédente** sans sous-requête corrélée.
+### a) Synthèse — `group by` et `having`
+
+Afficher les **albums** dont la **durée totale** dépasse 3 000 000 millisecondes, avec le titre de l'album et la durée totale.
+
+### b) Synthèse — Sous-requête corrélée
+
+Afficher les **pistes** dont la **durée** est supérieure à la **durée moyenne des pistes de leur album**.
+
+---
+
+## Défi optionnel — Réécriture avec jointure et `group by`
+
+> Ce défi va au-delà des attentes du cours. Il n'est pas obligatoire.
+
+Réécrivez les deux requêtes de la section **4 b)** sans sous-requête corrélée.
 
 Contraintes :
 - utilisez une jointure avec une requête agrégée
 - la requête agrégée doit contenir un `group by`
 - donnez un alias clair au résultat agrégé
 
-### d) Conseils de construction
-
-Avant d'écrire les requêtes de la partie **4 c)**, construisez-les en deux temps :
+### Conseils de construction
 
 1. Écrivez d'abord la requête qui calcule la valeur agrégée par groupe.
 2. Vérifiez que cette requête retourne une ligne par groupe.
 3. Joignez ensuite ce résultat à la table principale.
 4. Terminez avec le filtre final dans le `where`.
-
----
-
-## 5 — Défi synthèse
-
-Choisissez **une** des deux consignes suivantes :
-
-1. Afficher les **clients** qui ont acheté **plus de 10 pistes au total**, avec leur prénom, leur nom de famille et le nombre total de pistes achetées.
-2. Afficher les **albums** dont la **durée totale** dépasse 3000000 millisecondes, avec le titre de l'album et la durée totale.
-
-Contraintes :
-- utilisez au moins une jointure
-- utilisez au moins une fonction d'agrégation
-- utilisez `group by`
-- utilisez `having`
 
 ---

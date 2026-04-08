@@ -20,6 +20,53 @@ hero:
       link: https://techinfo.cegepgarneau.ca/Professeurs/Horaire?id=20
 
 ---
+<section id="semaine-11">
+<div class="relative flex py-5 items-center mt-10">
+   <div class="grow border-t border-gray-400"></div>
+   <span class="shrink mx-4 text-gray-400">Semaine 11 — du 8 au 14 avril</span>
+  <div class="grow border-t border-gray-400"></div>
+</div>
+<div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
+  <WeeklyTodo
+    title="À faire cette semaine — En classe"
+    subtitle="Activités réalisées pendant la séance."
+    :steps="[
+      {
+        title: 'Retour sur le lab 07 — Partie 1 (group by / having)',
+        links: [
+          { text: 'Laboratoire 7 — Partie 1', href: '/labs/lab07-agregations#partie-1', variant: 'primary' }
+        ]
+      },
+      {
+        title: 'Module 04 — Sous-requêtes corrélées',
+        links: [
+          { text: 'Sous-requêtes corrélées', href: '/modules/04-jointures-agregations/05-sous-requetes-correlees', variant: 'primary' }
+        ]
+      },
+      {
+        title: 'Commencer le lab 07 — Partie 2',
+        links: [
+          { text: 'Laboratoire 7 — Partie 2', href: '/labs/lab07-agregations#partie-2', variant: 'primary' }
+        ]
+      }
+    ]"
+  />
+
+  <WeeklyTodo
+    title="À préparer / compléter"
+    subtitle="À compléter de votre côté."
+    :steps="[
+      {
+        title: 'Terminer le lab 07 — Partie 2',
+        links: [
+          { text: 'Laboratoire 7 — Partie 2', href: '/labs/lab07-agregations#partie-2', variant: 'primary' }
+        ]
+      }
+    ]"
+  />
+</div>
+</section>
+
 <section id="semaine-10">
 <div class="relative flex py-5 items-center mt-10">
    <div class="grow border-t border-gray-400"></div>

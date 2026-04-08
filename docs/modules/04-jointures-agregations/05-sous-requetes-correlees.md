@@ -67,7 +67,7 @@ where p1.millisecondes > (
 Si on fait un parallèle avec **C#**, on peut voir cette logique comme un `foreach` :
 
 ```csharp
-foreach (var pisteCourante in pistes)
+foreach (Piste pisteCourante in pistes)
 {
     double dureeMoyenneDesPistes = // Code qui calcule la durée moyenne de toutes les pistes
 
@@ -82,6 +82,8 @@ foreach (var pisteCourante in pistes)
 >- la requête externe parcourt les lignes
 >- **pour chaque ligne externe**, la sous-requête recalcule une valeur liée à cette ligne
 >- puis SQL décide si la ligne est gardée ou non
+
+> Idéalement, en C#, on calculerait la moyenne avant d'entrer dans la boucle ce que les sous-requêtes corrélées ne nous permettent pas de faire.
 
 ### À retenir
 
@@ -213,33 +215,14 @@ Ici :
 - la requête externe lit un employé
 - la sous-requête vérifie s'il existe au moins un autre employé dont `superviseur_id` pointe vers cet employé
 
-## Bien choisir l'approche
+## Note sur la performance
 
-### Sous-requête corrélée, jointure ou `group by` ?
+Une sous-requête corrélée réévalue la sous-requête pour chaque ligne de la requête externe. Sur de grandes bases de données, cela peut avoir un impact sur les performances.
 
-Une sous-requête corrélée est utile quand la logique est naturellement formulée **ligne par ligne**.
-
-Préférez plutôt une jointure ou un `group by` quand :
-- une jointure simple exprime déjà clairement la relation entre les tables
-- un `group by` permet de calculer directement le résultat attendu
-- vous voulez une requête plus facile à optimiser sur de gros volumes
-
-En pratique :
-- sous-requête corrélée : bonne option pour raisonner "pour cette ligne"
-- jointure : bonne option pour relier des tables de façon directe
-- `group by` : bonne option pour résumer, compter ou additionner par groupe
-
----
-
-### Performance
-
-### Exemple où une jointure est souvent plus performante
-
-Reprenons l'exemple des pistes plus longues que la moyenne de leur genre.
-
-Version avec sous-requête corrélée :
+À titre indicatif, voici la même requête réécrite avec une jointure et une agrégation :
 
 ```sql
+-- Version avec sous-requête corrélée
 select p1.nom, p1.millisecondes, p1.genre_id
 from piste p1
 where p1.millisecondes > (
@@ -248,35 +231,20 @@ where p1.millisecondes > (
 	where p1.genre_id = p2.genre_id
 )
 order by p1.genre_id, p1.millisecondes desc;
-```
 
-Version avec jointure et agrégation :
-
-```sql
+-- Version équivalente avec jointure
 select p.nom, p.millisecondes, p.genre_id
 from piste p
 join (
 	select genre_id, avg(millisecondes) moyenne_genre
 	from piste
 	group by genre_id
-) stats
-	on p.genre_id = stats.genre_id
+) stats on p.genre_id = stats.genre_id
 where p.millisecondes > stats.moyenne_genre
 order by p.genre_id, p.millisecondes desc;
 ```
 
-Pourquoi la seconde version est souvent meilleure :
-- la moyenne par genre est calculée une fois par groupe
-- la jointure réutilise ensuite ce résultat pour toutes les pistes du genre
-- sur un grand volume de données, cette forme est souvent plus facile à optimiser qu'un calcul répété pour chaque piste
-
-Quelques repères pour construire cette version :
-- commencez par écrire la requête qui calcule la moyenne par `genre_id`
-- donnez un alias à ce résultat, par exemple `stats`
-- joignez ensuite `piste` avec ce résultat sur `genre_id`
-- comparez finalement `p.millisecondes` avec `stats.moyenne_genre` dans le `where`
-
-La sous-requête corrélée reste très utile pour comprendre la logique "pour cette ligne", mais une jointure avec agrégation peut être plus efficace quand le même calcul revient souvent.
+La version avec jointure calcule la moyenne une seule fois par groupe plutôt qu'une fois par ligne. Dans le contexte de ce cours, avec des bases de données de petite taille, la différence ne sera pas perceptible — c'est simplement bon à savoir si un jour vous êtes confrontés à des enejeux de performance.
 
 ## À retenir
 
