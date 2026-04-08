@@ -131,19 +131,19 @@ where p1.millisecondes > (
 ### Exemple 1 — Afficher les pistes plus longues que la moyenne de leur genre
 
 ```sql
-select p1.nom piste, alb.titre album, p1.millisecondes
+select p1.nom piste, g.nom genre, p1.millisecondes
 from piste p1
-join album alb on alb.album_id = p1.album_id
+join genre g on p1.genre_id = g.genre_id
 where p1.millisecondes > (
 	select avg(p2.millisecondes)
 	from piste p2
 	where p1.genre_id = p2.genre_id
 )
-order by p1.genre_id, p1.millisecondes desc;
+order by g.nom, p1.millisecondes desc;
 ```
 
 Ce que fait la requête :
-- la requête externe joint `piste` et `album` pour récupérer le titre de l'album
+- la requête externe joint `piste` et `genre` pour afficher le nom du genre
 - pour chaque piste, la sous-requête calcule la durée moyenne des pistes du **même genre**
 - on conserve les pistes plus longues que cette moyenne
 
@@ -151,7 +151,6 @@ Pourquoi c'est corrélé :
 - `p1.genre_id` vient de la ligne courante de la requête externe
 
 >La jointure dans la requête externe n'affecte pas la logique de la sous-requête corrélée.
->On peut joindre autant de tables que nécessaire dans la requête principale : la sous-requête corrélée référence simplement la colonne dont elle a besoin, peu importe d'où elle provient.
 
 ---
 
