@@ -66,11 +66,11 @@
 -- PARTIE C - AGRÉGATIONS
 -- ============================================================
 
--- Question 7 - Répartition des logs par niveau
+-- Question 7 - Nombre de capteurs par type et leur valeur moyenne
 
 
 
--- [info] ([N]), [critique] ([N]), [avertissement] ([N]).
+-- Le type de capteur le plus nombreux est [type_capteur] avec une valeur moyenne de [valeur_moyenne] [unite].
 
 -- Question 8 - Équipement le plus sollicité
 

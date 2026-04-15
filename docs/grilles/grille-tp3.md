@@ -15,25 +15,25 @@ Les pondérations indiquent le poids de chaque critère dans la note finale.
 
 | Niveau | Description | Note |
 |---|---|---|
-| **A** | Pattern regex correct. Colonnes, tri et limite conformes. | 100 % |
-| **C** | Fonctionnelle mais pattern imprécis ou détail mineur (tri, colonnes, limite). | 60 % |
-| **E** | Non fonctionnelle ou pattern inopérant. | 0 % |
+| **Excellent** | Pattern regex correct. Colonnes, tri et limite conformes. | 100 % |
+| **Suffisant** | Fonctionnelle mais pattern imprécis ou détail mineur (tri, colonnes, limite). | 60 % |
+| **Invalide** | Non fonctionnelle ou pattern inopérant. | 0 % |
 
 ### Q2 — Extraction du code de salle
 
 | Niveau | Description | Note |
 |---|---|---|
-| **A** | Extraction correcte du code de salle. Alias de colonne présent. | 100 % |
-| **C** | Fonctionnelle mais extraction imprécise ou alias manquant. | 60 % |
-| **E** | Non fonctionnelle ou extraction incorrecte. | 0 % |
+| **Excellent** | Extraction correcte du code de salle. Alias de colonne présent. | 100 % |
+| **Suffisant** | Fonctionnelle mais extraction imprécise ou alias manquant. | 60 % |
+| **Invalide** | Non fonctionnelle ou extraction incorrecte. | 0 % |
 
 ### Q3 — Extraction du nom d'utilisateur dans les logs critiques
 
 | Niveau | Description | Note |
 |---|---|---|
-| **A** | Filtre sur niveau et mot-clé correct. Extraction juste. Tri et limite conformes. | 100 % |
-| **C** | Fonctionnelle mais extraction ou filtre partiellement imprécis. | 60 % |
-| **E** | Non fonctionnelle ou extraction incorrecte. | 0 % |
+| **Excellent** | Filtre sur niveau et mot-clé correct. Extraction juste. Tri et limite conformes. | 100 % |
+| **Suffisant** | Fonctionnelle mais extraction ou filtre partiellement imprécis. | 60 % |
+| **Invalide** | Non fonctionnelle ou extraction incorrecte. | 0 % |
 
 ---
 
@@ -43,45 +43,45 @@ Les pondérations indiquent le poids de chaque critère dans la note finale.
 
 | Niveau | Description | Note |
 |---|---|---|
-| **A** | Jointure correcte. Filtre sur type et salle juste. Colonnes et alias conformes. | 100 % |
-| **C** | Fonctionnelle mais filtre ou colonne légèrement imprécis. | 60 % |
-| **E** | Non fonctionnelle ou jointure incorrecte. | 0 % |
+| **Excellent** | Jointure correcte. Filtre sur type et salle juste. Colonnes et alias conformes. | 100 % |
+| **Suffisant** | Fonctionnelle mais filtre ou colonne légèrement imprécis. | 60 % |
+| **Invalide** | Non fonctionnelle ou jointure incorrecte. | 0 % |
 
 ### Q5 — Première décision IA dans la salle
 
 | Niveau | Description | Note |
 |---|---|---|
-| **A** | Jointures correctes sur les trois tables. Filtre de date et tri conformes. Limite appliquée. | 100 % |
-| **C** | Fonctionnelle mais condition de jointure ou filtre légèrement imprécis. | 60 % |
-| **E** | Non fonctionnelle ou jointures incorrectes. | 0 % |
+| **Excellent** | Jointures correctes sur les trois tables. Filtre de date et tri conformes. Limite appliquée. | 100 % |
+| **Suffisant** | Fonctionnelle mais condition de jointure ou filtre légèrement imprécis. | 60 % |
+| **Invalide** | Non fonctionnelle ou jointures incorrectes. | 0 % |
 
 ### Q6 — Logs critiques avec équipement associé ou null
 
 | Niveau | Description | Note |
 |---|---|---|
-| **A** | Tous les logs critiques sont présents, avec ou sans équipement associé. Colonnes et tri conformes. | 100 % |
-| **C** | Fonctionnelle mais certains logs sans équipement ne sont pas conservés, ou tri incorrect. | 60 % |
-| **E** | Non fonctionnelle ou jointure incorrecte. | 0 % |
+| **Excellent** | Tous les logs critiques sont présents, avec ou sans équipement associé. Colonnes et tri conformes. | 100 % |
+| **Suffisant** | Fonctionnelle mais certains logs sans équipement ne sont pas conservés, ou tri incorrect. | 60 % |
+| **Invalide** | Non fonctionnelle ou jointure incorrecte. | 0 % |
 
 ---
 
 ## Partie C — Agrégations et groupements (15 %)
 
-### Q7 — Nombre de logs par niveau
+### Q7 — Nombre de capteurs par type et valeur moyenne
 
 | Niveau | Description | Note |
 |---|---|---|
-| **A** | Groupement correct. Agrégation et tri conformes. | 100 % |
-| **C** | Fonctionnelle mais tri ou alias manquant. | 60 % |
-| **E** | Non fonctionnelle ou regroupement incorrect. | 0 % |
+| **Excellent** | Groupement correct par type de capteur et unité. Nombre de capteurs et moyenne calculés correctement. Tri conforme. | 100 % |
+| **Suffisant** | Fonctionnelle mais groupement, agrégation, tri ou alias légèrement imprécis. | 60 % |
+| **Invalide** | Non fonctionnelle ou regroupement/agrégation incorrect. | 0 % |
 
 ### Q8 — Décisions par équipement avec plus d'une décision
 
 | Niveau | Description | Note |
 |---|---|---|
-| **A** | Groupement correct. Filtre appliqué correctement. Tri conforme. | 100 % |
-| **C** | Fonctionnelle mais filtre sur le groupement incorrect, ou tri/alias manquant. | 60 % |
-| **E** | Non fonctionnelle ou logique de regroupement incorrecte. | 0 % |
+| **Excellent** | Groupement correct. Filtre appliqué correctement. Tri conforme. | 100 % |
+| **Suffisant** | Fonctionnelle mais filtre sur le groupement incorrect, ou tri/alias manquant. | 60 % |
+| **Invalide** | Non fonctionnelle ou logique de regroupement incorrecte. | 0 % |
 
 ---
 
@@ -91,17 +91,17 @@ Les pondérations indiquent le poids de chaque critère dans la note finale.
 
 | Niveau | Description | Note |
 |---|---|---|
-| **A** | Sous-requête corrélée explicite. Référence à la requête externe correcte. Tri conforme. | 100 % |
-| **C** | Logique correcte mais corrélation implicite ou absente (ex. : jointure à la place). | 60 % |
-| **E** | Non fonctionnelle ou sous-requête non corrélée. | 0 % |
+| **Excellent** | Sous-requête corrélée explicite. Référence à la requête externe correcte. Tri conforme. | 100 % |
+| **Suffisant** | Logique correcte mais corrélation implicite ou absente (ex. : jointure à la place). | 60 % |
+| **Invalide** | Non fonctionnelle ou sous-requête non corrélée. | 0 % |
 
 ### Q10 — Équipements sans décision IA (sous-requête corrélée)
 
 | Niveau | Description | Note |
 |---|---|---|
-| **A** | Sous-requête corrélée explicite. Résultats corrects. Tri conforme. | 100 % |
-| **C** | Logique correcte mais corrélation implicite ou absente. | 60 % |
-| **E** | Non fonctionnelle ou résultats incorrects. | 0 % |
+| **Excellent** | Sous-requête corrélée explicite. Résultats corrects. Tri conforme. | 100 % |
+| **Suffisant** | Logique correcte mais corrélation implicite ou absente. | 60 % |
+| **Invalide** | Non fonctionnelle ou résultats incorrects. | 0 % |
 
 ---
 
@@ -111,25 +111,25 @@ Les pondérations indiquent le poids de chaque critère dans la note finale.
 
 | Niveau | Description | Note |
 |---|---|---|
-| **A** | Alter table fonctionnel. Nom de contrainte exactement `salle_code_uq`. | 100 % |
-| **C** | Contrainte ajoutée mais nom inexact ou syntaxe légèrement imprécise. | 60 % |
-| **E** | Non fonctionnelle ou contrainte incorrecte. | 0 % |
+| **Excellent** | Alter table fonctionnel. Nom de contrainte exactement `salle_code_uq`. | 100 % |
+| **Suffisant** | Contrainte ajoutée mais nom inexact ou syntaxe légèrement imprécise. | 60 % |
+| **Invalide** | Non fonctionnelle ou contrainte incorrecte. | 0 % |
 
 ### Q12 — Contrainte check sur capteur.code (format CAP-XXX-000-00)
 
 | Niveau | Description | Note |
 |---|---|---|
-| **A** | Pattern regex exact. Nom de contrainte exactement `capteur_code_format_ck`. Fonctionnel. | 100 % |
-| **C** | Fonctionnelle mais pattern légèrement imprécis ou nom de contrainte inexact. | 60 % |
-| **E** | Non fonctionnelle ou contrainte incorrecte. | 0 % |
+| **Excellent** | Pattern regex exact. Nom de contrainte exactement `capteur_code_format_ck`. Fonctionnel. | 100 % |
+| **Suffisant** | Fonctionnelle mais pattern légèrement imprécis ou nom de contrainte inexact. | 60 % |
+| **Invalide** | Non fonctionnelle ou contrainte incorrecte. | 0 % |
 
 ### Q13 — Suppression automatique de lecture_capteur
 
 | Niveau | Description | Note |
 |---|---|---|
-| **A** | L'ancienne contrainte a bien été remplacée par une nouvelle contrainte avec les paramètres permettant de supprimer l'entité enfant. Nom exactement `lecture_capteur_capteur_fk`. | 100 % |
-| **C** | Paramètres corrects, mais nom de contrainte inexact ou étapes partiellement incorrectes. | 60 % |
-| **E** | Non fonctionnelle ou contrainte incorrecte. | 0 % |
+| **Excellent** | L'ancienne contrainte a bien été remplacée par une nouvelle contrainte avec les paramètres permettant de supprimer l'entité enfant. Nom exactement `lecture_capteur_capteur_fk`. | 100 % |
+| **Suffisant** | Paramètres corrects, mais nom de contrainte inexact ou étapes partiellement incorrectes. | 60 % |
+| **Invalide** | Non fonctionnelle ou contrainte incorrecte. | 0 % |
 
 ---
 
@@ -139,17 +139,17 @@ Les pondérations indiquent le poids de chaque critère dans la note finale.
 
 | Niveau | Description | Note |
 |---|---|---|
-| **A** | Extension activée. Colonne hachée ajoutée. Update avec `crypt`/`gen_salt('bf')`. Colonne en clair supprimée. Aucun mot de passe lisible. | 100 % |
-| **C** | Fonctionnelle mais un élément manquant (ex. : colonne en clair non supprimée ou gen_salt incorrect). | 60 % |
-| **E** | Hachage absent ou migration non fonctionnelle. | 0 % |
+| **Excellent** | Extension activée. Colonne hachée ajoutée. Update avec `crypt`/`gen_salt('bf')`. Colonne en clair supprimée. Aucun mot de passe lisible. | 100 % |
+| **Suffisant** | Fonctionnelle mais un élément manquant (ex. : colonne en clair non supprimée ou gen_salt incorrect). | 60 % |
+| **Invalide** | Hachage absent ou migration non fonctionnelle. | 0 % |
 
 ### Q15 — Rôles, utilisateurs et privilèges
 
 | Niveau | Description | Note |
 |---|---|---|
-| **A** | Rôles et utilisateurs créés. Associations correctes. Privilèges accordés conformément au moindre privilège. Retrait du `delete` appliqué sur `lecture_capteur` et `log_systeme`. All privileges sur tables et séquences pour `tp3_admin`. | 100 % |
-| **C** | Fonctionnel mais un élément manquant ou mal ciblé (revoke, séquences, association utilisateur/rôle). | 60 % |
-| **E** | Non fonctionnel ou privilèges majoritairement incorrects. | 0 % |
+| **Excellent** | Rôles et utilisateurs créés. Associations correctes. Privilèges accordés conformément au moindre privilège. Retrait du `delete` appliqué sur `lecture_capteur` et `log_systeme`. All privileges sur tables et séquences pour `tp3_admin`. | 100 % |
+| **Suffisant** | Fonctionnel mais un élément manquant ou mal ciblé (revoke, séquences, association utilisateur/rôle). | 60 % |
+| **Invalide** | Non fonctionnel ou privilèges majoritairement incorrects. | 0 % |
 
 ---
 

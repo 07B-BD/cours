@@ -155,8 +155,9 @@ Identifier les volumes et les patterns d’activité anormale durant l’inciden
 
 ### Questions
 
-7. Affichez le nombre de logs enregistrés par `niveau`.
-   Retournez `niveau` et le nombre de logs, triés du plus grand au plus petit.
+7. Affichez le nombre de capteurs par `type_capteur` et leur valeur moyenne.
+   Retournez `type_capteur`, `unite`, le nombre de capteurs et la moyenne des valeurs lues.
+   Triez du plus grand au plus petit nombre de capteurs.
 
    <img src="./images/tp3/q7.png" alt="Résultat attendu" class="img-bordered" />
 

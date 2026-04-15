@@ -4,6 +4,15 @@ title: Grille d'évaluation — Examen 2
 
 # Grille d'évaluation — Examen 2
 
+## Échelle d'évaluation
+
+| Niveau | Valeur |
+|---|---|
+| Excellent | 100 % |
+| Suffisant | 70 % |
+| Insuffisant | 40 % |
+| Incorrect | 0 % |
+
 ## Pénalités
 
 | Pénalité | Facteur | Maximum |
@@ -15,23 +24,25 @@ title: Grille d'évaluation — Examen 2
 
 ## Partie 1 — Révision des acquis (30 %)
 
-### Q1 — Lecture de requête SQL (6 pts)
+### Q1 — Débogage de requête SQL (6 pts)
 
 | Niveau | Description |
 |---|---|
-| A | Explication exacte et complète. Lignes retournées identifiées correctement. |
-| C | Explication partiellement correcte ou une ligne mal identifiée. |
-| E | Explication absente, erronée ou aucune ligne identifiée. |
+| Excellent | Erreur identifiée avec précision. Requête corrigée valide et complète. |
+| Suffisant | Erreur identifiée correctement mais correction incomplète, ou correction juste mais explication vague. |
+| Insuffisant | Erreur vaguement identifiée ou correction tentée mais toujours incorrecte. |
+| Incorrect | Aucune identification de l'erreur et aucune correction fonctionnelle. |
 
 ---
 
-### Q2 — Lecture de requête SQL (6 pts)
+### Q2 — Débogage de requête SQL (6 pts)
 
 | Niveau | Description |
 |---|---|
-| A | Explication exacte et complète. Lignes retournées identifiées correctement. |
-| C | Explication partiellement correcte ou une ligne mal identifiée. |
-| E | Explication absente, erronée ou aucune ligne identifiée. |
+| Excellent | Erreur identifiée avec précision. Requête corrigée valide et complète. |
+| Suffisant | Erreur identifiée correctement mais correction incomplète, ou correction juste mais explication vague. |
+| Insuffisant | Erreur vaguement identifiée ou correction tentée mais toujours incorrecte. |
+| Incorrect | Aucune identification de l'erreur et aucune correction fonctionnelle. |
 
 ---
 
@@ -39,9 +50,10 @@ title: Grille d'évaluation — Examen 2
 
 | Niveau | Description |
 |---|---|
-| A | 2 insertions valides. Intégrité référentielle respectée. Valeurs plausibles. |
-| C | 1 insertion valide ou intégrité référentielle partiellement respectée. |
-| E | Pas d'insertion fonctionnelle. |
+| Excellent | 2 insertions valides. Toutes les colonnes listées explicitement. Valeurs conformes à l'énoncé. |
+| Suffisant | 1 insertion valide et complète, ou les 2 tentées avec colonnes explicites mais une valeur erronée. |
+| Insuffisant | Les 2 insertions tentées mais colonnes omises ou plusieurs valeurs incorrectes. |
+| Incorrect | Aucune insertion fonctionnelle. |
 
 ---
 
@@ -49,9 +61,10 @@ title: Grille d'évaluation — Examen 2
 
 | Niveau | Description |
 |---|---|
-| A | Filtre exact sur la date et l'indicateur actif. Mise à jour correcte. |
-| C | Logique correcte mais condition incomplète ou colonne cible incorrecte. |
-| E | Non fonctionnel ou logique absente. |
+| Excellent | Les deux conditions de filtre présentes et correctes. Colonne mise à jour conforme. |
+| Suffisant | Une seule des deux conditions présente, ou colonne mise à jour incorrecte mais logique générale juste. |
+| Insuffisant | Structure `UPDATE … SET … WHERE` présente mais logique de filtre majoritairement incorrecte. |
+| Incorrect | Non fonctionnel ou logique absente. |
 
 ---
 
@@ -59,9 +72,10 @@ title: Grille d'évaluation — Examen 2
 
 | Niveau | Description |
 |---|---|
-| A | Suppression correcte. Sous-requête non corrélée explicite. Intégrité respectée. |
-| C | Logique correcte mais sous-requête absente ou jointure utilisée à la place. |
-| E | Non fonctionnel ou lignes incorrectes supprimées. |
+| Excellent | `DELETE` correct. Sous-requête non corrélée explicite. Lignes correctes supprimées. |
+| Suffisant | Logique correcte et lignes correctes supprimées, mais sous-requête corrélée utilisée à la place. |
+| Insuffisant | `DELETE` avec tentative de sous-requête présente mais ciblant les mauvaises lignes, car la clé de lisaison est incorrecte |
+| Incorrect | Non fonctionnel ou aucune tentative cohérente. |
 
 ---
 
@@ -71,9 +85,10 @@ title: Grille d'évaluation — Examen 2
 
 | Niveau | Description |
 |---|---|
-| A | Pattern correct. Colonnes et tri conformes. |
-| C | Fonctionnelle mais pattern imprécis ou détail mineur. |
-| E | Non fonctionnelle ou pattern inopérant. |
+| Excellent | Pattern regex exact. Colonnes demandées et tri conformes à l'énoncé. |
+| Suffisant | Requête fonctionnelle mais pattern légèrement imprécis (ex. : ancres manquantes) ou tri absent. |
+| Insuffisant | Regex utilisée mais pattern significativement erroné (la majorité des cas ne sont pas couverts). |
+| Incorrect | Pas d'expression régulière ou requête non fonctionnelle. |
 
 ---
 
@@ -81,9 +96,10 @@ title: Grille d'évaluation — Examen 2
 
 | Niveau | Description |
 |---|---|
-| A | Jointure correcte. Colonnes, alias et tri conformes. |
-| C | Fonctionnelle mais colonne ou alias légèrement imprécis. |
-| E | Non fonctionnelle ou jointure incorrecte. |
+| Excellent | Jointure correcte. Filtre appliqué correctement. Colonnes demandées et tri conformes à l'énoncé. |
+| Suffisant | Jointure fonctionnelle mais filtre absent, colonne manquante ou tri incorrect. |
+| Insuffisant | Jointure tentée mais mauvais type de jointure ou condition de jointure incorrecte. |
+| Incorrect | Non fonctionnelle ou aucune jointure présente. |
 
 ---
 
@@ -91,19 +107,22 @@ title: Grille d'évaluation — Examen 2
 
 | Niveau | Description |
 |---|---|
-| A | Tous les enregistrements de la table principale sont présents, avec ou sans correspondance. Colonnes et tri conformes. |
-| C | Fonctionnelle mais certains enregistrements sans correspondance ne sont pas conservés, ou tri incorrect. |
-| E | Non fonctionnelle ou jointure incorrecte. |
+| Excellent | Jointure externe correcte. Tous les enregistrements de la table principale conservés. Colonnes et tri conformes à l'énoncé. |
+| Suffisant | Jointure fonctionnelle mais mauvais sens de jointure ou jointure interne utilisée (lignes sans correspondance perdues), ou tri incorrect. |
+| Insuffisant | Jointure tentée mais mauvais type de jointure ou condition de jointure incorrecte. |
+| Incorrect | Non fonctionnelle ou aucune jointure présente. |
 
 ---
 
 ### Q9 — Agrégation et GROUP BY (8 pts)
 
+
 | Niveau | Description |
 |---|---|
-| A | Groupement correct. Agrégations justes et arrondies. Tri conforme. |
-| C | Fonctionnelle mais arrondi, alias ou tri manquant. |
-| E | Non fonctionnelle ou regroupement incorrect. |
+| Excellent | `GROUP BY` correct. Fonctions d'agrégation correctes. Tri décroissant par nombre. |
+| Suffisant | Fonctionnelle mais alias manquants ou tri incorrect. |
+| Insuffisant | `GROUP BY` présent mais mauvaise colonne de regroupement ou mauvaise fonction d'agrégation ou une fonction manquante. |
+| Incorrect | Non fonctionnelle ou regroupement absent. |
 
 ---
 
@@ -111,9 +130,10 @@ title: Grille d'évaluation — Examen 2
 
 | Niveau | Description |
 |---|---|
-| A | Groupement correct. Filtre appliqué correctement. |
-| C | Fonctionnelle mais filtre sur le groupement incorrect ou alias manquant. |
-| E | Non fonctionnelle ou logique de regroupement incorrecte. |
+| Excellent | `GROUP BY` correct. Filtre `HAVING` appliqué sur le bon seuil. Colonnes conformes. |
+| Suffisant | Fonctionnelle mais seuil incorrect dans `HAVING` |
+| Insuffisant | `GROUP BY` présent mais `HAVING` absent ou filtre `WHERE` absent. |
+| Incorrect | Non fonctionnelle ou logique de regroupement absente. |
 
 ---
 
@@ -121,9 +141,10 @@ title: Grille d'évaluation — Examen 2
 
 | Niveau | Description |
 |---|---|
-| A | Sous-requête corrélée explicite. Référence à la requête externe correcte. Résultats corrects. |
-| C | Logique correcte mais corrélation implicite ou absente. |
-| E | Non fonctionnelle ou résultats incorrects. |
+| Excellent | Sous-requête corrélée explicite. Référence à la table externe correcte. Résultats corrects. |
+| Suffisant | Logique correcte mais sous-requête non corrélée (moyenne globale au lieu de la moyenne par groupe). |
+| Insuffisant | Sous-requête tentée mais ne compare pas la cotisation à la moyenne du bon groupe. |
+| Incorrect | Non fonctionnelle ou aucune sous-requête présente. |
 
 ---
 
@@ -133,19 +154,21 @@ title: Grille d'évaluation — Examen 2
 
 | Niveau | Description |
 |---|---|
-| A | Les deux contraintes ajoutées. Noms exacts. Pattern regex correct. Fonctionnel. |
-| C | Une contrainte correcte, l'autre absente ou nom inexact. |
-| E | Non fonctionnel ou contraintes incorrectes. |
+| Excellent | Les deux contraintes ajoutées avec les noms exacts fournis dans l'énoncé. Pattern regex correct et fonctionnel. |
+| Suffisant | Une contrainte correcte et complète ; l'autre absente ou utilisation d'un nom inexact. |
+| Insuffisant | Les deux contraintes tentées mais noms incorrects et/ou pattern regex significativement erroné. |
+| Incorrect | Non fonctionnel ou aucune contrainte ajoutée. |
 
 ---
 
-### Q13 — Cascade delete (7 pts)
+### Q13 — ALTER TABLE — Suppression en cascade (7 pts)
 
 | Niveau | Description |
 |---|---|
-| A | L'ancienne contrainte a bien été remplacée par une nouvelle contrainte avec les paramètres permettant de supprimer l'entité enfant. Nom de contrainte exact. |
-| C | Paramètres corrects, mais nom de contrainte inexact ou étapes partiellement incorrectes. |
-| E | Non fonctionnelle ou contrainte incorrecte. |
+| Excellent | Ancienne contrainte supprimée. Nouvelle contrainte ajoutée avec `ON DELETE CASCADE` et le nom exact fourni dans l'énoncé. La clé étrangère référence la bonne table. |
+| Suffisant | `ON DELETE CASCADE` correct mais nom de la nouvelle contrainte inexact, ou les deux étapes présentes mais dans le mauvais ordre ou la clé étrangère référence la mauvaise table. |
+| Insuffisant | Une seule des deux étapes réalisée (suppression sans recréation, ou recréation sans suppression préalable). |
+| Incorrect | Non fonctionnel ou contrainte incorrecte. |
 
 ---
 
@@ -153,9 +176,10 @@ title: Grille d'évaluation — Examen 2
 
 | Niveau | Description |
 |---|---|
-| A | Extension activée. Colonne hachée ajoutée. Mise à jour avec `crypt`/`gen_salt('bf')`. Colonne en clair supprimée. Aucun mot de passe lisible. |
-| C | Fonctionnelle mais un élément manquant (colonne en clair non supprimée ou paramètre de hachage incorrect). |
-| E | Hachage absent ou migration non fonctionnelle. |
+| Excellent | Les 4 étapes réalisées dans l'ordre. Extension activée. Colonne hachée ajoutée. `UPDATE` avec `crypt(…, gen_salt('bf'))`. Colonne en clair supprimée. |
+| Suffisant | 3 étapes correctes ; une étape manquante (ex. : colonne en clair non supprimée, ou extension absente mais hachage fonctionnel). |
+| Insuffisant | Seulement 1 ou 2 étapes réalisées correctement ; hachage tenté mais paramètres incorrects. |
+| Incorrect | Hachage absent ou migration non fonctionnelle. |
 
 ---
 
@@ -163,6 +187,7 @@ title: Grille d'évaluation — Examen 2
 
 | Niveau | Description |
 |---|---|
-| A | Rôles et utilisateurs créés. Associations correctes. Privilèges accordés conformément au moindre privilège. Retrait du privilège superflu appliqué. Accès complet pour le rôle admin sur tables et séquences. |
-| C | Fonctionnel mais un élément manquant ou mal ciblé (retrait de privilège, séquences, association utilisateur/rôle). |
-| E | Non fonctionnel ou privilèges majoritairement incorrects. |
+| Excellent | Rôles et utilisateurs créés. Associations utilisateur–rôle correctes. `SELECT` accordé sur toutes les tables au rôle lecture. `ALL PRIVILEGES` accordé sur toutes les tables **et séquences** au rôle admin. `REVOKE SELECT` appliqué sur la table sensible. |
+| Suffisant | Fonctionnel mais un élément manquant ou mal ciblé : séquences oubliées, `REVOKE` absent, ou une association utilisateur–rôle incorrecte. |
+| Insuffisant | Rôles ou utilisateurs créés partiellement ; privilèges incomplets ou la moitié des éléments manquants. |
+| Incorrect | Non fonctionnel ou privilèges majoritairement incorrects. |
