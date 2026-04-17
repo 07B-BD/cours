@@ -20,6 +20,66 @@ hero:
       link: https://techinfo.cegepgarneau.ca/Professeurs/Horaire?id=20
 
 ---
+<section id="semaine-12">
+<div class="relative flex py-5 items-center mt-10">
+   <div class="grow border-t border-gray-400"></div>
+   <span class="shrink mx-4 text-gray-400">Semaine 12 — du 16 avril au 22 avril</span>
+  <div class="grow border-t border-gray-400"></div>
+</div>
+<div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
+  <WeeklyTodo
+    title="À faire cette semaine — En classe"
+    subtitle="Activités réalisées pendant la séance."
+    :steps="[
+      {
+        title: 'Retour sur le lab 07 — Partie 2',
+        links: [
+          { text: 'Laboratoire 7 — Partie 2', href: '/labs/lab07-agregations#partie-2', variant: 'primary' }
+        ]
+      },
+      {
+        title: 'Module 05 — Alter table',
+        links: [
+          { text: 'Alter table', href: '/modules/05-ddl-avance/01-alter-table', variant: 'primary' }
+        ]
+      },
+      {
+        title: 'Module 05 - Cascade Delete / Update',
+        links: [
+          { text: 'Cascade Delete / Update', href: '/modules/05-ddl-avance/02-cascade-delete-update', variant: 'primary' }
+        ]
+      },
+      {
+        title: 'Module 05 — Index de colonne',
+        links: [
+          { text: 'Index de colonne', href: '/modules/05-ddl-avance/03-index-de-colonne', variant: 'primary' }
+        ]
+      },
+      {
+        title: 'Présentation du TP3',
+        links: [
+          { text: 'TP3 — DDL avancé', href: '/travaux/tp3-ddl-avance', variant: 'primary' }
+        ]
+      }
+    ]"
+  />
+
+  <WeeklyTodo
+    title="À préparer / compléter"
+    subtitle="À compléter de votre côté."
+    :steps="[
+      {
+        title: 'Lab 08 - DDL de maintenance',
+        description: 'À faire pour la prochaine rencontre.',
+        links: [
+          { text: 'Laboratoire 8', href: '/labs/lab08-ddl-maintenance', variant: 'primary' }
+        ]
+      }
+    ]"
+  />
+</div>
+</section>
+
 <section id="semaine-11">
 <div class="relative flex py-5 items-center mt-10">
    <div class="grow border-t border-gray-400"></div>
