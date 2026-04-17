@@ -41,8 +41,27 @@ create table departement (
 create table employe_demo (
   employe_id integer primary key,
   nom varchar(50) not null,
-  departement_id integer references departement(departement_id) on delete cascade
+  departement_id integer not null,
+  foreign key (departement_id) references departement(departement_id) on delete cascade
 );
+
+insert into departement (departement_id, nom) values
+  (1, 'Informatique'),
+  (2, 'Comptabilite');
+
+insert into employe_demo (employe_id, nom, departement_id) values
+  (101, 'Alice', 1),
+  (102, 'Karim', 1),
+  (103, 'Sophie', 2);
+
+select * from departement;
+select * from employe_demo;
+
+delete from departement
+where departement_id = 1;
+
+select * from departement;
+select * from employe_demo;
 ```
 
 Si on supprime un département, les employés liés seront aussi supprimés.
