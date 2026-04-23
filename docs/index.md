@@ -20,6 +20,60 @@ hero:
       link: https://techinfo.cegepgarneau.ca/Professeurs/Horaire?id=20
 
 ---
+<section id="semaine-13">
+<div class="relative flex py-5 items-center mt-10">
+   <div class="grow border-t border-gray-400"></div>
+   <span class="shrink mx-4 text-gray-400">Semaine 13 — du 23 au 29 avril</span>
+  <div class="grow border-t border-gray-400"></div>
+</div>
+<div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
+  <WeeklyTodo
+    title="À faire cette semaine — En classe"
+    subtitle="Activités réalisées pendant la séance."
+    :steps="[
+      {
+        title: 'Retour sur Cascade et Index (lab 08)',
+        links: [
+          { text: 'Laboratoire 8', href: '/labs/lab08-ddl-maintenance#_7-remplacer-la-contrainte-entre-client-et-facture', variant: 'primary' }
+        ]
+      },
+      {
+        title: 'Gestion de comptes et sécurité',
+        links: [
+          { text: 'Gestion de comptes et sécurité', href: '/modules/05-ddl-avance/04-gestion-de-comptes', variant: 'primary' }
+        ]
+      },
+      {
+        title: 'Fonctions de hachage',
+        links: [
+          { text: 'Fonctions de hachage', href: '/modules/05-ddl-avance/05-hachage-mots-de-passe', variant: 'primary' }
+        ]
+      }
+    ]"
+  />
+
+  <WeeklyTodo
+    title="À préparer / compléter"
+    subtitle="À compléter de votre côté."
+    :steps="[
+      {
+        title: 'Lab 09 — Gestion de comptes et sécurité',
+        description: 'À faire pour la prochaine rencontre.',
+        links: [
+          { text: 'Laboratoire 9', href: '/labs/lab09-securite', variant: 'primary' }
+        ]
+      },
+      {
+        title: 'Terminer le TP3',
+        description: 'À remettre pour la prochaine séance.',
+        links: [
+          { text: 'TP3 — DDL avancé', href: '/travaux/tp3-ddl-avance', variant: 'primary' }
+        ]
+      }
+    ]"
+  />
+</div>
+</section>
 <section id="semaine-12">
 <div class="relative flex py-5 items-center mt-10">
    <div class="grow border-t border-gray-400"></div>
