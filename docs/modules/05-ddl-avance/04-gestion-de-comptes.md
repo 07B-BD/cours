@@ -38,7 +38,62 @@ Le bon réflexe est donc :
 - attribuer les privilèges aux rôles
 - ajouter ensuite les utilisateurs aux rôles
 
-![Hiérarchie utilisateur, rôle et privilèges](./images/hierarchie-utilisateur-role-privileges.svg)
+```mermaid
+flowchart LR
+    %% Colonnes
+    subgraph U["Utilisateurs"]
+        direction TB
+        alice["alice_dba"]
+        bob["bob_developpeur"]
+        analyste["joe_analyste"]
+        app["app_web"]
+    end
+
+    subgraph R["Rôles"]
+        direction TB
+        admin["admin<br/>Gestion et sécurité"]
+        dev["developpeur<br/>Travail sur les données"]
+        lecture["lecture_seule<br/>Consultation seulement"]
+    end
+
+    subgraph P["Privilèges"]
+        direction TB
+        padmin["Accès complet<br/>Gestion des comptes<br/>et des droits<br/><br/>"]
+        pdev["Lire, ajouter,<br/>modifier, supprimer<br/><br/>"]
+        plecture["lecture_seule<br/>Lire les données<br/>"]
+    end
+
+    %% Utilisateurs -> roles
+    alice --> admin
+    bob --> dev
+    analyste --> lecture
+    app --> dev
+
+    %% Roles -> privileges
+    admin --> padmin
+    dev --> pdev
+    lecture --> plecture
+
+    %% Styles
+    classDef user fill:#e8f1ff,stroke:#7db2ff,stroke-width:2px,color:#0f172a,rx:18,ry:18;
+    classDef role fill:#fff4d6,stroke:#f0bf58,stroke-width:2px,color:#0f172a,rx:18,ry:18;
+    classDef privilege fill:#e8f7ee,stroke:#7ac79a,stroke-width:2px,color:#0f172a,rx:18,ry:18;
+    classDef groupU fill:#dbeafe,stroke:#dbeafe,color:#0f172a;
+    classDef groupR fill:#fef3c7,stroke:#fef3c7,color:#0f172a;
+    classDef groupP fill:#dcfce7,stroke:#dcfce7,color:#0f172a;
+
+    class alice,bob,analyste,app user;
+    class admin,dev,lecture role;
+    class padmin,pdev,plecture privilege;
+    class U groupU;
+    class R groupR;
+    class P groupP;
+
+    linkStyle 0,1,2,3 stroke:#5b8de3,stroke-width:3px;
+    linkStyle 4,5,6 stroke:#c69314,stroke-width:3px;
+```
+
+> On rattache des utilisateurs à des rôles, puis on accorde les privilèges aux rôles.
 
 ---
 

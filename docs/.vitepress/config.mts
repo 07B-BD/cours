@@ -1,7 +1,8 @@
 import { defineConfig } from "vitepress";
+import { withMermaid } from "vitepress-plugin-mermaid";
 
 // https://vitepress.dev/reference/site-config
-export default defineConfig({
+export default withMermaid(defineConfig({
 	base: "/cours/",
 	lang: "fr-CA",
 	cleanUrls: true,
@@ -245,4 +246,4 @@ export default defineConfig({
 			provider: "local",
 		},
 	},
-});
+}));
