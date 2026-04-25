@@ -5,6 +5,7 @@ import './style.css'
 import './custom.css'
 import WeeklyTodo from "./components/WeeklyTodo.vue"
 
+
 export default {
   extends: Theme,
   Layout: () => {
@@ -16,3 +17,4 @@ export default {
     app.component("WeeklyTodo", WeeklyTodo);
   }
 }
+

@@ -13,7 +13,7 @@ title: "TP3 - Incident dans l’immeuble intelligent"
 <strong>Fichier de départ obligatoire</strong><br>
 Téléchargez le fichier de réponses structuré suivant, renommez-le <code>tp3_prenom_nom.sql</code>, puis écrivez vos réponses directement dedans.<br>
 <a href="../databases/tp3-reponses-depart.sql" target="_blank" rel="noopener">Télécharger le fichier de réponses du TP3</a><br><br>
-Avant de commencer à répondre, importez aussi le script de création et de peuplement suivant dans votre base de données de travail via la ligne de commande (<code>psql -U postgres -d votre_base -f tp3_bd_a_importer_argus.sql</code>) :<br>
+Avant de commencer à répondre, importez aussi le script de création et de peuplement suivant dans votre base de données de travail via la ligne de commande (<code>psql -U postgres -f tp3_bd_a_importer_argus.sql(copier le fichier en tant que chemin d'accès)</code>) :<br>
 <a href="../databases/tp3_bd_a_importer_argus.sql" target="_blank" rel="noopener">Télécharger le code de départ du TP3</a>
 </div>
 
