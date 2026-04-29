@@ -149,7 +149,7 @@ export default withMermaid(defineConfig({
 					},					
 					{
 						text: "Module 4 — Jointures et agrégations",
-						collapsed: false,
+						collapsed: true,
 						items: [
 							{
 								text: "Expressions régulières & fonctions textuelles",
@@ -175,7 +175,7 @@ export default withMermaid(defineConfig({
 					},
 					{
 						text: "Module 5 — DDL avancé",
-						collapsed: true,
+						collapsed: false,
 						items: [
 							{
 								text: "Alter Table",
