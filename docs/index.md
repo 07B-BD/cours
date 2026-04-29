@@ -20,6 +20,41 @@ hero:
       link: https://techinfo.cegepgarneau.ca/Professeurs/Horaire?id=20
 
 ---
+<section id="semaine-14">
+<div class="relative flex py-5 items-center mt-10">
+   <div class="grow border-t border-gray-400"></div>
+   <span class="shrink mx-4 text-gray-400">Semaine 14 — du 30 avril au 6 mai</span>
+  <div class="grow border-t border-gray-400"></div>
+</div>
+<div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
+  <WeeklyTodo
+    title="À faire cette semaine — En classe"
+    subtitle="Activités réalisées pendant la séance."
+    :steps="[
+      {
+        title: 'Révision de l’examen 2',
+        links: [
+          { text: 'Révision de l’examen 2', href: '/modules/05-ddl-avance/06-revision-examen-2', variant: 'primary' }
+        ]
+      }
+    ]"
+  />
+
+  <WeeklyTodo
+    title="À préparer / compléter"
+    subtitle="À compléter de votre côté."
+    :steps="[
+      {
+        title: 'Terminer la révision de l’examen 2',
+        links: [
+          { text: 'Révision de l’examen 2', href: '/modules/05-ddl-avance/06-revision-examen-2', variant: 'primary' }
+        ]
+      }
+    ]"
+  />
+</div>
+</section>
+
 <section id="semaine-13">
 <div class="relative flex py-5 items-center mt-10">
    <div class="grow border-t border-gray-400"></div>
