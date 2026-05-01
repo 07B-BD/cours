@@ -70,7 +70,7 @@ Le code de départ complet se trouve aussi dans le fichier `revision-examen2-rep
 
 ## PARTIE 1 — Révision des acquis (30 points)
 
-### Q1 — Débogage de requête (6 pts)
+### Q1 — Débogage de requête
 
 La requête suivante devrait afficher les ateliers prévus dans l'intervalle demandé par la coordonnatrice, soit les ateliers planifiés après le `2026-05-15` et avant le `2026-07-05`.
 
@@ -92,7 +92,7 @@ where date_atelier between '2026-05-15' and '2026-07-05';
 
 ---
 
-### Q2 — Débogage de requête (6 pts)
+### Q2 — Débogage de requête
 
 La requête suivante devrait afficher les membres dont le courriel n'est pas une adresse du domaine `photoclic.ca`.
 
@@ -114,7 +114,7 @@ where courriel not like 'photoclic.ca';
 
 ---
 
-### Q3 — Insertions de données (4 pts)
+### Q3 — Insertions de données
 
 La coordonnatrice du club veut ajouter deux nouveaux ateliers à l'horaire.
 
@@ -132,7 +132,7 @@ Ajoutez ces deux ateliers dans la table `atelier` en indiquant explicitement tou
 
 ---
 
-### Q4 — UPDATE avec sous-requête non corrélée (6 pts)
+### Q4 — UPDATE avec sous-requête non corrélée
 
 La coordonnatrice veut ajuster certains frais annuels.
 
@@ -149,7 +149,7 @@ La solution doit utiliser une **sous-requête non corrélée** dans le `UPDATE`.
 
 ---
 
-### Q5 — DELETE avec sous-requête non corrélée (8 pts)
+### Q5 — DELETE avec sous-requête non corrélée
 
 Supprimez les inscriptions associées à des membres **inactifs**.
 
@@ -165,7 +165,7 @@ La solution doit utiliser une sous-requête dans la clause `WHERE`.
 
 ## PARTIE 2 — Jointures, agrégations et sous-requêtes (35 points)
 
-### Q6 — Filtre avec expression régulière (5 pts)
+### Q6 — Filtre avec expression régulière
 
 Affichez les inscriptions dont le `code_badge` respecte l'un des deux formats suivants :
 
@@ -189,7 +189,7 @@ Triez par `code_badge`.
 
 ---
 
-### Q7 — Jointure interne avec filtre multiple (6 pts)
+### Q7 — Jointure interne avec filtre multiple
 
 Affichez les membres **actifs** inscrits à un atelier **ouvert**.
 
@@ -212,7 +212,7 @@ Triez par `date_atelier`, puis par `nom`.
 
 ---
 
-### Q8 — Jointure externe (6 pts)
+### Q8 — Jointure externe
 
 Affichez **tous les ateliers**, même ceux sans inscription, avec :
 
@@ -231,7 +231,7 @@ Triez par `titre`.
 
 ---
 
-### Q9 — GROUP BY et agrégations (8 pts)
+### Q9 — GROUP BY et agrégations
 
 Pour chaque `statut` de membre, affichez :
 
@@ -249,7 +249,7 @@ Triez par les revenus totaux décroissants.
 
 ---
 
-### Q10 — GROUP BY / HAVING sur les revenus par statut (5 pts)
+### Q10 — GROUP BY / HAVING sur les revenus par statut
 
 Affichez uniquement les statuts de membres dont les **revenus totaux** dépassent `500`.
 
@@ -266,7 +266,7 @@ Colonnes à afficher :
 
 ---
 
-### Q11 — Sous-requête corrélée (5 pts)
+### Q11 — Sous-requête corrélée
 
 Affichez les membres qui n'ont **aucune inscription** à un atelier.
 
@@ -290,7 +290,7 @@ La solution doit utiliser une sous-requête corrélée.
 
 ## PARTIE 3 — DDL avancé, sécurité et mots de passe (35 points)
 
-### Q12 — ALTER TABLE avec deux contraintes sur la même table (6 pts)
+### Q12 — ALTER TABLE avec deux contraintes sur la même table
 
 Modifiez la table `membre` pour :
 
@@ -310,7 +310,7 @@ Nom de la contrainte :
 
 ---
 
-### Q13 — Suppression en cascade (7 pts)
+### Q13 — Suppression en cascade
 
 La clé étrangère entre `inscription_atelier` et `atelier` ne possède pas de règle de suppression en cascade.
 
@@ -328,7 +328,7 @@ La contrainte actuelle se nomme `inscription_atelier_atelier_id_fkey`.
 
 ---
 
-### Q14 — Migration des mots de passe (10 pts)
+### Q14 — Migration des mots de passe
 
 La colonne `mot_de_passe_clair` de la table `membre` doit être remplacée par une version hachée.
 
@@ -347,7 +347,7 @@ Effectuez la migration complète :
 
 ---
 
-### Q15 — Rôles, utilisateurs et privilèges (12 pts)
+### Q15 — Rôles, utilisateurs et privilèges
 
 Mettez en place la gestion des accès suivante pour la base **photoclic**.
 
